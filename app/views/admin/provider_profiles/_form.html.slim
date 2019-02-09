@@ -1,0 +1,90 @@
+= simple_form_for [:admin, provider_profile.object] do |f|
+  .row
+    .col-xs-12.col-xs-offset-0.col-sm-8.col-sm-offset-2
+      .resource-detail.panel.panel-default
+        .resource.panel-body
+          = render "admin/shared/form_errors",
+                   resource: f.object
+
+          .form-group
+            = f.label :provider_category_id
+            = f.select :provider_category_id,
+                       provider_categories_for_select,
+                       { include_blank: true },
+                       class: "js-selectize"
+
+          = f.input :ruc
+          = f.input :razon_social
+          = f.input :nombre_establecimiento
+          = f.input :actividad_economica
+          = f.input :tipo_contribuyente
+          = f.input :representante_legal
+          = f.input :telefono, input_html: { type: :tel }
+          = f.input :email
+          - if f.object.new_record?
+            = f.input :generate_user,
+                      as: :boolean,
+                      input_html: { checked: true }
+
+          .form-group
+            = f.label :fecha_inicio_actividad
+            = f.date_field :fecha_inicio_actividad,
+                           class: "form-control"
+
+          .form-group
+            = f.label :banco_nombre
+            = f.text_field :banco_nombre,
+                           class: "form-control"
+
+          .form-group
+            = f.label :banco_numero_cuenta
+            = f.text_field :banco_numero_cuenta,
+                           class: "form-control"
+
+          .form-group
+            = f.label :banco_tipo_cuenta
+            = f.select :banco_tipo_cuenta,
+                       ProviderProfile::BANCO_TIPOS_CUENTA,
+                       {},
+                       class: "js-selectize"
+
+          .form-group
+            = f.label :website
+            = f.text_field :website,
+                           class: "form-control"
+
+          - [:facebook, :twitter, :instagram, :youtube].each do |sn|
+            .form-group
+              = f.label "#{sn}_handle"
+              = f.text_field "#{sn}_handle",
+                             class: "form-control"
+
+          = f.input :formas_de_pago,
+                    collection: ProviderProfile::FORMAS_DE_PAGO,
+                    required: true,
+                    input_html: { class: "js-selectize",
+                                  multiple: true }
+
+          .form-group
+            = f.label :logotipo
+            = f.file_field :logotipo
+            - if f.object.logotipo?
+              .provider-profile-form-image
+                = image_tag f.object.logotipo_url,
+                            class: "img-responsive"
+
+              .checkbox
+                = f.label :remove_logotipo do
+                  = f.check_box :remove_logotipo
+                  = t("activerecord.attributes.provider_profile.remove_logotipo")
+
+            = f.hidden_field :logotipo_cache
+
+          = f.fields_for :offices do |office_form|
+            = render "office_form", f: office_form
+
+          hr
+
+          .actions.text-center
+            = f.submit t("ui.#{f.object.new_record? ? 'create' : 'update'}"),
+                       class: "btn btn-default"

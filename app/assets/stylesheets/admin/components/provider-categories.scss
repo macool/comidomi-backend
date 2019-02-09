@@ -1,0 +1,24 @@
+.provider-categories-collection {
+  .resource {
+    .img-responsive {
+      height: 150px;
+      width: 100%;
+      background-size: cover;
+      background-position: 50%;
+      cursor: pointer;
+      transition: all 0.08s ease-out;
+
+      &--expanded {
+        height: 300px;
+      }
+    }
+  }
+}
+
+.provider-category-form-image {
+  img {
+    max-height: 300px;
+    max-width: 100%;
+    margin: auto;
+  }
+}

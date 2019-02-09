@@ -1,0 +1,31 @@
+.resource-detail.resource-history.panel.panel-default
+  .panel-heading = t("admin.history.panel-title")
+  .panel-body
+    - resource.versions.latest.decorate.each do |version|
+      .media
+        .media-left
+          = version.link_to_whodunnit do
+            = image_tag version.whodunnit_imagen_url,
+                        class: "img-circle"
+
+        .media-body.media-middle
+          => version.whodunnit_link_with_name
+          = version.action
+
+          - version.decorated_associations.each do |association|
+            div
+              - event = association.event
+              - klass_name = version.item_type.underscore
+              - suffix = association.item_type.underscore
+              => t("admin.#{klass_name}.history.association.#{suffix}.#{event}",
+                default: :"admin.history.default.association.#{event}")
+              - if association.decorated_resource.present?
+                = association.decorated_resource.admin_link_to_resource do
+                  = association.decorated_resource.to_s
+              - else
+                = t("activerecord.models.#{association.item_type.underscore}")
+
+          div
+            = link_to version.created_at,
+                      admin_resource_version_path(version),
+                      class: "text-muted"

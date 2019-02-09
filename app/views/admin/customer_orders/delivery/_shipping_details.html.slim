@@ -1,0 +1,28 @@
+- if delivery.customer_address_attributes.present?
+  .resource-row
+    span.resource-label
+      = t("activerecord.attributes.customer_order_delivery.customer_address")
+      | :
+    span.resource-value
+      = delivery.customer_address_attributes["direccion_uno"]
+
+  - numero_convencional = delivery.customer_address_attributes["numero_convencional"]
+  - if numero_convencional.present?
+    .resource-row
+      span.resource-label
+        = t("activerecord.attributes.customer_order_delivery.numero_convencional")
+        | :
+      span.resource-value
+        = link_to numero_convencional,
+                  "tel:#{numero_convencional}"
+
+.resource-row
+  span.resource-label
+    = t("activerecord.attributes.customer_order_delivery.shipping_fare_price")
+    | :
+  span.resource-value
+    = humanized_money_with_symbol delivery.local_shipping_fare_price
+
+- if delivery.shipping_request.present?
+  = render "admin/customer_orders/delivery/shipping_request_details",
+           delivery: delivery

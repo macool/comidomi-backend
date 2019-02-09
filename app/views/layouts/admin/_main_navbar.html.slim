@@ -1,0 +1,29 @@
+- if current_admin
+  nav#main-navbar.navbar.navbar-default.navbar-fixed-top
+    .navbar-header
+      button.navbar-toggle.porttare-collapse type="button" data-toggle="collapse" data-target="#main-sidebar"
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+
+      = link_to admin_root_path,
+                class: "navbar-brand" do
+        = image_tag "/images/brand/comidomi-horizontal-simple-white.png"
+
+        h1 = t("admin.main_navbar.title")
+
+    ul.nav.navbar-nav.navbar-right.current-session
+      li.dropdown
+        a.dropdown-toggle data-toggle="dropdown"
+          = image_tag decorated_current_admin.image_url,
+                      class: "img-responsive img-circle"
+          span.caret
+        ul.dropdown-menu
+          li
+            = link_to decorated_current_admin.to_s,
+                      admin_user_path(current_admin)
+          li.divider
+          li
+            = link_to t("ui.logout"),
+                      destroy_admin_session_path,
+                      method: :delete

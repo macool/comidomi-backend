@@ -1,0 +1,58 @@
+= form_for [:admin, user.object] do |f|
+  .resource-detail.panel.panel-default
+    .resource.panel-body
+      .row
+        .col-xs-3.col-md-2.col-lg-1
+          = image_tag user.image_url,
+                      class: "img-responsive img-circle"
+
+        .col-xs-9.col-md-10.col-lg-11
+          = render "admin/shared/form_errors",
+                   resource: user
+
+          .form-group
+            = f.label :name
+            = f.text_field :name,
+                           class: "form-control"
+
+          .form-group
+            = f.label :nickname
+            = f.text_field :nickname,
+                           class: "form-control"
+
+          .form-group
+            = f.label :email
+            = f.text_field :email,
+                           class: "form-control"
+
+          .form-group
+            = f.label :password
+            = f.password_field :password,
+                               class: "form-control"
+
+          .form-group
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation,
+                               class: "form-control"
+
+          .form-group
+            = f.label :privileges
+            = f.select :privileges,
+                       f.object.class.privileges.values,
+                       { include_blank: true },
+                       class: "js-selectize",
+                       multiple: true,
+                       disabled: f.object == current_admin
+            - if f.object == current_admin
+              .help-block = t("admin.user.self_privileges")
+
+      hr
+
+      .actions.text-center
+        - path_for_cancel = f.object.new_record? ? admin_users_path : admin_user_path(f.object)
+        = link_to t("ui.cancel"),
+                  path_for_cancel,
+                  class: "btn btn-danger"
+
+        = f.submit t("ui.#{f.object.new_record? ? 'create' : 'update'}"),
+                   class: "btn btn-default"

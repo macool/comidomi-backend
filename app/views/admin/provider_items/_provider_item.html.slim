@@ -1,0 +1,25 @@
+.resource-wrapper.col-xs-6.col-sm-4.col-lg-3
+  .resource
+    .resource-head.row
+      .col-xs-5.resource-image-wrapper
+        - if provider_item.imagenes.any?
+          = image_tag provider_item.main_image_url,
+                      class: "img-thumbnail"
+        - else
+          = provider_item.placeholder_image
+
+      .col-xs-7.resource-title-wrapper
+        .resource-title = provider_item.titulo
+        = link_to provider_item.provider_profile,
+                  admin_provider_profile_path(provider_item.provider_profile),
+                  class: "resource-subtitle"
+
+    .resource-body
+      = render "admin/shared/common_resource_collection_body",
+               resource: provider_item,
+               display: :card_attributes
+
+    .resource-footer
+      = link_to t("ui.view_details"),
+                admin_provider_item_path(provider_item),
+                class: "btn btn-default"

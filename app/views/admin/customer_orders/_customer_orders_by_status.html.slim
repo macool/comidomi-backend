@@ -1,0 +1,30 @@
+.column-title
+  = t "customer_order.status.#{status}"
+
+.resource-collection
+  - resources_with_status(status).each do |customer_order|
+    = div_for customer_order, class: "resource" do
+      .resource-head.row
+        .col-xs-4.resource-state-icon
+          span.glyphicon.glyphicon-unchecked
+
+        .col-xs-8.resource-title-wrapper
+          .resource-title
+            = customer_order
+          .resource-subtitle
+            = customer_order.status_text
+
+      .resource-body
+        = render "admin/shared/common_resource_collection_body",
+                 resource: customer_order,
+                 display: :card_attributes
+
+        - customer_order.deliveries.each do |delivery|
+          = render "admin/shared/common_resource_collection_body",
+                   resource: delivery,
+                   display: :card_attributes
+
+      .resource-footer
+        = link_to t("ui.view_details"),
+                  admin_customer_order_path(customer_order),
+                  class: "btn btn-xs btn-default"

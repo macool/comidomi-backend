@@ -1,0 +1,15 @@
+@import "bootstrap/variables";
+
+.row--with-bottom-border {
+  border-bottom: 1px solid $legend-border-color;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.resource-map-in-form {
+  .map-placeholder {
+    height: 300px;
+  }
+}

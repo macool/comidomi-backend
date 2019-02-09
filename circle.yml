@@ -1,0 +1,11 @@
+machine:
+  environment:
+    CODECLIMATE_REPO_TOKEN: 1460f151da12ceece8ee33877b8c5bc83066d8dde7c743d3a69e7309e25b3bf5
+test:
+  override:
+    - RAILS_ENV=test bundle exec rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
+deployment:
+  demo:
+    branch: production
+    commands:
+      - bundle exec cap demo deploy

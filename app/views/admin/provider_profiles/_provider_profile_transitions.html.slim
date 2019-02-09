@@ -1,0 +1,9 @@
+- case @current_resource.status
+- when "applied"
+  = render "transition_btn", to_status: :ask_to_validate
+
+- when "ask_to_validate"
+  = render "transition_btn", to_status: :validated
+
+- when "validated"
+  = render "transition_btn", to_status: :active

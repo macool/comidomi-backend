@@ -1,0 +1,44 @@
+.resource-detail.panel.panel-default
+  .resource.panel-body
+    .row
+      .col-xs-3.col-md-2.col-lg-1.image-wrapper
+        = image_tag @version.whodunnit_imagen_url,
+                    class: "img-circle"
+
+      .col-xs-9.col-md-10.col-lg-11
+        .resource-title
+          div = @version.whodunnit_link_with_name
+          .text-muted.small = @version.action
+        - if @version.item.present?
+          = @version.decorated_resource.admin_link_to_resource class: "resource-subtitle" do
+            = @version.decorated_resource
+        - else
+          .resource-subtitle = @version.item_type
+        p.text-muted
+          = @version.created_at
+          '  (hace
+          = time_ago_in_words @version.object.created_at
+          ' )
+
+        = render "admin/resource_version/changeset",
+                 changeset: @version.changeset_visible_attributes,
+                 item_type: @version.item_type
+
+        hr
+
+        - @version.decorated_associations.each do |association|
+          .resource-row
+            - event = association.event
+            - klass_name = @version.item_type.underscore
+            - suffix = association.item_type.underscore
+            => t("admin.#{klass_name}.history.association.#{suffix}.#{event}",
+              default: :"admin.history.default.association.#{event}")
+            - if association.decorated_resource.present?
+              = association.decorated_resource.admin_link_to_resource do
+                = association.decorated_resource.to_s
+            - else
+              = t("activerecord.models.#{association.item_type.underscore}")
+
+            = render "admin/resource_version/changeset",
+                     changeset: association.changeset_visible_attributes,
+                     item_type: association.item_type

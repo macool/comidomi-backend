@@ -1,0 +1,5 @@
+= render "provider_category_statuses"
+
+.resource-collection.auto-masonry.provider-categories-collection
+  - @resource_collection.each do |provider_category|
+    = render provider_category

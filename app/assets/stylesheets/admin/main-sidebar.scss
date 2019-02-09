@@ -1,0 +1,65 @@
+@import "admin/colors";
+@import "bootstrap/variables";
+
+#main-sidebar {
+  padding-top: 60px; //main navbar
+  position: absolute;
+  top: 0;
+  height: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: $baseDarkteal;
+  box-shadow: -1px 0 1px $defaultShadowColor inset;
+
+  .affix {
+    top: 0;
+  }
+
+  h2 {
+    padding: 2px;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-family: Montserrat-Light;
+    letter-spacing: -0.7px;
+    text-align: center;
+    color: $sidebarInactiveColor;
+  }
+
+  .nav-pills {
+    font-family: Montserrat-Light;
+
+    li {
+
+      &.active a, &:hover a {
+        color: white;
+        background-color: $sidebarActiveBGColor;
+      }
+
+      a {
+        border-radius: 0;
+        font-size: 16px;
+        color: $sidebarInactiveColor;
+
+        .wrapper {
+          max-width: 150px;
+          margin: auto;
+        }
+
+        .glyphicon {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $screen-sm-min) {
+    z-index: 2;
+    display: none;
+
+    .affix {
+      position: relative;
+    }
+  }
+}

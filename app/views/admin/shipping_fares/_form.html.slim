@@ -1,0 +1,26 @@
+.row
+  .col-xs-12.col-xs-offset-0.col-sm-8.col-sm-offset-2
+    .resource-detail.panel.panel-default
+      .resource.panel-body
+        = simple_form_for [:admin, @place, shipping_fare.object] do |f|
+          h3 = t("admin.shipping_fare.#{action_name}")
+          = render "admin/shared/form_errors",
+                   resource: f.object
+
+          = f.input :place, disabled: true
+          = f.input :price_currency, disabled: true
+          = f.input :price_cents
+
+          hr
+
+          .actions.text-center
+            = f.submit class: "btn btn-default"
+
+        - if shipping_fare.persisted?
+          hr
+            .actions.text-center
+              = link_to t("admin.shipping_fare.destroy"),
+                        admin_place_shipping_fare_path(@place, shipping_fare),
+                        class: "btn btn-danger",
+                        method: :delete,
+                        data: { confirm: t("ui.confirm") }

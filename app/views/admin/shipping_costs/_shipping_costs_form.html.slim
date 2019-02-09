@@ -1,0 +1,46 @@
+= simple_form_for [:admin, @place.object] do |f|
+
+  .shipping-costs-observing-inputs
+    = f.input :price_per_km_cents
+    = f.input :factor_per_distance
+
+  .actions
+    = f.submit class: "btn btn-default"
+
+  hr
+
+  = content_tag :div,
+                nil,
+                class: "initialize-location-map-placeholder",
+                data: { lat: @place.lat, lon: @place.lon }
+
+  .shipping-costs-results.hidden.text-info
+    .distance
+      .label
+        span.text-info = t("admin.shipping_cost.distance")
+      span.value
+      span  kms
+    .extra_price_per_km
+      .label
+        span.text-info = t("admin.shipping_cost.extra_price_per_km")
+      span.value
+      span =< @place.currency_iso_code
+    .price_per_km
+      .label
+        span.text-info = t("admin.shipping_cost.price_per_km")
+      span.value
+      span =< @place.currency_iso_code
+    .price
+      .label
+        span.text-info = t("admin.shipping_cost.final_price")
+      span.value
+      span =< @place.currency_iso_code
+    .shipping_fare
+      .label
+        span.text-info = t("admin.shipping_cost.shipping_fare")
+      span.value
+      span =< @place.currency_iso_code
+    p
+
+  p.calculating.hidden = t("ui.calculating")
+  p.calulculations-intro = t("admin.place.shipping_costs_calculation_intro")

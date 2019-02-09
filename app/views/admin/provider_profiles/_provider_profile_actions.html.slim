@@ -1,0 +1,5 @@
+- if pundit_policy.send(:edit?)
+  .text-center
+    = link_to t("ui.edit"),
+              edit_admin_provider_profile_path(@current_resource),
+              class: "btn btn-default btn-xs"

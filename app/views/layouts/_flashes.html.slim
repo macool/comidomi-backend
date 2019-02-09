@@ -1,0 +1,8 @@
+.flashes
+  .alerts-wrapper
+    - flash.each do |key, value|
+      - bs_key = (key == "error") ? "danger" : key
+      div class="alert alert-#{bs_key}"
+        button.close data-dismiss="alert"
+          span &times;
+        = value

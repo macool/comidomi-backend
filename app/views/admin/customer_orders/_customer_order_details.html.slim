@@ -1,0 +1,23 @@
+.resource-detail.panel.panel-default
+  .resource.panel-body
+    .row
+      .col-xs-2.col-md-1
+        .resource-state-icon
+          span.glyphicon.glyphicon-unchecked
+        .text-center = customer_order.status_text
+
+      .col-xs-10.col-md-11
+        .resource-title
+          = customer_order
+        .resource-subtitle
+          = customer_order.status_text
+
+        = render "admin/shared/common_resource_collection_body",
+                 resource: customer_order,
+                 display: :detail_attributes
+
+        h4 = t("admin.customer_order.order_items_details")
+
+        - customer_order.deliveries.each do |delivery|
+          = render "admin/customer_orders/delivery_details",
+                   delivery: delivery

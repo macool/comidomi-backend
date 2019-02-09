@@ -1,0 +1,565 @@
+---
+es:
+  customer_order:
+    status:
+      in_progress: En progreso
+      submitted: Enviada
+    notification:
+      provider_new_order:
+        title: "Tienes un pedido nuevo"
+  provider_profile:
+    statuses:
+      applied: Aplicado
+      ask_to_validate: Solicitud de validación
+      validated: Validado
+      active: Activo
+      ask_to_disable: Solicitud de desactivación
+      disabled: Inactivo
+    errors:
+      disabled: Perfil de proveedor deshabilitado
+  provider_category:
+    statuses:
+      enabled: Activo
+      disabled: Inactivo
+  shipping_request:
+    statuses:
+      new: Nuevo
+      assigned: Asignado
+      in_progress: En progreso
+      delivered: Entregado
+    kinds:
+      ask_to_validate: Validar proveedor
+      customer_order_delivery: Envío a domicilio
+  customer_order_delivery:
+    status:
+      draft: Borrador
+      pending: Pendiente
+      accepted: Aceptado
+      rejected: Rechazado
+      canceled: Cancelado
+    status_explanation:
+      draft: Este pedido es un borrador del cliente
+      pending: Esperando confirmación del proveedor
+      accepted: Aceptado por el proveedor
+      rejected: Rechazado por el proveedor
+    delivery_method:
+      shipping: Envío
+      pickup: Recoger
+  user:
+    privileges:
+      admin: Administrador
+      customer_service: Servicio al cliente
+  api:
+    something_went_wrong: "Ups, algo salió mal. Por favor vuelve a intentarlo"
+  ui:
+    edit: Editar
+    update: Actualizar
+    create: Crear
+    view_details: Ver detalles
+    cancel: Cancelar
+    login: Iniciar sesión
+    logout: Cerrar sesión
+    positive: sí
+    negative: "no"
+    calculating: Calculando..
+    confirm: Estás seguro?
+  admin:
+    filter: Filtrar
+    remove_filter: Quitar filtro
+    provider: Proveedor
+    something_went_wrong: Ups, algo salió mal
+    history:
+      panel-title: Historial
+      not_user: se
+      default:
+        create: creó este registro
+        association:
+          create: "creado:"
+          generated: "generado:"
+          update: "actualizado:"
+          destroy: "eliminado:"
+    main_navbar:
+      title: Administración
+    sidebar:
+      title: Plataforma de administración
+      providers: Proveedores
+      users: Usuarios
+      shipping_requests: Envíos
+      provider_categories: Áreas
+      provider_item_categories: Categorías
+      provider_items: Productos
+      customer_orders: Órdenes
+      places: Lugares
+    users:
+      new: Nuevo usuario
+    user:
+      created: Usuario creado
+      updated: Usuario actualizado
+      self_privileges: No puedes editar tus propios privilegios - Es probable que quedes fuera del sistema
+      privileges:
+        all: Todos
+    place:
+      new: Nuevo lugar
+      edit: Editar lugar
+      created: Lugar creado
+      updated: Lugar actualizado
+      shipping_costs_calculation_intro: Da click en el mapa para calcular costos de envío
+    customer_order:
+      order_items_details: Detalles del pedido
+      history:
+        submitted: envió esta orden
+        provider_accept_delivery: (proveedor) aceptó la solicitud
+        provider_reject_delivery: (proveedor) rechazó la solicitud
+    customer_order_delivery:
+      from_store: de la tienda
+      to_home: a domicilio
+    shipping_request:
+      title: Envío
+      history:
+        canceled: canceló este envío
+        take_by_courier: (mensajero) tomó este pedido
+        courier_in_store: (mensajero) en la tienda para recoger el pedido
+        delivered: (mensajero) entregó el pedido al cliente
+        association:
+          customer_order:
+            provider_accept_delivery: Aceptó esta solicitud de envío a través de
+          provider_profile:
+            ask_to_validate: Solicitar validación
+            active: Activar proveedor
+    provider_office:
+      title: Oficina
+    provider_office_weekday:
+      collection_title: Días laborables
+      no_schedule_placeholder: "--:--"
+    provider_item:
+      new: Nuevo producto
+      updated: Producto actualizado
+      created: Producto creado
+      add_image: Agregar imagen
+      provider_item_category: Categoría
+      history:
+        create: creó este producto
+        update: actualizó este producto
+        association:
+          provider_item_image:
+            create: "subido:"
+    provider_item_category:
+      new: Nueva categoría
+      global: Visible para todos
+      provider_items_count: Productos
+      default: Categoría predeterminada
+      created: Categoría creada
+      updated: Categoría actualizada
+    provider_profile:
+      new: Nuevo proveedor
+      branch: Sucursal
+      updated: Proveedor actualizado
+      created: Proveedor creado
+      statuses:
+        ask_to_validate: Validación
+        ask_to_disable: Desactivación
+      history:
+        apply: aplicó como proveedor
+        ask_to_validate: verificó esta solicitud
+        validated: validó este proveedor
+        active: activó este proveedor
+        create: creó este proveedor
+        update: actualizó este proveedor
+        association:
+          shipping_request:
+            canceled: Cancelado
+      wont_transition:
+        ask_to_validate: Esta solicitud no puede ser verificada
+        validated: Este proveedor no puede ser validado
+        active: Este proveedor no puede ser activado
+      transition:
+        ask_to_validate: Solicitar validación
+        ask_to_validate_prompt: |
+          He verificado que esta solicitud es válida.
+          Un mensajero será notificado y hará una verificación física del proveedor
+        validated: Validar proveedor
+        validated_prompt: |
+          Existe una carta-compromiso firmada con el proveedor y tenemos apuntes y observaciones del proveedor por parte del mensajero.
+          Si existiese una solicitud de envío, será cancelada
+        active: Activar proveedor
+        active_prompt: |
+          El proveedor será notificado de su activación y estará disponible para comprar sus productos.
+          Cualquier pedido de validación de proveedor nuevo o en progreso será inmediatamente cancelado
+        to:
+          ask_to_validate: Solicitud verificada. Se notificará a un mensajero para realizar la verificación física del proveedor
+          validated: El proveedor fue validado. Se notificará a un administrador para que apruebe o rechace al proveedor
+          active: El proveedor fue activado
+        error:
+          office_required: Necesita tener una oficina con una dirección a donde enviaremos un mensajero para validar al proveedor
+          office_enabled_required: "La oficina necesita estar habilitada para aparecer visible a los clientes"
+          provider_category_required: Necesita estar asignado a un área
+    provider_category:
+      updated: Categoría actualizada
+    shipping_cost:
+      title: Costos de envío
+      distance: Distancia
+      final_price: Costo final
+      extra_price_per_km: Precio (extra) por KM
+      price_per_km: Precio por KM
+      shipping_fare: Tarifa aplicada
+    shipping_fare:
+      title: Tarifas de envío
+      new: Nueva tarifa
+      edit: Editar tarifa
+      created: Tarifa creada
+      updated: Tarifa actualizada
+      destroy: Eliminar tarifa
+      destroyed: Tarifa eliminada
+  pundit:
+    not_authorized: No estás autorizado para hacer eso
+  activerecord:
+    models:
+      user: Usuario
+      shipping_request: Solicitud de envío
+      provider_item_image: Imagen de producto
+      customer_order: Orden
+      place: Lugar
+      shipping_fare: Tarifa de envío
+    attributes:
+      user:
+        name: Nombre
+        nickname: Sobrenombre
+        email: E-mail
+        password: Contraseña
+        password_confirmation: Confirmación de contraseña
+        remember_me: Recordarme
+        privileges: Privilegios
+        provider_profile_with_link: Perfil de Proveedor
+      shipping_request:
+        created_at: Generada
+        address: Dirección
+        provider: Proveedor
+        telefono: Teléfono
+        reason: Razón
+        customer_order_delivery: Despacho
+        desc_label: Orden de envío
+        courier_profile: Mensajero
+        estimated_time_for_delivery: Tiempo estimado para la entrega
+        delivery_location: Entregar en
+      provider_category:
+        titulo: Título
+        descripcion: Descripción
+        status: Estado
+        remove_imagen: Eliminar imagen
+      provider_office:
+        enabled: Habilitada
+        enabled_str: Habilitada
+        place: Localidad
+        place_id: Localidad
+        place_with_link: Localidad
+      provider_office_weekday:
+        abierto: Abierto
+        cerrado: Cerrado
+        hora_de_apertura: Hora de apertura
+        hora_de_cierre: Hora de cierre
+      provider_item_categories:
+        nombre: Nombre
+      provider_item:
+        titulo: Título
+        provider_item_category: Categoría
+        provider_item_category_id: Categoría
+        provider_profile_id: Proveedor
+        descripcion: Descripción
+        cantidad: Cantidad máxima
+      provider_profile:
+        provider_category_id: Área
+        user_with_link: Usuario
+        places_with_links: Localidades
+        generate_user: Generar usuario automáticamente
+      provider_item_image:
+        remove_imagen: Eliminar imagen
+      customer_order:
+        customer_profile: Cliente
+        submitted_at: Ordenado
+        place: Localidad
+        subtotal_items: Subtotal
+      customer_order_item:
+        cantidad: Cantidad
+        provider_item: Producto
+        provider_item_precio_unitario: Unidad
+        provider_item_precio_total: Total
+      customer_order_delivery:
+        full_resume_for_card: Despacho
+        customer_address: Dirección
+        deliver_at: Fecha de entrega
+        numero_convencional: Teléfono convencional
+        shipping_fare_price: Costo de envío
+        estimated_time_for_preparation: Tiempo estimado para la preparación
+        shipping_request_desc: Orden de envío
+      place:
+        nombre: Ciudad
+        country: País
+        location: Ubicación
+        price_per_km_cents: Precio por km (ctvs)
+        factor_per_distance: Factor por distancia
+        enabled: Activo
+      shipping_fare:
+        place: Lugar
+        price_cents: Precio (ctvs)
+        price_currency: Moneda
+    errors:
+      messages:
+        record_invalid: "La validación falló: %{errors}"
+        restrict_dependent_destroy:
+          has_one: No se puede eliminar el registro porque existe un %{record} dependiente
+          has_many: No se puede eliminar el registro porque existen %{record} dependientes
+      models:
+        customer_order:
+          attributes:
+            anon_billing_address:
+              includes_billing_address: no debe tener dirección de facturación si es consumidor final
+            customer_billing_address_id:
+              is_anon_billing: no debe especificar dirección de facturación si es consumidor final
+            order_items:
+              at_least_one: debe tener al menos un ítem
+              missing_delivery_address: detallar direcciones de envío
+        customer_order_delivery:
+          attributes:
+            base:
+              cant_cancel_old_delivery: No podemos cancelar ese pedido
+            deliver_at:
+              must_be_future: debe ser una fecha en el futuro
+        customer_address:
+          required_location: necesita tener una ubicación
+        provider_office:
+          attributes:
+            base:
+              wrong_weekdays: días laborables no es correcto
+        provider_item:
+          attributes:
+            precio_currency:
+              invalid_currency: moneda no es válida
+  date:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - vie
+    - sáb
+    abbr_month_names:
+    -
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %b"
+      api: "%Y-%m-%d"
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: alrededor de 1 hora
+        other: alrededor de %{count} horas
+      about_x_months:
+        one: alrededor de 1 mes
+        other: alrededor de %{count} meses
+      about_x_years:
+        one: alrededor de 1 año
+        other: alrededor de %{count} años
+      almost_x_years:
+        one: casi 1 año
+        other: casi %{count} años
+      half_a_minute: medio minuto
+      less_than_x_minutes:
+        one: menos de 1 minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: más de 1 año
+        other: más de %{count} años
+      x_days:
+        one: 1 día
+        other: "%{count} días"
+      x_minutes:
+        one: 1 minuto
+        other: "%{count} minutos"
+      x_months:
+        one: 1 mes
+        other: "%{count} meses"
+      x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+    prompts:
+      day: Día
+      hour: Hora
+      minute: Minutos
+      month: Mes
+      second: Segundos
+      year: Año
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: debe ser aceptado
+      blank: no puede estar en blanco
+      present: debe estar en blanco
+      confirmation: no coincide
+      empty: no puede estar vacío
+      equal_to: debe ser igual a %{count}
+      even: debe ser par
+      exclusion: está reservado
+      greater_than: debe ser mayor que %{count}
+      greater_than_or_equal_to: debe ser mayor que o igual a %{count}
+      inclusion: no está incluido en la lista
+      invalid: no es válido
+      less_than: debe ser menor que %{count}
+      less_than_or_equal_to: debe ser menor que o igual a %{count}
+      less_than_or_equal_to_is: debe ser menor que o igual a %{count}, es %{num}
+      model_invalid: "La validación falló: %{errors}"
+      not_a_number: no es un número
+      not_an_integer: debe ser un entero
+      odd: debe ser impar
+      required: debe existir
+      taken: ya está en uso
+      too_long:
+        one: "es demasiado largo (1 carácter máximo)"
+        other: "es demasiado largo (%{count} caracteres máximo)"
+      too_short:
+        one: "es demasiado corto (1 carácter mínimo)"
+        other: "es demasiado corto (%{count} caracteres mínimo)"
+      wrong_length:
+        one: "no tiene la longitud correcta (1 carácter exactos)"
+        other: "no tiene la longitud correcta (%{count} caracteres exactos)"
+      other_than: debe ser distinto de %{count}
+    template:
+      body: 'Se encontraron problemas con los siguientes campos:'
+      header:
+        one: No se pudo guardar este/a %{model} porque se encontró 1 error
+        other: No se pudo guardar este/a %{model} porque se encontraron %{count} errores
+  helpers:
+    select:
+      prompt: Por favor seleccione
+    submit:
+      create: Crear %{model}
+      submit: Guardar %{model}
+      update: Actualizar %{model}
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%n %u"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "€"
+    format:
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: mil millones
+          million:
+            one: millón
+            other: millones
+          quadrillion: mil billones
+          thousand: mil
+          trillion:
+            one: billón
+            other: billones
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n %"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: " y "
+      two_words_connector: " y "
+      words_connector: ", "
+  time:
+    am: am
+    pm: pm
+    formats:
+      default: "%A, %d de %B de %Y %H:%M:%S %z"
+      long: "%d de %B de %Y %H:%M"
+      short: "%d de %b %H:%M"
+      api: "%Y-%m-%d %H:%M %z"
+      office_schedule: "%H:%M %z"
+      admin_full: "%Y-%m-%d %H:%M"
+      hour_only: "%H:%M"
+  views:
+    pagination:
+      truncate: "..."
+      first: "&laquo;"
+      last: "&raquo;"
+    boolean:
+      "true": "Sí"
+      "false": "No"
+  enumerize:
+    defaults:
+      daynames:
+        sun: Domingo
+        mon: Lunes
+        tue: Martes
+        wed: Miércoles
+        thu: Jueves
+        fri: Viernes
+        sat: Sábado

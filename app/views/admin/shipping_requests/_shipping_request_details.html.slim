@@ -1,0 +1,17 @@
+.resource-detail.panel.panel-default
+  .resource.panel-body
+    .row
+      .col-xs-2.col-md-1
+        .resource-state-icon
+          span.glyphicon.glyphicon-unchecked
+        .text-center = shipping_request.status_text
+
+      .col-xs-10.col-md-11
+        .resource-title
+          = shipping_request.title
+        .resource-subtitle
+          = shipping_request.kind_text
+
+        = render "admin/shared/common_resource_collection_body",
+                 resource: shipping_request,
+                 display: :detail_attributes

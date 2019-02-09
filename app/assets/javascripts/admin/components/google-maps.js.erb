@@ -1,0 +1,35 @@
+(function () {
+  'use strict';
+
+  var GMAPSURL = '//maps.googleapis.com/maps/api/js?callback=gMapsCallback&key=';
+
+  var PorttareMap = (function () {
+    function PorttareMap(callback) {
+      this.callback = callback;
+      this.loadMap();
+    };
+
+    PorttareMap.prototype.loadMap = function(){
+      window.gMapsCallback = $.proxy(this.mapLoaded, this);
+      var script = document.createElement('script');
+      script.src = GMAPSURL + this.getApiKey();
+      script.type = 'text/javascript';
+      document.getElementsByTagName('head')[0].appendChild(script);
+    };
+
+    PorttareMap.prototype.mapLoaded = function(){
+      window.gMapsCallback = null;
+      this.callback();
+    };
+
+    PorttareMap.prototype.getApiKey = function(){
+      return $("#porttare-google-api-key").data("key");
+    };
+
+    return PorttareMap;
+  })();
+
+  $(document).on('porttare:load-maps', function (e, cb) {
+    new PorttareMap(cb);
+  })
+})();

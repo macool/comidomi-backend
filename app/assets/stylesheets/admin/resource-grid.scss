@@ -1,0 +1,66 @@
+@import "admin/colors";
+@import "bootstrap/variables";
+
+.grid-wrapper {
+  position: fixed;
+  background-color: $mainContentBGColor;
+  height: 100%;
+  padding-top: 60px; // main-navbar's height
+  top: 0;
+  width: 83.5%;
+
+  @media (max-width: $screen-sm-min) {
+    width: 100%;
+  }
+
+  .resource-grid {
+    height: 100%;
+
+    .row, .resource-grid-column {
+      height: 100%;
+    }
+
+    .resource-collection {
+      height: 100%;
+      overflow: auto;
+    }
+  }
+}
+
+.resource-grid {
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  .resource-grid-column {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 45px;
+    position: relative;
+
+    .column-title {
+      border-left: 3px solid $baseTeal;
+      position: absolute;
+      top: 10px;
+      margin-left: 15px;
+      padding: 5px 10px;
+    }
+
+    .resource-collection {
+      .resource {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        white-space: normal;
+
+        .resource-footer {
+          padding: 10px 10px 5px 10px;
+
+          .btn-xs {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}

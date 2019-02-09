@@ -1,0 +1,23 @@
+doctype html
+html lang="#{I18n.locale}"
+  head
+    title porttare
+    = stylesheet_link_tag "admin",
+                          "data-turbolinks-track" => true
+    = javascript_include_tag "admin",
+                             "data-turbolinks-track" => true
+    = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+  body
+    = render "layouts/flashes"
+    = render "layouts/admin/main_navbar"
+    = render "layouts/admin/google_api_key"
+
+    #main-wrapper.container-fluid
+      .row
+        #main-sidebar.col-sm-2
+          = render "layouts/admin/sidebar"
+
+        .col-sm-10.col-xs-12#main-content
+          = yield

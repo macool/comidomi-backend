@@ -1,0 +1,22 @@
+@import "admin/colors";
+@import "bootstrap/variables";
+
+html, body {
+  height: 100%;
+  position: relative;
+}
+
+#main-wrapper {
+  position: absolute;
+  top: 0;
+  min-height: 100%;
+  width: 100%;
+  background-color: $mainContentBGColor;
+  padding-top: 60px; // main navbar
+
+  #main-content {
+    float: right;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

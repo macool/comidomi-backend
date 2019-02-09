@@ -1,0 +1,16 @@
+= simple_form_for [:admin, provider_item_category.object] do |f|
+  .row
+    .col-xs-12.col-xs-offset-0.col-sm-8.col-sm-offset-2
+      .resource-detail.panel.panel-default
+        .resource.panel-body
+          = render "admin/shared/form_errors",
+                   resource: f.object
+
+          = f.input :nombre
+
+          hr
+
+          .actions.text-center
+
+          = f.submit t("ui.#{f.object.new_record? ? 'create' : 'update'}"),
+                     class: "btn btn-default"

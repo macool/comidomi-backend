@@ -1,0 +1,108 @@
+@import "admin/colors";
+@import "bootstrap/variables";
+
+.resource-collection,
+.resource-table-collection {
+  .resource-wrapper {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.resource-collection {
+  .resource {
+    border: 1px solid $resourceOuterBorderColor;
+    background-color: white;
+    border-radius: 3px;
+    padding: 5px;
+    overflow: hidden;
+
+    .resource-row--base {
+      border-bottom: 1px solid $resourceInnerBordercolor;
+      font-family: Montserrat-Light;
+    }
+
+    .resource-row {
+      @extend .resource-row--base;
+      // because value span has indenting
+      padding-right: 5px;
+
+      overflow: auto;
+
+      .resource-label {
+        color: $gray-light;
+        letter-spacing: -0.5px;
+        margin-right: 5px;
+      }
+
+      .resource-value {
+        display: inline-block;
+      }
+    }
+
+    .resource-body {
+      padding-left: 10px;
+      padding-right: 10px;
+
+      .resource-row {
+        padding: 10px 5px 10px 0;
+
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    .resource-head {
+      @extend .resource-row--base;
+
+      .resource-title-wrapper {
+        padding-left: 0;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+
+      .resource-image-wrapper {
+        text-align: center;
+        overflow: hidden;
+
+        img {
+          max-height: 80px;
+          margin-bottom: 5px;
+        }
+
+        .placeholder-thumbnail {
+          font-size: 60px;
+        }
+      }
+
+      .resource-title {
+        font-size: 18px;
+        line-height: 20px;
+        word-break: break-word;
+
+        @media (min-width: $screen-md-min) {
+          font-size: 20px;
+          line-height: 22px;
+        }
+      }
+    }
+
+    .resource-footer {
+      border-top: 1px solid $resourceInnerBordercolor;
+
+      // aesthetic
+      margin-left: -15px;
+      margin-right: -15px;
+
+      padding: 15px 15px 10px 15px;
+      text-align: center;
+
+      .btn {
+        font-size: 13px;
+      }
+    }
+  }
+}

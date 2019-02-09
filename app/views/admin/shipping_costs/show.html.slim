@@ -1,0 +1,11 @@
+.resource-detail.panel.panel-default
+  .resource.panel-body
+    .row
+      .col-xs-3.col-md-2.col-lg-1.text-center
+        = link_to admin_places_path do
+          = @place.flag_image_tag width: 100,
+                                 class: "img-thumbnail"
+          = @place.to_s
+
+      .col-xs-9.col-md-10.col-lg-11
+        = render "shipping_costs_form"

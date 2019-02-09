@@ -1,0 +1,17 @@
+- if pundit_policy.send(:transition?, to_status)
+  - transitor = transitor_service(to_status)
+  - if transitor.valid?
+    h4 = t("admin.provider_profile.transition.#{to_status}")
+    p.resource-action-prompt.text-info
+      = t("admin.provider_profile.transition.#{to_status}_prompt")
+  - else
+    h4.text-danger
+      = t "admin.provider_profile.wont_transition.#{to_status}"
+    p.resource-action-prompt.text-danger
+      = transitor.errors.join(", ")
+
+  = link_to t("admin.provider_profile.transition.#{to_status}"),
+            transition_admin_provider_profile_path(@current_resource, predicate: to_status),
+            class: "btn btn-default",
+            method: :post,
+            disabled: !transitor.valid?

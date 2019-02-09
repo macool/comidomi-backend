@@ -1,0 +1,11 @@
+json.extract!(
+  provider_client,
+  :id,
+  :notas,
+  :ruc,
+  :nombres,
+  :direccion,
+  :telefono,
+  :email,
+  :created_at
+)

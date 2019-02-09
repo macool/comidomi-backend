@@ -1,0 +1,54 @@
+- if current_admin
+  #affix
+    h2 = t("admin.sidebar.title")
+
+    ul.nav.nav-pills.nav-stacked
+      li class="#{'active' if controller_name == 'provider_categories'}"
+        = link_to admin_provider_categories_path do
+          .wrapper
+            span.glyphicon.glyphicon-th-large
+            = t("admin.sidebar.provider_categories")
+
+      li class="#{'active' if controller_name == 'provider_profiles'}"
+        = link_to admin_provider_profiles_path do
+          .wrapper
+            span.glyphicon.glyphicon-inbox
+            = t("admin.sidebar.providers")
+
+      li class="#{'active' if controller_name == 'provider_items'}"
+        = link_to admin_provider_items_path do
+          .wrapper
+            span.glyphicon.glyphicon-list-alt
+            = t("admin.sidebar.provider_items")
+
+      li class="#{'active' if controller_name == 'provider_item_categories'}"
+        = link_to admin_provider_item_categories_path do
+          .wrapper
+            span.glyphicon.glyphicon-th-list
+            = t("admin.sidebar.provider_item_categories")
+
+      li class="#{'active' if controller_name == 'customer_orders'}"
+        = link_to admin_customer_orders_path do
+          .wrapper
+            span.glyphicon.glyphicon-shopping-cart
+            = t("admin.sidebar.customer_orders")
+
+      li class="#{'active' if controller_name == 'shipping_requests'}"
+        = link_to admin_shipping_requests_path do
+          .wrapper
+            span.glyphicon.glyphicon-export
+            = t("admin.sidebar.shipping_requests")
+
+      li class="#{'active' if controller_name == 'users'}"
+        = link_to admin_users_path do
+          .wrapper
+            span.glyphicon.glyphicon-user
+            = t("admin.sidebar.users")
+
+      li class="#{'active' if controller_name == 'places'}"
+        = link_to admin_places_path do
+          .wrapper
+            span.glyphicon.glyphicon-tent
+            = t("admin.sidebar.places")
+
+  .clearfix

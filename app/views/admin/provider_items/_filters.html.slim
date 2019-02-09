@@ -1,0 +1,28 @@
+.main-content-toolbox.resource-filters-form class="#{'hidden' unless provider_item_search.searching?}"
+  .toolbox-filters
+    = form_for provider_item_search,
+              url: admin_provider_items_path,
+              method: :get,
+              html: { class: "form-inline" } do |f|
+      .form-group
+        = f.text_field :titulo,
+                       class: "form-control",
+                       placeholder: t("activerecord.attributes.provider_item.titulo")
+
+      .form-group
+        = f.select :provider_profile_ids,
+                   provider_profiles_for_select,
+                   { },
+                   class: "js-selectize",
+                   multiple: true,
+                   placeholder: t("admin.provider")
+
+      .form-group
+        = f.select :provider_item_category_ids,
+                   provider_item_categories_for_select,
+                   { },
+                   class: "js-selectize",
+                   multiple: true,
+                   placeholder: t("admin.provider_item.provider_item_category")
+
+      = f.submit t("admin.filter"), class: "btn btn-default"

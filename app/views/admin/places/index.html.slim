@@ -1,0 +1,63 @@
+.main-content-toolbox
+  - if pundit_policy.new?
+    .text-right
+      = link_to new_admin_place_path,
+                class: "btn btn-link" do
+        span.glyphicon.glyphicon-plus-sign
+        =< t("admin.place.new")
+
+.resource-table-collection.places-collection
+  .resource-wrapper
+    .row.table-headers
+      .col-xs-4.col-sm-2
+        strong = t("activerecord.attributes.place.nombre")
+      .col-xs-1.hidden-xs
+        strong = t("activerecord.attributes.place.country")
+      .col-xs-3.hidden-xs
+        strong = t("activerecord.attributes.place.location")
+      .col-xs-4.col-sm-3
+        strong = t("activerecord.attributes.place.price_per_km_cents")
+      .col-xs-4.col-sm-3
+        strong = t("admin.shipping_fare.title")
+
+    - @resource_collection.each do |place|
+      .row
+        .col-xs-4.col-sm-2
+          h4 = place.nombre
+
+          - if place.enabled?
+            span.label.label-success
+              = t("activerecord.attributes.place.enabled")
+
+          - if pundit_policy.edit?
+            div
+              = link_to edit_admin_place_path(place),
+                        class: "" do
+                span.glyphicon.glyphicon-edit
+                =< t("ui.edit")
+        .col-xs-1.hidden-xs
+          = place.flag_image_tag width: 35, class: "prefix"
+        .col-xs-3.hidden-xs
+          = place.link_to_google_map do
+            = place.static_map_image class: "place-static-image"
+        .col-xs-4.col-sm-2
+          p
+            => place.price_per_km_cents / 100.0
+            = place.currency_iso_code
+          p
+            = t("activerecord.attributes.place.factor_per_distance")
+            ' :
+            = place.factor_per_distance
+          p
+            = link_to t("admin.shipping_cost.title"),
+                      admin_place_shipping_costs_path(place)
+        .col-xs-4.col-sm-2
+          ul
+            - place.shipping_fares.each do |shipping_fare|
+              = render "shipping_fare",
+                       shipping_fare: shipping_fare
+
+          = link_to new_admin_place_shipping_fare_path(place),
+                    class: "btn btn-link btn-xs" do
+            span.glyphicon.glyphicon-plus-sign
+            =< t("admin.shipping_fare.new")

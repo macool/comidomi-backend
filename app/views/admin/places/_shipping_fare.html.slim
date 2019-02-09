@@ -1,0 +1,7 @@
+li
+  span = shipping_fare
+  = link_to edit_admin_place_shipping_fare_path(shipping_fare.place, shipping_fare),
+            class: "btn btn-link btn-xs bs-tooltip",
+            title: t("admin.shipping_fare.edit"),
+            data: { placement: "right" } do
+    span.glyphicon.glyphicon-edit

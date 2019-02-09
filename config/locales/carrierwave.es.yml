@@ -1,0 +1,8 @@
+es:
+  errors:
+    messages:
+      carrierwave_processing_error: "Imposible redimensionar."
+      carrierwave_integrity_error: "No es un archivo válido."
+      carrierwave_download_error: "Imposible descargar archivo."
+      extension_white_list_error: "No se pueden agregar archivos %{extension}. Formatos permitidos: %{allowed_types}"
+      extension_blacklist_error: "No se pueden agregar archivos %{extension}. Formatos permitidos: %{prohibited_types}"

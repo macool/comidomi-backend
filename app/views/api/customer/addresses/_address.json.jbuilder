@@ -1,0 +1,16 @@
+json.extract!(
+  customer_address,
+  :id,
+  :lat,
+  :lon,
+  :nombre,
+  :ciudad,
+  :parroquia,
+  :barrio,
+  :direccion_uno,
+  :direccion_dos,
+  :codigo_postal,
+  :referencia,
+  :numero_convencional,
+  :static_map_image
+)

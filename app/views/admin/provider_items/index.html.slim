@@ -1,0 +1,24 @@
+.main-content-toolbox
+  .text-right
+    - if provider_item_search.searching?
+      = link_to admin_provider_items_path, class: "btn btn-link" do
+        span.glyphicon.glyphicon-remove
+        = t("admin.remove_filter")
+    - else
+      = link_to "#", class: "btn btn-link resource-filter-toggler" do
+        span.glyphicon.glyphicon-search
+        = t("admin.filter")
+
+    = link_to new_admin_provider_item_path,
+              class: "btn btn-link" do
+      span.glyphicon.glyphicon-plus-sign
+      = t("admin.provider_item.new")
+
+= render "filters"
+
+.resource-collection.auto-masonry
+  - @resource_collection.each do |provider_item|
+    = render provider_item
+
+.text-center
+  = paginate @resource_collection

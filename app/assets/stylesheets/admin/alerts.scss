@@ -1,0 +1,41 @@
+@import "admin/colors";
+@import "bootstrap/variables";
+
+body > .flashes {
+  position: fixed;
+  bottom: 0;
+  left: 15px;
+  right: 15px;
+  text-align: right;
+  z-index: 1;
+  height: 0;
+
+  .alerts-wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    @media (min-width: $screen-xs-min) {
+      max-width: 50%;
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
+
+  .alert {
+    display: block;
+    box-shadow: 0 1px 5px $defaultShadowColor;
+    background-color: rgba(0,0,0,.8);
+    color: white;
+
+    .close {
+      color: white;
+      margin-top: -15px;
+      margin-right: -5px;
+      padding-left: 10px;
+      font-size: 26px;
+      opacity: 1;
+      text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    }
+  }
+}

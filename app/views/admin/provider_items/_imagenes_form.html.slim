@@ -1,0 +1,10 @@
+- if f.object.imagen?
+  = image_tag f.object.imagen.small_padded.url,
+              class: "img-thumbnail"
+  = f.input :imagen_cache,
+            as: :hidden
+  .text-center
+    = f.link_to_remove class: "btn btn-xs btn-link" do
+      = t("activerecord.attributes.provider_item_image.remove_imagen")
+- else
+  = f.input :imagen

@@ -1,0 +1,33 @@
+@import "admin/colors";
+@import "bootstrap/variables";
+
+#main-content {
+  .main-content-toolbox {
+    background-color: white;
+    margin: 15px;
+    border: 1px solid $resourceOuterBorderColor;
+
+    .btn-link {
+      font-size: 16px;
+      color: $gray;
+
+      .glyphicon {
+        font-size: 13px;
+        margin-right: 3px;
+      }
+    }
+
+    .toolbox-filters {
+      padding: 10px;
+
+      .form-group {
+        max-width: 300px;
+        margin-right: 10px;
+      }
+
+      input, .form-group {
+        vertical-align: top;
+      }
+    }
+  }
+}

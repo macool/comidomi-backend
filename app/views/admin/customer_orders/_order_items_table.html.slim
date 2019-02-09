@@ -1,0 +1,30 @@
+table.table
+  thead
+    tr
+      th.text-center width="80"
+        = t("activerecord.attributes.customer_order_item.cantidad")
+      th
+        = t("activerecord.attributes.customer_order_item.provider_item")
+      th.text-right width="80"
+        = t("activerecord.attributes.customer_order_item.provider_item_precio_unitario")
+      th.text-right width="90"
+        = t("activerecord.attributes.customer_order_item.provider_item_precio_total")
+  tbody
+    - delivery.order_items.each do |order_item|
+      tr
+        td.text-center
+          = order_item.cantidad
+        td
+          div = order_item.provider_item
+          div = order_item.observaciones
+        td.text-right
+          = humanized_money_with_symbol order_item.provider_item_precio
+        td.text-right
+          = humanized_money_with_symbol order_item.subtotal
+
+    tr
+      td colspan="2"
+      th.text-right
+        = t("activerecord.attributes.customer_order.subtotal_items")
+      td.text-right
+        = humanized_money_with_symbol delivery.subtotal_items

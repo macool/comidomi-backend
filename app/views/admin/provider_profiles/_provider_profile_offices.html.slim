@@ -1,0 +1,20 @@
+.resource-title = t("admin.provider_profile.branch").pluralize
+
+- @current_resource.offices.each do |provider_office|
+  .resource-title
+    => t("admin.provider_profile.branch")
+    | #
+    = provider_office.id
+
+  = image_tag provider_office.static_map_image(:xs),
+              class: "xs-static-map-preview"
+
+  - provider_office.detail_attributes.each do |attribute|
+    .resource-row
+      span.resource-label
+        = provider_office.label_for(attribute)
+      span.resource-value
+        = provider_office.send(attribute)
+
+  = render "provider_office_weekdays",
+           provider_office_weekdays: provider_office.weekdays

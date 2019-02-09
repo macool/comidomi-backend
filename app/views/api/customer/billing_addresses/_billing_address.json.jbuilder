@@ -1,0 +1,10 @@
+json.extract!(
+  billing_address,
+  :id,
+  :ruc,
+  :email,
+  :ciudad,
+  :telefono,
+  :direccion,
+  :razon_social
+)

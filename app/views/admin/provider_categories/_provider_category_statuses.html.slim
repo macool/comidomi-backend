@@ -1,0 +1,6 @@
+ul.main-content-tabs.nav.nav-pills.nav-justified
+  - ProviderCategory.status.values.each do |status|
+    li class="#{'active' if status == @resource_status}"
+      = link_to by_status_admin_provider_categories_path(status: status) do
+        = t "admin.provider_category.statuses.#{status}",
+            default: :"provider_category.statuses.#{status}"

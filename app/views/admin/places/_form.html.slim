@@ -1,0 +1,45 @@
+= form_for [:admin, place.object] do |f|
+  .row
+    .col-sm-12.col-md-6.centered-col
+      = render "admin/shared/form_errors",
+               resource: place
+
+      .form-group
+        = f.label :nombre
+        = f.text_field :nombre,
+                       class: "form-control"
+
+      .form-group
+        = f.label :country
+        = f.select :country,
+                   ISO3166::Country.countries.map(&:name),
+                   {},
+                   class: "js-selectize"
+
+      - if current_admin.privileges.admin?
+        .form-group
+          .checkbox
+            = f.label :enabled do
+              = f.check_box :enabled
+              = t("activerecord.attributes.place.enabled")
+
+      = content_tag :div,
+                    class: "form-group resource-map-in-form",
+                    data: { default_lat: "-3.996704",
+                            default_lon: "-79.201699" } do
+        = f.label :location
+        = content_tag :div,
+                      nil,
+                      class: "map-placeholder"
+        = f.hidden_field :lat
+        = f.hidden_field :lon
+
+      hr
+
+      .actions.text-center
+        = link_to t("ui.cancel"),
+                  admin_places_path,
+                  class: "btn btn-danger"
+
+        = f.submit t("ui.#{f.object.new_record? ? 'create' : 'update'}"),
+                   class: "btn btn-default"

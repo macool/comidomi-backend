@@ -1,0 +1,24 @@
+.column-title = t "shipping_request.statuses.#{status}"
+
+.resource-collection
+  - resources_with_status(status).each do |shipping_request|
+    = div_for shipping_request, class: "resource" do
+      .resource-head.row
+        .col-xs-4.resource-state-icon
+          span.glyphicon.glyphicon-unchecked
+
+        .col-xs-8.resource-title-wrapper
+          .resource-title
+            = shipping_request.title
+          .resource-subtitle
+            = shipping_request.kind_text
+
+      .resource-body
+        = render "admin/shared/common_resource_collection_body",
+                 resource: shipping_request,
+                 display: :card_attributes
+
+      .resource-footer
+        = link_to t("ui.view_details"),
+                  admin_shipping_request_path(shipping_request),
+                  class: "btn btn-xs btn-default"

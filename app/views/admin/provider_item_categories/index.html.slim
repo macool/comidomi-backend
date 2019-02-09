@@ -1,0 +1,36 @@
+.main-content-toolbox
+  .text-right
+    = link_to new_admin_provider_item_category_path,
+              class: "btn btn-link" do
+      span.glyphicon.glyphicon-plus-sign
+      = t("admin.provider_item_category.new")
+
+.resource-table-collection
+  .resource-wrapper
+    .row.table-headers
+      .col-xs-5
+        strong = t("activerecord.attributes.provider_item_category.nombre")
+      .col-xs-4
+        strong = t("admin.provider")
+      .col-xs-2.hidden-xs
+        strong = t("admin.provider_item_category.provider_items_count")
+      .col-xs-1
+
+    - @resource_collection.each do |provider_item_category|
+      .row
+        .col-xs-5.col--with-prefix
+          - if provider_item_category.predeterminada
+            i.glyphicon.glyphicon-star.bs-tooltip data-placement="bottom" title="#{t("admin.provider_item_category.default")}"
+          = provider_item_category
+        .col-xs-4
+          - if provider_profile = provider_item_category.provider_profile
+            = link_to provider_profile,
+                      admin_provider_profile_path(provider_profile)
+          - else
+            i.glyphicon.glyphicon-globe.bs-tooltip data-placement="right" title="#{t("admin.provider_item_category.global")}"
+        .col-xs-2.hidden-xs
+          = provider_item_category.provider_items.count
+        .col-xs-1
+          = link_to t("ui.edit"),
+                    edit_admin_provider_item_category_path(provider_item_category),
+                    class: "btn btn-link btn-xs"

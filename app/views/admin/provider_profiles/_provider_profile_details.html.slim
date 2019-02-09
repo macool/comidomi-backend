@@ -1,0 +1,27 @@
+.resource-detail.panel.panel-default
+  .resource.panel-body
+    .row
+      .col-xs-3.col-md-2.col-lg-1
+        = image_tag @current_resource.logotipo_url,
+                    class: "img-thumbnail"
+        .text-center = @current_resource.status_text
+
+        = render "provider_profile_actions"
+
+      .col-xs-9.col-md-10.col-lg-11
+        .resource-title
+          = @current_resource.nombre_establecimiento
+        .resource-subtitle
+          = @current_resource.provider_category
+
+        = render "admin/shared/common_resource_collection_body",
+                 resource: @current_resource,
+                 display: :detail_attributes
+
+        - if @current_resource.offices.count > 0
+          = render "provider_profile_offices"
+
+    hr
+
+    .text-center
+      = render "provider_profile_transitions"

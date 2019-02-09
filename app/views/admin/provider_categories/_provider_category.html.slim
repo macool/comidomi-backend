@@ -1,0 +1,16 @@
+.resource-wrapper.col-xs-6.col-sm-4.col-lg-3
+  .resource
+    .img-responsive style="background-image: url('#{provider_category.imagen_url}');"
+
+    .resource-body
+      - provider_category.card_attributes.each do |attribute|
+        .resource-row
+          span.resource-label
+            = provider_category.label_for(attribute)
+          span.resource-value
+            = provider_category.send(attribute)
+
+    .resource-footer
+      = link_to t("ui.edit"),
+                edit_admin_provider_category_path(provider_category),
+                class: "btn btn-default"

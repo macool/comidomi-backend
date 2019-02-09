@@ -1,0 +1,9 @@
+= render "provider_statuses"
+= render "user_toolbox"
+
+.resource-collection.auto-masonry
+  - @resource_collection.each do |provider_profile|
+    = render provider_profile
+
+.text-center
+  = paginate @resource_collection

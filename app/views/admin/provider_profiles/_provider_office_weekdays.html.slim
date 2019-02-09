@@ -1,0 +1,26 @@
+.resource-secondary-title
+  = t("admin.provider_office_weekday.collection_title")
+
+- provider_office_weekdays.each do |provider_office_weekday|
+  .resource-row
+    span.resource-label
+      = provider_office_weekday.day_text
+    span.resource-value
+      - if provider_office_weekday.abierto?
+        - if provider_office_weekday.hora_de_apertura.present?
+          => l provider_office_weekday.hora_de_apertura.in_time_zone,
+              format: :office_schedule
+          ' -
+        - else
+          span.text-muted
+            = t("admin.provider_office_weekday.no_schedule_placeholder")
+
+        - if provider_office_weekday.hora_de_cierre.present?
+          = l provider_office_weekday.hora_de_cierre.in_time_zone,
+              format: :office_schedule
+        - else
+          span.text-muted
+            = t("admin.provider_office_weekday.no_schedule_placeholder")
+
+      - else
+        = provider_office_weekday.abierto_str

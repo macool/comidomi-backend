@@ -1,0 +1,20 @@
+.resource-wrapper.col-xs-6.col-sm-4.col-lg-3
+  .resource
+    .resource-head.row
+      .col-xs-5.resource-image-wrapper
+        = image_tag provider_profile.logotipo_url,
+                    class: "img-thumbnail"
+
+      .col-xs-7.resource-title-wrapper
+        .resource-title = provider_profile.nombre_establecimiento
+        .resource-subtitle = provider_profile.provider_category
+
+    .resource-body
+      = render "admin/shared/common_resource_collection_body",
+               resource: provider_profile,
+               display: :card_attributes
+
+    .resource-footer
+      = link_to t("ui.view_details"),
+                admin_provider_profile_path(provider_profile),
+                class: "btn btn-default"

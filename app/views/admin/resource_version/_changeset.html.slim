@@ -1,0 +1,7 @@
+- changeset.each do |key, value|
+  .resource-row.resource-history-changeset
+    span.resource-label
+      = t("activerecord.attributes.#{item_type.underscore}.#{key}")
+    span.resource-value
+      span.text-danger = value.first
+      span.text-success = value.last

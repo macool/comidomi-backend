@@ -1,0 +1,46 @@
+= form_for [:admin, provider_category.object] do |f|
+  .row
+    .col-xs-12.col-xs-offset-0.col-sm-8.col-sm-offset-2
+      .resource-detail.panel.panel-default
+        .resource.panel-body
+          = render "admin/shared/form_errors",
+                   resource: f.object
+
+          .form-group
+            = f.label :titulo
+            = f.text_field :titulo,
+                           required: true,
+                           class: "form-control"
+
+          .form-group
+            = f.label :descripcion
+            = f.text_field :descripcion,
+                           class: "form-control"
+
+          .form-group
+            = f.label :status
+            = f.select :status,
+                       f.object.class.status.options,
+                       {},
+                       class: "js-selectize"
+
+          .form-group
+            = f.label :imagen
+            = f.file_field :imagen
+            - if f.object.imagen?
+              .provider-category-form-image
+                = image_tag f.object.imagen_url,
+                            class: "img-responsive"
+
+              .checkbox
+                = f.label :remove_imagen do
+                  = f.check_box :remove_imagen
+                  = t("activerecord.attributes.provider_category.remove_imagen")
+
+            = f.hidden_field :imagen_cache
+
+          hr
+
+          .actions.text-center
+            = f.submit t("ui.#{f.object.new_record? ? 'create' : 'update'}"),
+                       class: "btn btn-default"

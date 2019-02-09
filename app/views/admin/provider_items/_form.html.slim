@@ -1,0 +1,54 @@
+= simple_nested_form_for [:admin, provider_item.object] do |f|
+  .row
+    .col-xs-12.col-xs-offset-0.col-sm-8.col-sm-offset-2
+      .resource-detail.panel.panel-default
+        .resource.panel-body
+          = render "admin/shared/form_errors",
+                   resource: f.object
+
+          .form-group
+            = f.label :provider_item_category_id
+            = f.select :provider_item_category_id,
+                       provider_item_categories_for_select,
+                       { include_blank: true },
+                       class: "js-selectize"
+
+          - if f.object.new_record?
+            .form-group
+              = f.label :provider_profile_id
+              = f.select :provider_profile_id,
+                         provider_profiles_for_select,
+                         {},
+                         class: "js-selectize"
+
+
+          = f.input :titulo
+          = f.input :descripcion
+          = f.input :observaciones
+          = f.input :unidad_medida,
+                    collection: ProviderItem::UNIDADES_MEDIDA,
+                    required: true
+          = f.input :precio
+          = f.input :cantidad
+          = f.input :en_stock
+
+          /
+            = f.input :volumen
+            = f.input :peso
+
+          .attached-images-in-form
+            = f.simple_fields_for :imagenes, "imagenes[]" do |imagenes_form|
+              = render "imagenes_form", f: imagenes_form
+            = f.link_to_add :imagenes, class: "btn btn-link" do
+              span.glyphicon.glyphicon-plus
+              = t("admin.provider_item.add_image")
+
+          /
+            = f.simple_fields_for :imagenes do |imagenes_form|
+              = render "imagenes_form", f: imagenes_form
+
+          hr
+
+          .actions.text-center
+            = f.submit t("ui.#{f.object.new_record? ? 'create' : 'update'}"),
+                       class: "btn btn-default"

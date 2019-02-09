@@ -1,0 +1,29 @@
+h2 = t("ui.login")
+
+= form_for resource,
+           as: resource_name,
+           url: session_path(resource_name) do |f|
+  .form-group
+    = f.label :email
+    = f.email_field :email,
+                    class: "form-control",
+                    autofocus: true
+
+
+  .form-group
+    = f.label :password
+    = f.password_field :password,
+                       class: "form-control",
+                       autocomplete: "off"
+
+  - if devise_mapping.rememberable?
+    .checkbox
+      = f.label :remember_me do
+        = f.check_box :remember_me
+        = t("activerecord.attributes.user.remember_me")
+
+  .actions
+    = f.submit t("devise.sessions.submit"),
+               class: "btn btn-primary btn-block"
+
+= render "admins/shared/links"

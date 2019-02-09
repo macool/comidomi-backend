@@ -1,0 +1,9 @@
+= render "user_scopes"
+= render "user_toolbox"
+
+.resource-collection.auto-masonry
+  - @resource_collection.each do |user|
+    = render user
+
+.text-center
+  = paginate @resource_collection

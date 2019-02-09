@@ -1,0 +1,43 @@
+@import "admin/colors";
+@import "bootstrap/variables";
+
+#main-content {
+  .main-content-tabs {
+    width: initial;
+
+    background-color: white;
+    padding-top: 20px;
+    overflow: auto;
+
+    li {
+      text-transform: uppercase;
+      vertical-align: bottom;
+
+      @media (max-width: $screen-sm-min) {
+        float: left;
+      }
+
+      &.active a, &:hover a {
+        background-color: transparent;
+        border-bottom-color: $baseOrange;
+        font-family: Montserrat-Regular;
+      }
+
+      a {
+        border-radius: 0;
+        font-size: 16px;
+        color: $gray-dark;
+        font-family: Montserrat-Light;
+        border-bottom: 5px solid transparent;
+
+        @media (min-width: $screen-sm-min) {
+          font-size: 18px;
+        }
+
+        @media (min-width: $screen-md-min) {
+          font-size: 22px;
+        }
+      }
+    }
+  }
+}

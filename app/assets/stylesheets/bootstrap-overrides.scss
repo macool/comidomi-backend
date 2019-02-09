@@ -1,0 +1,42 @@
+@import "admin/colors";
+@import "bootstrap/variables";
+
+.btn {
+  border-radius: 0;
+  border-width: 3px;
+  padding: 5px 20px;
+  font-family: Montserrat-Light;
+}
+
+.btn-xs {
+  padding: 2px 10px;
+  border-width: 2px;
+}
+
+.btn-default {
+  color: $baseTeal;
+  border-color: $baseTeal;
+
+  &:hover, &:active, &:hover:active, &:focus {
+    color: white;
+    border-color: $baseTeal;
+    background-color: $baseTeal;
+  }
+}
+
+.btn-danger {
+  color: $brand-danger;
+  background-color: white;
+}
+
+.panel.panel-default {
+  border: 0;
+  box-shadow: 0 0 5px #dcdcdc;
+
+  & > .panel-heading {
+    border-color: $baseTeal;
+    background-color: $baseTeal;
+    text-align: center;
+    color: white;
+  }
+}

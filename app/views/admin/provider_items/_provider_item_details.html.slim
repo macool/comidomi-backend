@@ -1,0 +1,30 @@
+.resource-detail.panel.panel-default
+  .resource.panel-body
+    .row
+      .col-xs-3.col-md-2.col-lg-1.image-wrapper
+        - if @current_resource.imagenes.any?
+          = image_tag @current_resource.main_image_url,
+                      class: "img-thumbnail"
+        - else
+          = @current_resource.placeholder_image
+
+        .text-center
+          = link_to t("ui.edit"),
+                    edit_admin_provider_item_path(@current_resource),
+                    class: "btn btn-default btn-xs"
+
+      .col-xs-9.col-md-10.col-lg-11
+        .resource-title = @current_resource.titulo
+        = link_to @current_resource.provider_profile,
+                  admin_provider_profile_path(@current_resource.provider_profile),
+                  class: "resource-subtitle"
+
+        = render "admin/shared/common_resource_collection_body",
+                 resource: @current_resource,
+                 display: :detail_attributes
+
+        .attached-images.row
+          - @current_resource.imagenes.each do |imagen|
+            .attached-image.col-xs-3
+              = image_tag imagen.imagen.small_padded.url,
+                          class: "img-responsive"
