@@ -45,6 +45,12 @@
             span.glyphicon.glyphicon-user
             = t("admin.sidebar.users")
 
+      li class="#{'active' if controller_name == 'courier_profiles'}"
+        = link_to admin_courier_profiles_path do
+          .wrapper
+            span.glyphicon.glyphicon-phone
+            = t("admin.sidebar.courier_profiles")
+
       li class="#{'active' if controller_name == 'places'}"
         = link_to admin_places_path do
           .wrapper

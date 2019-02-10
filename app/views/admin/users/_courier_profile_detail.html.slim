@@ -1,0 +1,8 @@
+- if user.courier_profile.present?
+  hr
+
+  .resource-row
+    span.resource-label
+      = user.label_for(:courier_profile_with_link)
+    span.resource-value
+      = user.courier_profile_with_link

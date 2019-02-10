@@ -114,6 +114,7 @@ Rails.application.routes.draw do
     resources :provider_item_categories
     resources :provider_items
     resources :customer_orders
+    resources :courier_profiles
     resources :places do
       resources :shipping_fares
       resource :shipping_costs do

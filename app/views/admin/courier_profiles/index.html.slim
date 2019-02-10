@@ -1,0 +1,8 @@
+= render "toolbox"
+
+.resource-collection.auto-masonry
+  - @resource_collection.each do |courier_profile|
+    = render courier_profile
+
+.text-center
+  = paginate @resource_collection
