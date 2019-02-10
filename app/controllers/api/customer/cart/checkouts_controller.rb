@@ -59,6 +59,16 @@ module Api
           )
         end
 
+        ##
+        # @note at the moment after an order is submitted
+        # we're automatically accepting the request & creating
+        # shipping requests
+        def after_create_api_resource
+          CustomerOrder::ProviderResponse::AutomaticAcceptService.new(
+            @customer_order
+          ).perform
+        end
+
         def pundit_authorize_resource
           authorize @customer_order, :checkout?
         end

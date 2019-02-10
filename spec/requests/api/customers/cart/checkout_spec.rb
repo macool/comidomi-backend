@@ -416,6 +416,17 @@ RSpec.describe Api::Customer::Cart::CheckoutsController,
       }
     end
 
+    describe "creates shipping request" do
+      it "ATM deliveries will be automatically accepted and shipping requests automatically created" do
+        expect {
+          post_with_headers(
+            "/api/customer/cart/checkout",
+            submission_attributes
+          )
+        }.to change { ShippingRequest.count }.by(1)
+      end
+    end
+
     describe "discounts" do
       pending
     end

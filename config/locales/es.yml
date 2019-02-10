@@ -110,6 +110,7 @@ es:
         submitted: envió esta orden
         provider_accept_delivery: (proveedor) aceptó la solicitud
         provider_reject_delivery: (proveedor) rechazó la solicitud
+        automatic_accept_delivery: solicitó envío a domicilio
     customer_order_delivery:
       from_store: de la tienda
       to_home: a domicilio
@@ -123,6 +124,7 @@ es:
         association:
           customer_order:
             provider_accept_delivery: Aceptó esta solicitud de envío a través de
+            automatic_accept_delivery: Solicitó envío a domicilio a través de
           provider_profile:
             ask_to_validate: Solicitar validación
             active: Activar proveedor
