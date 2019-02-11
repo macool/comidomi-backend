@@ -28,7 +28,8 @@
     = render "admin/customer_orders/delivery/shipping_details",
       delivery: delivery
 
-  = render "respond_customer_order_delivery",
-           customer_order_delivery: delivery
+  - if delivery.status.pending?
+    = render "respond_customer_order_delivery",
+             customer_order_delivery: delivery
 
   hr
