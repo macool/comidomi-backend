@@ -213,7 +213,8 @@ es:
       updated: Tarifa actualizada
       destroy: Eliminar tarifa
       destroyed: Tarifa eliminada
-    courier_profiles:
+    courier_profile:
+      created: Perfil de mensajero creado
       new: Nuevo mensajero
       new_from_user: Registrar como mensajero
       user_profile: perfil de mensajero
@@ -310,6 +311,8 @@ es:
         place: Lugar
         price_cents: Precio (ctvs)
         price_currency: Moneda
+      courier_profile:
+        tipo_medio_movilizacion: Tipo de medio de movilización
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"

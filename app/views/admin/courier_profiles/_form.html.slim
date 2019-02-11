@@ -5,7 +5,7 @@
     .resource.panel-body
       h2
         => t("ui.#{f.object.new_record? ? 'create' : 'update'}")
-        = t("admin.courier_profiles.user_profile")
+        = t("admin.courier_profile.user_profile")
       .row
         .col-xs-3.col-md-2.col-lg-1
           = image_tag user.image_url,
@@ -13,7 +13,7 @@
 
         .col-xs-9.col-md-10.col-lg-11
           = render "admin/shared/form_errors",
-                   resource: user
+                   resource: courier_profile
 
           - if f.object.new_record?
             .form-group
@@ -47,6 +47,25 @@
                        courier_profile_places_for_select,
                        { include_blank: true },
                        class: "js-selectize"
+
+          .form-group
+            = f.label :tipo_licencia
+            = f.select :tipo_licencia,
+                       f.object.class.tipo_licencia.values,
+                       { include_blank: true },
+                       class: "js-selectize"
+
+          .form-group
+            = f.label :tipo_medio_movilizacion
+            = f.select :tipo_medio_movilizacion,
+                       tipos_medios_movilizacion_for_select,
+                       { include_blank: true },
+                       class: "js-selectize"
+
+          .form-group
+            = f.label :fecha_nacimiento
+            = f.date_select :fecha_nacimiento,
+                            start_year: Date.today.year - 18, end_year: Date.today.year - 100
 
       hr
 

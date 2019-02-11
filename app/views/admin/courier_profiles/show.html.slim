@@ -1,0 +1,38 @@
+- user = @current_resource.user.decorate
+
+= render "toolbox"
+
+.resource-detail.panel.panel-default
+  .resource.panel-body
+    .row
+      .col-xs-3.col-md-2.col-lg-1
+        = image_tag user.image_url,
+                    class: "img-responsive img-circle"
+
+      .col-xs-9.col-md-10.col-lg-11
+        .resource-title
+          = user.to_s
+        - user.privileges.each do |privilege|
+          .resource-subtitle = t("user.privileges.#{privilege}")
+
+        .resource-row
+          span.resource-label
+            = @current_resource.label_for(:user)
+          span.resource-value
+            = link_to admin_user_path(@current_resource.user) do
+              = @current_resource.send(:user_str)
+
+        hr
+
+        - @current_resource.detail_attributes.each do |attribute|
+          .resource-row
+            span.resource-label
+              = @current_resource.label_for(attribute)
+            span.resource-value
+              = @current_resource.send(attribute)
+
+    hr
+
+    .text-center
+      = render "courier_profile_actions",
+               courier_profile: @current_resource

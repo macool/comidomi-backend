@@ -26,6 +26,10 @@ module Admin
       )
     end
 
+    def create
+      super
+    end
+
     private
 
     def users_for_select
@@ -41,5 +45,12 @@ module Admin
       end
     end
     helper_method :courier_profile_places_for_select
+
+    def tipos_medios_movilizacion_for_select
+      CourierProfile.tipo_medio_movilizacion.values.map do |tipo_medio|
+        [ tipo_medio.titleize, tipo_medio ]
+      end
+    end
+    helper_method :tipos_medios_movilizacion_for_select
   end
 end

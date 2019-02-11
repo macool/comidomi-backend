@@ -8,7 +8,7 @@
                     class: "img-circle"
 
       .col-xs-7.resource-title-wrapper
-        .resource-title = user.to_s
+        .resource-title = courier_profile.to_s
         - user.privileges.each do |privilege|
           .resource-subtitle = t("user.privileges.#{privilege}")
 
@@ -19,12 +19,18 @@
             = user.label_for(attribute)
           span.resource-value
             = user.send(attribute)
+      - courier_profile.card_attributes.each do |attribute|
+        .resource-row
+          span.resource-label
+            = courier_profile.label_for(attribute)
+          span.resource-value
+            = courier_profile.send(attribute)
 
     .resource-footer
       = link_to t("ui.view_details"),
-                admin_user_path(user),
+                admin_courier_profile_path(courier_profile),
                 class: "btn btn-default"
       / hide edit link
         = link_to t("ui.edit"),
-                  edit_admin_user_path(user),
+                  edit_admin_courier_profile_path(courier_profile),
                   class: "btn btn-xs btn-default"
