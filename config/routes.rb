@@ -124,6 +124,7 @@ Rails.application.routes.draw do
       resources :shipping_requests, only: [] do
         member do
           patch :assign
+          patch :cancel
         end
       end
     end

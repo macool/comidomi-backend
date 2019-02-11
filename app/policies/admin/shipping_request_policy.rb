@@ -17,5 +17,9 @@ module Admin
     def assign?
       index?
     end
+
+    def cancel?
+      index?
+    end
   end
 end

@@ -73,6 +73,7 @@ es:
       not_user: se
       default:
         create: creó este registro
+        update: actualizó este registro
         association:
           create: "creado:"
           generated: "generado:"
@@ -123,7 +124,10 @@ es:
     shipping_request:
       title: Envío
       respond: Asignar este envío
+      cancel: Cancelar este envío
       confirm_shipping: Confirmar envío
+      confirm_cancel: Cancelar
+      reason_placeholder: ej. el cliente canceló el pedido
       history:
         canceled: canceló este envío
         customer_service_assign: asignó este pedido a un mensajero

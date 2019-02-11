@@ -1,9 +1,8 @@
-.text-center
-  = link_to t("admin.shipping_request.respond"),
-            "#",
-            class: "btn btn-default",
-            data: { toggle: "modal",
-                    target: "#respond-shipping-request-modal" }
+= link_to t("admin.shipping_request.respond"),
+          "#",
+          class: "btn btn-default",
+          data: { toggle: "modal",
+                  target: "#respond-shipping-request-modal" }
 
 #respond-shipping-request-modal.modal.fade
   .modal-dialog
@@ -13,7 +12,7 @@
           span &times;
         h4 = t("admin.shipping_request.respond")
 
-      .modal-body
+      .modal-body.text-left
         = form_for [:assign, :admin, shipping_request.resource.customer_order, shipping_request.object],
                    html: { class: "form-inline respond-shipping-request-form" } do |f|
           .form-group

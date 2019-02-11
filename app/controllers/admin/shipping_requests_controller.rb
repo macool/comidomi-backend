@@ -16,11 +16,21 @@ module Admin
       find_current_resource
       pundit_authorize
       courier_profile_id = params[:shipping_request][:courier_profile_id]
-      service = ShippingRequest::TakeService.new(
+      ShippingRequest::TakeService.new(
         shipping_request: @current_resource.object,
         courier_profile: CourierProfile.find(courier_profile_id),
         estimated_time_mins: params[:shipping_request][:estimated_time_mins],
         event_name: :customer_service_assign
+      ).perform!
+      redirect_to(resource_path)
+    end
+
+    def cancel
+      find_current_resource
+      pundit_authorize
+      ShippingRequest::CancelService.new(
+        shipping_request: @current_resource.object,
+        reason: params[:shipping_request][:reason]
       ).perform!
       redirect_to(resource_path)
     end

@@ -16,5 +16,11 @@
                  resource: shipping_request,
                  display: :detail_attributes
 
-        = render "respond_shipping_request",
-                 shipping_request: shipping_request
+        .text-center
+          - if shipping_request.status.new?
+            = render "respond_shipping_request",
+                     shipping_request: shipping_request
+
+          - unless shipping_request.status.canceled?
+            = render "cancel_shipping_request",
+                     shipping_request: shipping_request

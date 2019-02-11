@@ -1,0 +1,28 @@
+= link_to t("admin.shipping_request.cancel"),
+          "#",
+          class: "btn btn-danger",
+          data: { toggle: "modal",
+                  target: "#cancel-shipping-request-modal" }
+
+#cancel-shipping-request-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal"
+          span &times;
+        h4 = t("admin.shipping_request.cancel")
+
+      .modal-body.text-left
+        = form_for [:cancel, :admin, shipping_request.resource.customer_order, shipping_request.object],
+                   html: { class: "respond-shipping-request-form" } do |f|
+
+          .form-group
+            = f.label :reason
+            = f.text_area :reason,
+                          class: "form-control",
+                          required: true,
+                          placeholder: t("admin.shipping_request.reason_placeholder")
+
+          .text-center
+            = f.submit t("admin.shipping_request.confirm_cancel"),
+                       class: "btn btn-danger"
