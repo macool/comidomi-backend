@@ -1,21 +1,17 @@
 module Admin
-  class ShippingRequestPolicy < BasePolicy
+  class CustomerOrderDeliveryPolicy < BasePolicy
     class Scope < Scope
       def resolve
         scope
       end
     end
 
-    def index?
+    def accept?
       privileges.customer_service? || privileges.admin?
     end
 
-    def show?
-      index?
-    end
-
-    def assign?
-      index?
+    def reject?
+      privileges.customer_service? || privileges.admin?
     end
   end
 end

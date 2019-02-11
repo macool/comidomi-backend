@@ -12,13 +12,13 @@ class CustomerOrderDeliveryDecorator < GenericResourceDecorator
   def detail_after_table_attributes
     [
       :deliver_at,
-      :estimated_time_for_preparation
+      :preparation_time_mins
     ]
   end
 
-  def estimated_time_for_preparation
+  def preparation_time_mins
     # TODO
-    "#{preparation_time_mins} minutos" if object.status.accepted?
+    "#{object.preparation_time_mins} minutos" if object.status.accepted?
   end
 
   def full_resume_for_card

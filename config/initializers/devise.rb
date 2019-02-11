@@ -1,5 +1,5 @@
 Devise.setup do |config|
-  config.mailer_sender = "no-reply@mailing.moviggo.com"
+  config.mailer_sender = "no-reply@" + Rails.application.secrets.default_email_domain
 
   # If using rails-api, you may want to tell devise to not use ActionDispatch::Flash
   # middleware b/c rails-api does not include it.

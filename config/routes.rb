@@ -113,8 +113,20 @@ Rails.application.routes.draw do
     resources :shipping_requests
     resources :provider_item_categories
     resources :provider_items
-    resources :customer_orders
     resources :courier_profiles
+    resources :customer_orders do
+      resources :customer_order_deliveries, only: [] do
+        member do
+          patch :accept
+          patch :reject
+        end
+      end
+      resources :shipping_requests, only: [] do
+        member do
+          patch :assign
+        end
+      end
+    end
     resources :places do
       resources :shipping_fares
       resource :shipping_costs do

@@ -1,8 +1,9 @@
 class ShippingRequest < ActiveRecord::Base
-  class TakeService < InStoreService
+  class TakeService < TransitionService
     def initialize(options)
       super
       @estimated_time_mins = options.fetch(:estimated_time_mins)
+      @custom_paper_trail_event = options[:event_name]
     end
 
     def perform!
@@ -22,7 +23,7 @@ class ShippingRequest < ActiveRecord::Base
     end
 
     def paper_trail_event
-      :take_by_courier
+      @custom_paper_trail_event.presence || :take_by_courier
     end
 
     def resource_status
