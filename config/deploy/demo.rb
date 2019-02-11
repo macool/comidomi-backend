@@ -1,4 +1,4 @@
-server 'demo.comidomi.com.ec', user: 'porttare', roles: %w{app db web}
+server 'demo.comidomi.ec', user: 'porttare', roles: %w{app db web}
 
 set :deploy_to, '/home/porttare/demo-porttare-backend-comidomi'
 set :rbenv_path, '/home/porttare/.rbenv'
