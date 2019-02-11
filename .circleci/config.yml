@@ -1,6 +1,8 @@
 version: 2
 jobs:
   build:
+    environment:
+      RAILS_ENV: test
     docker:
       - image: circleci/ruby:2.4.1-node-browsers
       - image: circleci/postgres:9.6.5-alpine-ram
