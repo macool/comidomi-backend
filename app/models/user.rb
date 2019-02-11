@@ -66,6 +66,8 @@ class User < ActiveRecord::Base
   end
 
   begin :scopes
+    scope :by_name, -> { order(:name) }
+
     ##
     # define a scope for each privilege
     PRIVILEGES.each do |privilege|

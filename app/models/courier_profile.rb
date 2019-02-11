@@ -67,4 +67,15 @@ class CourierProfile < ActiveRecord::Base
               :telefono,
               uniqueness: true
   end
+
+  begin :callbacks
+    before_validation :set_email_from_user!, on: :create
+  end
+
+  private
+
+  def set_email_from_user!
+    return if user.nil?
+    self.email = user.email
+  end
 end

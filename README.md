@@ -14,7 +14,7 @@
 ### requirements
 
 - postgresql 9+
-- ruby 2.3.0
+- ruby 2.6.1
 - bundler
 
 ### running app

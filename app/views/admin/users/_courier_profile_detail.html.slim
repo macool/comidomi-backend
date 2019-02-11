@@ -1,0 +1,17 @@
+- courier_profile = user.courier_profile
+
+- if courier_profile.present?
+  hr
+
+  .resource-row
+    span.resource-label
+      = user.label_for(:courier_profile_with_link)
+    span.resource-value
+      = user.courier_profile_with_link
+
+  - courier_profile.card_attributes.each do |attribute|
+    .resource-row
+      span.resource-label
+        = courier_profile.label_for(attribute)
+      span.resource-value
+        = courier_profile.send(attribute)

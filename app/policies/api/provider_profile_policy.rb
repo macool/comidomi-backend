@@ -8,7 +8,8 @@ module Api
     end
 
     def customer_show?
-      user.current_place.present? if user else true
+      # user.current_place.present? if user else true
+      true
     end
   end
 end

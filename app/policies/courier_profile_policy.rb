@@ -21,7 +21,7 @@ class CourierProfilePolicy < ApplicationPolicy
       :place_id,
       :tipo_licencia,
       :fecha_nacimiento,
-      # :tipo_medio_movilizacion
+      :tipo_medio_movilizacion
     ]
   end
 end

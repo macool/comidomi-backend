@@ -90,6 +90,7 @@ es:
       provider_items: Productos
       customer_orders: Órdenes
       places: Lugares
+      courier_profiles: Mensajeros
     users:
       new: Nuevo usuario
     user:
@@ -110,6 +111,7 @@ es:
         submitted: envió esta orden
         provider_accept_delivery: (proveedor) aceptó la solicitud
         provider_reject_delivery: (proveedor) rechazó la solicitud
+        automatic_accept_delivery: solicitó envío a domicilio
     customer_order_delivery:
       from_store: de la tienda
       to_home: a domicilio
@@ -123,6 +125,7 @@ es:
         association:
           customer_order:
             provider_accept_delivery: Aceptó esta solicitud de envío a través de
+            automatic_accept_delivery: Solicitó envío a domicilio a través de
           provider_profile:
             ask_to_validate: Solicitar validación
             active: Activar proveedor
@@ -210,6 +213,11 @@ es:
       updated: Tarifa actualizada
       destroy: Eliminar tarifa
       destroyed: Tarifa eliminada
+    courier_profile:
+      created: Perfil de mensajero creado
+      new: Nuevo mensajero
+      new_from_user: Registrar como mensajero
+      user_profile: perfil de mensajero
   pundit:
     not_authorized: No estás autorizado para hacer eso
   activerecord:
@@ -230,6 +238,7 @@ es:
         remember_me: Recordarme
         privileges: Privilegios
         provider_profile_with_link: Perfil de Proveedor
+        courier_profile_with_link: Perfil de Mensajero
       shipping_request:
         created_at: Generada
         address: Dirección
@@ -302,6 +311,8 @@ es:
         place: Lugar
         price_cents: Precio (ctvs)
         price_currency: Moneda
+      courier_profile:
+        tipo_medio_movilizacion: Tipo de medio de movilización
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"

@@ -1,8 +1,13 @@
 class UserDecorator < GenericResourceDecorator
   decorates_association :provider_profile
+  decorates_association :courier_profile
 
   def provider_profile_with_link
     provider_profile.str_with_link if provider_profile.present?
+  end
+
+  def courier_profile_with_link
+    courier_profile.str_with_link if courier_profile.present?
   end
 
   def to_s
