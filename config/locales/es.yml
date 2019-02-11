@@ -106,19 +106,27 @@ es:
       updated: Lugar actualizado
       shipping_costs_calculation_intro: Da click en el mapa para calcular costos de envío
     customer_order:
+      respond: Responder este pedido
+      accept: Aceptar orden
+      reject: Rechazar orden
       order_items_details: Detalles del pedido
       history:
         submitted: envió esta orden
         provider_accept_delivery: (proveedor) aceptó la solicitud
         provider_reject_delivery: (proveedor) rechazó la solicitud
         automatic_accept_delivery: solicitó envío a domicilio
+        customer_service_accept_delivery: aceptó esta orden
+        customer_service_reject_delivery: rechazó esta orden
     customer_order_delivery:
       from_store: de la tienda
       to_home: a domicilio
     shipping_request:
       title: Envío
+      respond: Asignar este envío
+      confirm_shipping: Confirmar envío
       history:
         canceled: canceló este envío
+        customer_service_assign: asignó este pedido a un mensajero
         take_by_courier: (mensajero) tomó este pedido
         courier_in_store: (mensajero) en la tienda para recoger el pedido
         delivered: (mensajero) entregó el pedido al cliente
@@ -248,8 +256,10 @@ es:
         customer_order_delivery: Despacho
         desc_label: Orden de envío
         courier_profile: Mensajero
-        estimated_time_for_delivery: Tiempo estimado para la entrega
+        courier_profile_id: Asignar mensajero
+        estimated_time_mins: 'Tiempo estimado para la entrega (mins)'
         delivery_location: Entregar en
+        estimated_time_mins_placeholder: 'ej: 20mins'
       provider_category:
         titulo: Título
         descripcion: Descripción
@@ -298,7 +308,10 @@ es:
         deliver_at: Fecha de entrega
         numero_convencional: Teléfono convencional
         shipping_fare_price: Costo de envío
-        estimated_time_for_preparation: Tiempo estimado para la preparación
+        preparation_time_mins: 'Tiempo estimado para la preparación (mins)'
+        preparation_time_mins_placeholder: 'ej: 10mins'
+        reason: 'Razón de rechazo'
+        reason_placeholder: 'Razón por la que se rechaza. Ej: No poseemos stock'
         shipping_request_desc: Orden de envío
       place:
         nombre: Ciudad

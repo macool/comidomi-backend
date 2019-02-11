@@ -1,0 +1,26 @@
+.respond-shipping-request-form {
+  label {
+    vertical-align: middle;
+    width: 170px;
+    margin-right: 5px;
+  }
+
+  input {
+    width: 160px;
+  }
+
+  .selectize-control {
+    min-width: 230px;
+    max-width: 300px;
+
+    .selectize-input {
+      .item {
+        margin-right: 10px;
+      }
+
+      &::after {
+        right: 8px;
+      }
+    }
+  }
+}

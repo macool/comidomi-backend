@@ -34,7 +34,7 @@ class ShippingRequestDecorator < GenericResourceDecorator
     [
       :desc_label,
       :courier_profile,
-      :estimated_time_for_delivery
+      :estimated_time_mins
     ]
   end
 
@@ -47,8 +47,8 @@ class ShippingRequestDecorator < GenericResourceDecorator
   def estimated_time_for_delivery
     h.t(
       "datetime.distance_in_words.x_minutes.other",
-      count: estimated_time_mins
-    )
+      count: object.estimated_time_mins
+    ) if object.estimated_time_mins.present?
   end
 
   def delivery_location

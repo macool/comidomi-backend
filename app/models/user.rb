@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User # after devise
   include FacebookImageCacheable
 
-  has_paper_trail skip: [:tokens]
+  has_paper_trail skip: [:tokens, :encrypted_password]
 
   begin :validations
     validates :email,

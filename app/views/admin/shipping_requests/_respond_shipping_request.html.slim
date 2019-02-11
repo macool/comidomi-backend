@@ -1,0 +1,35 @@
+.text-center
+  = link_to t("admin.shipping_request.respond"),
+            "#",
+            class: "btn btn-default",
+            data: { toggle: "modal",
+                    target: "#respond-shipping-request-modal" }
+
+#respond-shipping-request-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal"
+          span &times;
+        h4 = t("admin.shipping_request.respond")
+
+      .modal-body
+        = form_for [:assign, :admin, shipping_request.resource.customer_order, shipping_request.object],
+                   html: { class: "form-inline respond-shipping-request-form" } do |f|
+          .form-group
+            = f.label :courier_profile_id
+            = f.select :courier_profile_id,
+                       courier_profiles_for_select,
+                       { include_blank: true },
+                       required: true,
+                       class: "js-selectize form-control"
+
+          .clearfix
+          .form-group
+            = f.label :estimated_time_mins
+            = f.number_field :estimated_time_mins,
+                             class: "form-control",
+                             required: true,
+                             placeholder: t("activerecord.attributes.shipping_request.estimated_time_mins_placeholder")
+
+          = f.submit t("admin.shipping_request.confirm_shipping"), class: "btn btn-success"

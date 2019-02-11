@@ -1,11 +1,11 @@
 if User.admin.count == 0
   puts "creating default admin:"
   attributes = {
-    email: "moviggoAdm@moviggo.com",
-    password: "mov12345",
-    password_confirmation: "mov12345",
-    nickname: "moviggo",
-    name: "moviggo",
+    email: "admin@comidomi.com.ec",
+    password: "comidomi123456",
+    password_confirmation: "comidomi123456",
+    nickname: "admincomidomi",
+    name: "comidomi admin",
     privileges: [:admin]
   }
   puts attributes

@@ -83,17 +83,17 @@ module Api
 
       def accept_service
         CustomerOrder::ProviderResponse::AcceptService.new(
-          pundit_user,
-          @api_resource,
-          params
+          provider: pundit_user,
+          customer_order: @api_resource,
+          request_params: params
         )
       end
 
       def reject_service
         CustomerOrder::ProviderResponse::RejectService.new(
-          pundit_user,
-          @api_resource,
-          params
+          provider: pundit_user,
+          customer_order: @api_resource,
+          request_params: params
         )
       end
 

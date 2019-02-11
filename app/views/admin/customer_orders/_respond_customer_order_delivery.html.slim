@@ -1,0 +1,43 @@
+.text-center
+  = link_to t("admin.customer_order.respond"),
+            "#",
+            class: "btn btn-default",
+            data: { toggle: "modal",
+                    target: "#respond-customer-order-modal" }
+
+#respond-customer-order-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal"
+          span &times;
+        h4 = t("admin.customer_order.respond")
+
+      .modal-body
+        h4 = t("admin.customer_order.accept")
+
+        = form_for [:accept, :admin, customer_order_delivery.customer_order, customer_order_delivery.object],
+                   html: { class: "form-inline respond-customer-order-delivery-form" } do |f|
+          .form-group
+            = f.label :preparation_time_mins
+            = f.number_field :preparation_time_mins,
+                             class: "form-control",
+                             required: true,
+                             placeholder: t("activerecord.attributes.customer_order_delivery.preparation_time_mins_placeholder")
+          = f.submit t("admin.customer_order.accept"), class: "btn btn-success"
+
+        hr
+
+        h4 = t("admin.customer_order.reject")
+
+        = form_for [:reject, :admin, customer_order_delivery.customer_order, customer_order_delivery],
+                   html: { class: "form-inline respond-customer-order-delivery-form" } do |f|
+          .form-group
+            = f.text_area :reason,
+                          class: "form-control",
+                          required: true,
+                          rows: 1,
+                          placeholder: t("activerecord.attributes.customer_order_delivery.reason_placeholder")
+          = f.submit t("admin.customer_order.reject"), class: "btn btn-danger"
+
+        hr

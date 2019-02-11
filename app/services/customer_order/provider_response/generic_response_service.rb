@@ -1,10 +1,11 @@
 class CustomerOrder < ActiveRecord::Base
   module ProviderResponse
     class GenericResponseService
-      def initialize(provider, customer_order, request_params)
+      def initialize(provider:, customer_order:, request_params:, event_name: nil)
         @provider = provider
         @customer_order = customer_order
         @request_params = request_params
+        @custom_paper_trail_event = event_name
       end
 
       protected
@@ -18,7 +19,7 @@ class CustomerOrder < ActiveRecord::Base
       end
 
       def paper_trail_event
-        raise NotImplementedError
+        @custom_paper_trail_event.presence || default_paper_trail_event
       end
 
       def customer_order_delivery

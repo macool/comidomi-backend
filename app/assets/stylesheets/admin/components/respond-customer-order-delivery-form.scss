@@ -1,0 +1,16 @@
+.respond-customer-order-delivery-form {
+  label {
+    vertical-align: middle;
+    max-width: 170px;
+    margin-right: 5px;
+  }
+
+  input[type=number] {
+    max-width: 100px;
+  }
+
+  textarea {
+    min-width: 275px;
+    min-height: 50px;
+  }
+}

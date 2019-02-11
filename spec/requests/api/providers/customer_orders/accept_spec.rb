@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::Customer::OrdersController,
+RSpec.describe Api::Provider::CustomerOrdersController,
                type: :request do
   let(:response_order) {
     JSON.parse(response.body).fetch("customer_order")
