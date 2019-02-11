@@ -71,6 +71,9 @@ Rails.application.routes.draw do
           post :in_store
           post :delivered
         end
+        collection do
+          get :myself
+        end
       end
     end
 

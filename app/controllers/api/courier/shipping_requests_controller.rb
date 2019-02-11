@@ -40,6 +40,38 @@ module Api
       end
 
       api :GET,
+          "/courier/shipping_requests/myself",
+          "Shipping requests assigned to current courier"
+      description "`kind_text` is the localized value for `kind`"
+      see "providers#index", "Categories::Providers#index for provider_profile serialization in response"
+      param :status,
+            ShippingRequest.status.values,
+            desc: "shipping requests' status"
+      example %q{{
+  "shipping_requests":
+    [{
+      "id":1,
+      "kind":"ask_to_validate",
+      "kind_text":"Validar proveedor",
+      "status":"new",
+      "status_text":"Nuevo",
+      "estimated_time_mins":35,
+      "address_attributes": {"direccion":"Calle Miguel Ángel"},
+      "provider_profile": {...}
+    }]
+}}
+      def myself
+        authorize ShippingRequest
+        @api_collection =
+          resource_scope
+            .for_courier(pundit_user.courier_profile)
+            .latest
+        if params[:status].present?
+          @api_collection = @api_collection.with_status(params[:status])
+        end
+      end
+
+      api :GET,
           "/courier/shipping_requests/:id",
           "Show a shipping request"
       see "courier-shipping_requests#index", "Courier::ShippingRequests#index for response serialization"

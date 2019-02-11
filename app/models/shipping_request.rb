@@ -83,6 +83,9 @@ class ShippingRequest < ActiveRecord::Base
     scope :for_place, ->(place){
       where(place_id: place.id)
     }
+    scope :for_courier, ->(courier_profile){
+      where(courier_profile_id: courier_profile.id)
+    }
   end
 
   def estimated_delivery_at
