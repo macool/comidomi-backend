@@ -25,6 +25,10 @@ class ShippingRequestPolicy < ApplicationPolicy
     is_courier? && record.status.in_progress? && belongs_to_courier?
   end
 
+  def myself?
+    is_courier?
+  end
+
   private
 
   def is_courier?
