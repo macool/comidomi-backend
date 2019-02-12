@@ -2,7 +2,7 @@
 lock '3.6.1'
 
 set :application, 'porttare-backend'
-set :repo_url, 'git@github.com:vilcabamba/porttare-backend.git'
+set :repo_url, 'git@github.com:macool/comidomi-backend.git'
 
 set :slackistrano, {
   channel: '#porttare',
