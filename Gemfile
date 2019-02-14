@@ -28,7 +28,7 @@ gem 'countries', '~> 2.0'
 gem 'redcarpet', '~> 3.4'
 gem 'geokit', '~> 1.10'
 gem 'geokit-rails', '~> 2.2'
-gem 'gcm', '~> 0.1'
+gem 'fcm', '~> 0.0.6'
 gem 'searchlight', '~> 4.1'
 
 group :doc do

@@ -8,6 +8,17 @@ class ShippingRequest < ActiveRecord::Base
       end
 
       def perform!
+        create_shipping_request!
+        notify_couriers!
+      end
+
+      private
+
+      def notify_couriers!
+        NotifyCouriersService.delay.run(@customer_order_delivery.id)
+      end
+
+      def create_shipping_request!
         ShippingRequest.create!(
           kind: DELIVERY_KIND,
           place: customer_order.place,
@@ -16,8 +27,6 @@ class ShippingRequest < ActiveRecord::Base
           address_attributes: customer_address_attributes
         )
       end
-
-      private
 
       def customer_order
         @customer_order_delivery.customer_order
