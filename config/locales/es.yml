@@ -30,6 +30,8 @@ es:
     kinds:
       ask_to_validate: Validar proveedor
       customer_order_delivery: Envío a domicilio
+    notifications:
+      new_shipping_request: Nuevo pedido
   customer_order_delivery:
     status:
       draft: Borrador

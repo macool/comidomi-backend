@@ -1,0 +1,11 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+
+test:
+  <<: *default
+  database: porttare-backend_test
+  username: root
+  password: circleci_test

@@ -1,33 +1,55 @@
 module PushService
   class AndroidNotifier
-    class FakeGCMClient
+    class FakeFCMClient
       def send(*args); end
+      def send_to_topic(*args)
+        return { status_code: 200 }
+      end
     end
 
-    def notify!(recipients, notification)
-      gcm_client.send(recipients, notification)
+    ##
+    # @deprecated
+    # def notify!(recipients, notification)
+    #   fcm_client.send(recipients, notification)
+    # end
+
+    ##
+    # @return FCM server response
+    def notify_topic!(topic:, notification:, data: {})
+      fcm_client.send_to_topic(
+        topic,
+        data: data,
+        priority: "high",
+        notification: notification.merge(default_notification_params)
+      )
     end
 
     private
 
-    def gcm_client
-      mock_gcm_client? ? mocked_gcm_client : real_gcm_client
+    def default_notification_params
+      {
+        click_action: "FCM_PLUGIN_ACTIVITY"
+      }
     end
 
-    def mock_gcm_client?
+    def fcm_client
+      mock_fcm_client? ? mocked_fcm_client : real_fcm_client
+    end
+
+    def mock_fcm_client?
       (api_key.blank? || Rails.env.development? || Rails.env.test?) && !ENV["FORCE_PUSH_NOTIFICATIONS"]
     end
 
-    def mocked_gcm_client
-      FakeGCMClient.new
+    def mocked_fcm_client
+      FakeFCMClient.new
     end
 
-    def real_gcm_client
-      GCM.new(api_key)
+    def real_fcm_client
+      FCM.new(api_key)
     end
 
     def api_key
-      Rails.application.secrets.google_gcm_key
+      Rails.application.secrets.google_fcm_key
     end
   end
 end

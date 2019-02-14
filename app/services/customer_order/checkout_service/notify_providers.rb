@@ -30,6 +30,7 @@ class CustomerOrder < ActiveRecord::Base
       end
 
       def notify_android!
+        fail "REVISE ME!"
         if @android_recipients.any?
           android_notifier.notify!(@android_recipients, notification)
         end

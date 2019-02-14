@@ -25,7 +25,7 @@ class CustomerOrder < ActiveRecord::Base
     ##
     # @return [Boolean]
     def submit_order!
-      submitter.submit_order! && notify_providers!
+      submitter.submit_order! # TODO && notify_providers!
     end
 
     def submitter
@@ -40,8 +40,8 @@ class CustomerOrder < ActiveRecord::Base
       )
     end
 
-    def notify_providers!
-      NotifyProviders.delay.run(@customer_order.id)
-    end
+    # def notify_providers!
+    #   NotifyProviders.delay.run(@customer_order.id)
+    # end
   end
 end

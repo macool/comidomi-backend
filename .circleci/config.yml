@@ -21,6 +21,7 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run: rm config/database.yml && mv config/database.circle.yml config/database.yml
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       - run:
