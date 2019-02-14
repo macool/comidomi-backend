@@ -19,10 +19,13 @@ class ShippingRequest < ActiveRecord::Base
 
     def notify_android!
       notifier = ::PushService::AndroidNotifier.new
-      resp = notifier.notify_all!(notification: {
-        title: I18n.t("shipping_request.notifications.new_shipping_request"),
-        body: nombre_establecimiento
-      })
+      resp = notifier.notify_topic!(
+        topic: "all_couriers",
+        notification: {
+          title: I18n.t("shipping_request.notifications.new_shipping_request"),
+          body: nombre_establecimiento
+        }
+      )
       fail if resp[:status_code] != 200
     end
 

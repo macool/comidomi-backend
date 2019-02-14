@@ -15,9 +15,9 @@ module PushService
 
     ##
     # @return FCM server response
-    def notify_all!(notification:, data: {})
+    def notify_topic!(topic:, notification:, data: {})
       fcm_client.send_to_topic(
-        "all",
+        topic,
         data: data,
         priority: "high",
         notification: notification.merge(default_notification_params)

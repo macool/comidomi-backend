@@ -420,7 +420,7 @@ RSpec.describe Api::Customer::Cart::CheckoutsController,
       before do
         expect_any_instance_of(
           PushService::AndroidNotifier
-        ).to receive(:notify_all!).and_call_original
+        ).to receive(:notify_topic!).and_call_original
       end
 
       it {
