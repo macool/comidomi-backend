@@ -24,6 +24,22 @@ module Api
         super
       end
 
+      api :POST,
+          "/users/devices/unregister",
+          "unregister user's device"
+      param :uuid, String, required: true
+      param :platform,
+            UserDevice.platform.values,
+            required: true
+      def unregister
+        authorize UserDevice
+        UserDevice::UnregisterService.new(
+          params,
+          resource_scope
+        ).unregister!
+        head :ok
+      end
+
       private
 
       def pundit_authorize_resource

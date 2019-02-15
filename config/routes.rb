@@ -85,7 +85,11 @@ Rails.application.routes.draw do
       resources :places,
                 only: :index
       resources :devices,
-                only: :create
+                only: :create do
+        collection do
+          post :unregister
+        end
+      end
     end
 
     namespace :auth do
