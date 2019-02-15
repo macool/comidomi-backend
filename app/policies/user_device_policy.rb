@@ -8,4 +8,8 @@ class UserDevicePolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def unregister?
+    true
+  end
 end
