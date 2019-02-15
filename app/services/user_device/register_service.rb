@@ -19,7 +19,7 @@ class UserDevice < ActiveRecord::Base
     end
 
     def user_device
-      user_device ||= @scoped.new(
+      @user_device ||= @scoped.new(
         uuid: @params[:uuid],
         platform: @params[:platform]
       )
