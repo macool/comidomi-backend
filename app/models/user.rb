@@ -77,6 +77,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  begin :callbacks
+    before_save :ensure_default_place!
+  end
+
   enumerize :privileges,
             in: PRIVILEGES,
             multiple: true
@@ -84,6 +88,12 @@ class User < ActiveRecord::Base
   mount_uploader :custom_image, UserCustomImageUploader
 
   private
+
+  def ensure_default_place!
+    if current_place.blank? && Place.default
+      self.current_place_id = Place.default.id
+    end
+  end
 
   ##
   # override devise's default
