@@ -10,9 +10,17 @@ class ShippingRequest < ActiveRecord::Base
       in_transaction do
         assign_attributes
       end
+      notify_via_pusher!
     end
 
     private
+
+    def notify_via_pusher!
+      if @shipping_request.resource.is_a?(CustomerOrderDelivery)
+        customer_order = @shipping_request.resource.customer_order
+        ::CustomerOrder::PusherNotifierService.delay.notify!(customer_order)
+      end
+    end
 
     def assign_attributes
       @shipping_request.assign_attributes(
