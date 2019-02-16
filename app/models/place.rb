@@ -44,5 +44,4 @@ class Place < ActiveRecord::Base
   def self.default
     where(nombre: 'Loja').first
   end
-
 end
