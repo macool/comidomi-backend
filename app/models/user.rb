@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
   private
 
   def ensure_default_place!
-    if current_place.blank?
+    if current_place.blank? && Place.default
       self.current_place_id = Place.default.id
     end
   end
