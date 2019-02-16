@@ -21,6 +21,7 @@ class ShippingRequest < ActiveRecord::Base
       notifier = ::PushService::AndroidNotifier.new
       resp = notifier.notify_topic!(
         topic: "all_couriers",
+        data: { notification_handler: :new_shipping_request },
         notification: {
           title: I18n.t("shipping_request.notifications.new_shipping_request"),
           body: nombre_establecimiento

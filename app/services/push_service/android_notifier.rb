@@ -28,6 +28,7 @@ module PushService
 
     def default_notification_params
       {
+        icon: "fcm_push_icon",
         click_action: "FCM_PLUGIN_ACTIVITY"
       }
     end
