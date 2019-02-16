@@ -14,6 +14,11 @@ RSpec.describe Api::Courier::ShippingRequestsController,
     before do
       login_as user
       shipping_request
+
+      expect_any_instance_of(
+        CustomerOrder::PusherNotifierService
+      ).to receive(:notify!)
+
       post_with_headers "/api/courier/shipping_requests/#{shipping_request.id}/take"
     end
 
