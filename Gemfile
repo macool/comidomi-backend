@@ -42,7 +42,7 @@ group :api do
 end
 
 gem 'omniauth', '~> 1.6'
-gem 'devise_token_auth', '0.1.42'
+gem 'devise_token_auth', '0.1.43'
 gem 'omniauth-facebook', '~> 4.0'
 gem 'rack-cors', '~> 0.4', require: 'rack/cors'
 gem 'pundit', '~> 1.1'
