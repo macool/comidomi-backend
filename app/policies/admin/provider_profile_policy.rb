@@ -45,6 +45,7 @@ module Admin
       [
         :ruc,
         :email,
+        :status,
         :website,
         :telefono,
         :logotipo,

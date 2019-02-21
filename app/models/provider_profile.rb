@@ -46,6 +46,7 @@ class ProviderProfile < ActiveRecord::Base
     :ask_to_validate, # awaiting contract with provider
     :validated, # accepted by customer service
     :active, # enabled by admin - provider ready to sell
+    :for_testing, # provider available for testers only
     :ask_to_disable, # awaiting admin to confirm and disable
     :disabled # disabled by admin
   ])
@@ -98,6 +99,9 @@ class ProviderProfile < ActiveRecord::Base
   begin :scopes
     scope :by_nombre, -> {
       order(:nombre_establecimiento)
+    }
+    scope :for_active_provider_categories, ->{
+      where(provider_category_id: ProviderCategory.with_status(:enabled).pluck(:id))
     }
     scope :with_enabled_offices_in, ->(place) {
       where(

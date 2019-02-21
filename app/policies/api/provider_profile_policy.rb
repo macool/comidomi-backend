@@ -3,7 +3,14 @@ module Api
     class PublicScope < Scope
       def resolve
         place = user ? user.current_place : Place.default
-        scope.with_status(:active).with_enabled_offices_in(place)
+        provider_statuses = [:active]
+        if user.privileges.tester?
+          provider_statuses << :for_testing
+        end
+        scope
+          .for_active_provider_categories
+          .with_status(*provider_statuses)
+          .with_enabled_offices_in(place)
       end
     end
 

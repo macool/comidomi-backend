@@ -14,6 +14,7 @@ es:
       validated: Validado
       active: Activo
       ask_to_disable: Solicitud de desactivación
+      for_testing: Pruebas
       disabled: Inactivo
     errors:
       disabled: Perfil de proveedor deshabilitado
@@ -51,6 +52,7 @@ es:
     privileges:
       admin: Administrador
       customer_service: Servicio al cliente
+      tester: Tester
   api:
     something_went_wrong: "Ups, algo salió mal. Por favor vuelve a intentarlo"
   ui:
@@ -175,6 +177,7 @@ es:
       statuses:
         ask_to_validate: Validación
         ask_to_disable: Desactivación
+        for_testing: Pruebas
       history:
         apply: aplicó como proveedor
         ask_to_validate: verificó esta solicitud
@@ -293,6 +296,7 @@ es:
         cantidad: Cantidad máxima
       provider_profile:
         provider_category_id: Área
+        status: Estado
         user_with_link: Usuario
         places_with_links: Localidades
         generate_user: Generar usuario automáticamente

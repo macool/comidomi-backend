@@ -61,4 +61,8 @@ class ProviderProfileDecorator < GenericResourceDecorator
       :youtube_handle
     ].freeze
   end
+
+  def test_provider
+    object.status.for_testing?
+  end
 end
