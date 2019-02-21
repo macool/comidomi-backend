@@ -7,6 +7,13 @@
                    resource: f.object
 
           .form-group
+            = f.label :status
+            = f.select :status,
+                       f.object.class.status.options,
+                       { },
+                       class: "js-selectize"
+
+          .form-group
             = f.label :provider_category_id
             = f.select :provider_category_id,
                        provider_categories_for_select,

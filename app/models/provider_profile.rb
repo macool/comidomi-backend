@@ -46,6 +46,7 @@ class ProviderProfile < ActiveRecord::Base
     :ask_to_validate, # awaiting contract with provider
     :validated, # accepted by customer service
     :active, # enabled by admin - provider ready to sell
+    :for_testing, # provider available for testers only
     :ask_to_disable, # awaiting admin to confirm and disable
     :disabled # disabled by admin
   ])
