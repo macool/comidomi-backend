@@ -34,7 +34,8 @@
 class User < ActiveRecord::Base
   PRIVILEGES = [
     :admin,
-    :customer_service
+    :customer_service,
+    :tester
   ].freeze
 
   devise :database_authenticatable, :registerable,

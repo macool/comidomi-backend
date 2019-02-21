@@ -7,19 +7,18 @@
                    resource: f.object
 
           .form-group
+            = f.label :provider_profile_id
+            = f.select :provider_profile_id,
+                       provider_profiles_for_select,
+                       {},
+                       class: "js-selectize"
+
+          .form-group
             = f.label :provider_item_category_id
             = f.select :provider_item_category_id,
                        provider_item_categories_for_select,
                        { include_blank: true },
                        class: "js-selectize"
-
-          - if f.object.new_record?
-            .form-group
-              = f.label :provider_profile_id
-              = f.select :provider_profile_id,
-                         provider_profiles_for_select,
-                         {},
-                         class: "js-selectize"
 
 
           = f.input :titulo
