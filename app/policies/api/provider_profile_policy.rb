@@ -7,7 +7,10 @@ module Api
         if user.privileges.tester?
           provider_statuses << :for_testing
         end
-        scope.with_status(*provider_statuses).with_enabled_offices_in(place)
+        scope
+          .for_active_provider_categories
+          .with_status(*provider_statuses)
+          .with_enabled_offices_in(place)
       end
     end
 
