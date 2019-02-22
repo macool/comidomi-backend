@@ -10,6 +10,16 @@ class UserDecorator < GenericResourceDecorator
     courier_profile.str_with_link if courier_profile.present?
   end
 
+  def phone_number_with_link
+    if object.phone_number.present?
+      h.link_to object.phone_number, "tel:#{object.phone_number}"
+    end
+  end
+
+  def email_with_link
+    h.mail_to object.email
+  end
+
   def to_s
     object.name.presence || object.nickname.presence || object.email
   end
@@ -27,7 +37,8 @@ class UserDecorator < GenericResourceDecorator
 
   def detail_attributes
     card_attributes + [
-      :email,
+      :email_with_link,
+      :phone_number_with_link,
       :nickname,
       :ciudad,
       :fecha_nacimiento,

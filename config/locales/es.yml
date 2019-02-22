@@ -250,12 +250,15 @@ es:
         name: Nombre
         nickname: Sobrenombre
         email: E-mail
+        phone_number: Número de teléfono
         password: Contraseña
         password_confirmation: Confirmación de contraseña
         remember_me: Recordarme
         privileges: Privilegios
         provider_profile_with_link: Perfil de Proveedor
         courier_profile_with_link: Perfil de Mensajero
+        phone_number_with_link: Número de teléfono
+        email_with_link: E-mail
       shipping_request:
         created_at: Generada
         address: Dirección

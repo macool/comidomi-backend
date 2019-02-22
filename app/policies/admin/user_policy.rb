@@ -36,6 +36,7 @@ module Admin
         :nickname,
         :email,
         :ciudad,
+        :phone_number,
         :fecha_nacimiento,
         privileges: []
       ]
