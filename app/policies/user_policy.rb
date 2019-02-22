@@ -25,6 +25,7 @@ class UserPolicy < ApplicationPolicy
       :email,
       :ciudad,
       :fecha_nacimiento,
+      :phone_number,
       :custom_image,
       :current_place_id
     ]

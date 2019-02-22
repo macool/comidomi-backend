@@ -26,6 +26,11 @@
                            class: "form-control"
 
           .form-group
+            = f.label :phone_number
+            = f.telephone_field :phone_number,
+                                class: "form-control"
+
+          .form-group
             = f.label :password
             = f.password_field :password,
                                class: "form-control"
