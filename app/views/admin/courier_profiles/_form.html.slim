@@ -1,6 +1,6 @@
 - user = courier_profile.user.decorate
 
-= form_for [:admin, courier_profile.object] do |f|
+= simple_form_for [:admin, courier_profile.object] do |f|
   .resource-detail.panel.panel-default
     .resource.panel-body
       h2
@@ -22,6 +22,9 @@
                          users_for_select,
                          { include_blank: true },
                          class: "js-selectize"
+
+          - if f.object.user.provider != "email"
+            = f.input :email
 
           .form-group
             = f.label :ruc

@@ -75,7 +75,7 @@ class CourierProfile < ActiveRecord::Base
   private
 
   def set_email_from_user!
-    return if user.nil?
+    return if user.nil? || (user.provider != "email")
     self.email = user.email
   end
 end
