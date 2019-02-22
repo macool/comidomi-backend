@@ -27,6 +27,7 @@ module Admin
     def permitted_attributes
       [
         :ruc,
+        :email,
         :user_id,
         :nombres,
         :telefono,
