@@ -29,6 +29,7 @@
 #  custom_image           :string
 #  agreed_tos             :boolean          default(FALSE)
 #  current_place_id       :integer
+#  phone_number           :string
 #
 
 class User < ActiveRecord::Base

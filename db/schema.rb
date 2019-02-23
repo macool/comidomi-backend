@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170928230303) do
+ActiveRecord::Schema.define(version: 20190222215506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -407,6 +407,7 @@ ActiveRecord::Schema.define(version: 20170928230303) do
     t.string   "custom_image"
     t.boolean  "agreed_tos",             default: false
     t.integer  "current_place_id"
+    t.string   "phone_number"
   end
 
   add_index "users", ["current_place_id"], name: "index_users_on_current_place_id", using: :btree
