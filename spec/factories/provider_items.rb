@@ -18,6 +18,8 @@
 #  cantidad                  :integer          default(0)
 #  en_stock                  :boolean
 #  provider_item_category_id :integer
+#  parent_provider_item_id   :integer
+#  is_group                  :boolean          default(FALSE)
 #
 
 FactoryGirl.define do

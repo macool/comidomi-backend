@@ -9,6 +9,11 @@
         span.glyphicon.glyphicon-search
         = t("admin.filter")
 
+    = link_to new_group_admin_provider_items_path,
+              class: "btn btn-link" do
+      span.glyphicon.glyphicon-th-large
+      = t("admin.provider_item.new_group")
+
     = link_to new_admin_provider_item_path,
               class: "btn btn-link" do
       span.glyphicon.glyphicon-plus-sign

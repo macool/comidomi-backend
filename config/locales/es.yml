@@ -152,6 +152,7 @@ es:
       no_schedule_placeholder: "--:--"
     provider_item:
       new: Nuevo producto
+      new_group: Nuevo grupo
       updated: Producto actualizado
       created: Producto creado
       add_image: Agregar imagen
@@ -297,6 +298,8 @@ es:
         provider_profile_id: Proveedor
         descripcion: Descripción
         cantidad: Cantidad máxima
+        parent_provider_item_id: Grupo
+        parent_provider_item_str_with_link: Grupo
       provider_profile:
         provider_category_id: Área
         status: Estado

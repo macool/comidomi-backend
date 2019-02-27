@@ -18,6 +18,8 @@
 #  cantidad                  :integer          default(0)
 #  en_stock                  :boolean
 #  provider_item_category_id :integer
+#  parent_provider_item_id   :integer
+#  is_group                  :boolean          default(FALSE)
 #
 
 class ProviderItem < ActiveRecord::Base
@@ -42,7 +44,8 @@ class ProviderItem < ActiveRecord::Base
               :cantidad,
               presence: true
     validates :precio,
-              numericality: { greater_than: 0 }
+              numericality: { greater_than: 0 },
+              unless: :is_group?
     validates :cantidad,
               numericality: { greater_than_or_equal_to: 0 }
     validates :unidad_medida,
@@ -56,6 +59,10 @@ class ProviderItem < ActiveRecord::Base
   begin :scopes
     scope :in_stock, ->{ where(en_stock: true) }
     scope :available, ->{ where("cantidad > 0") }
+    scope :by_titulo, ->{ order(:titulo) }
+    scope :groups, -> { where(is_group: true) }
+    scope :with_parent_id,
+          ->(parent_id) { where(parent_provider_item_id: parent_id) }
   end
 
   begin :callbacks
@@ -65,6 +72,8 @@ class ProviderItem < ActiveRecord::Base
   begin :relationships
     belongs_to :provider_profile
     belongs_to :provider_item_category
+    belongs_to :parent_provider_item,
+               class_name: "ProviderItem"
     has_many :imagenes,
              class_name: 'ProviderItemImage',
              dependent: :destroy

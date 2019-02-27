@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190222215506) do
+ActiveRecord::Schema.define(version: 20190226063115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -249,11 +249,15 @@ ActiveRecord::Schema.define(version: 20190222215506) do
     t.integer  "cantidad",                  default: 0
     t.boolean  "en_stock"
     t.integer  "provider_item_category_id"
+    t.integer  "parent_provider_item_id"
+    t.boolean  "is_group",                  default: false
   end
 
   add_index "provider_items", ["cantidad"], name: "index_provider_items_on_cantidad", using: :btree
   add_index "provider_items", ["deleted_at"], name: "index_provider_items_on_deleted_at", using: :btree
   add_index "provider_items", ["en_stock"], name: "index_provider_items_on_en_stock", using: :btree
+  add_index "provider_items", ["is_group"], name: "index_provider_items_on_is_group", using: :btree
+  add_index "provider_items", ["parent_provider_item_id"], name: "index_provider_items_on_parent_provider_item_id", using: :btree
   add_index "provider_items", ["provider_item_category_id"], name: "index_provider_items_on_provider_item_category_id", using: :btree
   add_index "provider_items", ["provider_profile_id"], name: "index_provider_items_on_provider_profile_id", using: :btree
 
@@ -457,6 +461,7 @@ ActiveRecord::Schema.define(version: 20190222215506) do
   add_foreign_key "provider_item_categories", "provider_profiles"
   add_foreign_key "provider_item_images", "provider_items"
   add_foreign_key "provider_items", "provider_item_categories"
+  add_foreign_key "provider_items", "provider_items", column: "parent_provider_item_id"
   add_foreign_key "provider_items", "provider_profiles"
   add_foreign_key "provider_office_weekdays", "provider_offices"
   add_foreign_key "provider_offices", "places"
