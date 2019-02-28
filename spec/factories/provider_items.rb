@@ -53,5 +53,10 @@ FactoryGirl.define do
     trait :available do
       cantidad 1
     end
+
+    trait :group do
+      precio   nil
+      is_group true
+    end
   end
 end

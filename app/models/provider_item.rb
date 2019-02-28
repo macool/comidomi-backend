@@ -63,6 +63,8 @@ class ProviderItem < ActiveRecord::Base
     scope :groups, -> { where(is_group: true) }
     scope :with_parent_id,
           ->(parent_id) { where(parent_provider_item_id: parent_id) }
+    scope :in_stock_and_available_or_group,
+          ->{ where("(en_stock = 't' AND cantidad > 0 AND parent_provider_item_id IS NULL) OR (is_group = 't')") }
   end
 
   begin :callbacks
@@ -77,6 +79,9 @@ class ProviderItem < ActiveRecord::Base
     has_many :imagenes,
              class_name: 'ProviderItemImage',
              dependent: :destroy
+    has_many :children_provider_items,
+             class_name: "ProviderItem",
+             foreign_key: :parent_provider_item_id
 
     accepts_nested_attributes_for(
       :imagenes,

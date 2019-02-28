@@ -11,7 +11,8 @@ json.extract!(
   :observaciones,
   :cantidad,
   :provider_item_category_id,
-  :provider_profile_id
+  :provider_profile_id,
+  :is_group
 )
 
 json.imagenes do
@@ -20,4 +21,14 @@ json.imagenes do
     partial: "api/providers/items/provider_item_image",
     as: :provider_item_image
   )
+end
+
+if provider_item.is_group?
+  json.children do
+    json.array!(
+      provider_item.children_provider_items,
+      partial: "/api/providers/items/provider_item",
+      as: :provider_item
+    )
+  end
 end
