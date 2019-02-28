@@ -19,11 +19,17 @@ class ProviderItemDecorator < GenericResourceDecorator
   end
 
   def card_attributes
-    [
-      :precio,
-      :en_stock,
+    attrs = [
       :provider_item_category
     ]
+    attrs.unshift(
+      :precio,
+      :en_stock
+    ) unless object.is_group?
+    if object.parent_provider_item.present?
+      attrs.unshift(:parent_provider_item_str_with_link)
+    end
+    attrs
   end
 
   def detail_attributes
@@ -56,5 +62,16 @@ class ProviderItemDecorator < GenericResourceDecorator
 
   def created_at
     h.l(object.created_at, format: :admin_full)
+  end
+
+  def children_items
+    @children_items ||= object.class.with_parent_id(object.id)
+  end
+
+  def parent_provider_item_str_with_link
+    h.link_to(
+      parent_provider_item.titulo,
+      h.admin_provider_item_path(object)
+    )
   end
 end

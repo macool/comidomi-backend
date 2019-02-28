@@ -14,6 +14,12 @@ module Admin
                       .decorate
     end
 
+    def new_group
+      new_current_resource
+      pundit_authorize
+      @current_resource.is_group = true
+    end
+
     private
 
     def provider_item_search
@@ -44,5 +50,15 @@ module Admin
       end
     end
     helper_method :provider_profiles_for_select
+
+    def provider_item_groups_for_select(provider_profile:)
+      ProviderItem.where(provider_profile_id: provider_profile.id)
+                  .groups
+                  .by_titulo
+                  .map do |provider_item|
+        [ provider_item.titulo, provider_item.id ]
+      end
+    end
+    helper_method :provider_item_groups_for_select
   end
 end

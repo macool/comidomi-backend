@@ -19,6 +19,18 @@
                resource: provider_item,
                display: :card_attributes
 
+      - if provider_item.is_group?
+        - if provider_item.children_items.any?
+          .resource-row
+            span.resource-label
+              = t("admin.sidebar.provider_items")
+              ' :
+            ul.resource-list-values
+              - provider_item.children_items.each do |child_item|
+                li
+                  = link_to child_item.titulo,
+                            admin_provider_item_path(child_item)
+
     .resource-footer
       = link_to t("ui.view_details"),
                 admin_provider_item_path(provider_item),

@@ -119,8 +119,12 @@ Rails.application.routes.draw do
     resources :resource_version, only: :show
     resources :shipping_requests
     resources :provider_item_categories
-    resources :provider_items
     resources :courier_profiles
+    resources :provider_items do
+      collection do
+        get :new_group
+      end
+    end
     resources :customer_orders do
       resources :customer_order_deliveries, only: [] do
         member do
