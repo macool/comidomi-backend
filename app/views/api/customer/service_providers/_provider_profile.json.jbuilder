@@ -8,6 +8,7 @@ json.extract!(
   :nombre_establecimiento,
   :actividad_economica,
   :logotipo_url,
+  :logotipo_thumbnail_url,
   :cover_url,
   :test_provider
 )
