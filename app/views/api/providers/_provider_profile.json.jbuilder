@@ -14,6 +14,7 @@ json.extract!(
   :website,
   :formas_de_pago,
   :logotipo_url,
+  :logotipo_thumbnail_url,
   :facebook_handle,
   :twitter_handle,
   :instagram_handle,
