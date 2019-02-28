@@ -4,7 +4,6 @@ json.extract!(
   :titulo,
   :descripcion,
   :unidad_medida,
-  :precio_cents,
   :precio_currency,
   :volumen,
   :peso,
@@ -14,6 +13,14 @@ json.extract!(
   :provider_profile_id,
   :is_group
 )
+
+precio_cents = if provider_item.is_group?
+  provider_item.children_provider_items.map(&:precio_cents).min
+else
+  provider_item.precio_cents
+end
+
+json.set! :precio_cents, precio_cents
 
 json.imagenes do
   json.array!(
