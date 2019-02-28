@@ -55,7 +55,7 @@ FactoryGirl.define do
     end
 
     trait :group do
-      precio   nil
+      precio   0
       is_group true
     end
   end
