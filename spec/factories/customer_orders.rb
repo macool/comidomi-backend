@@ -27,7 +27,7 @@ FactoryGirl.define do
       if customer_profile && customer_profile.user
         customer_profile.user.current_place
       else
-        build :place
+        create :place
       end
     }
 

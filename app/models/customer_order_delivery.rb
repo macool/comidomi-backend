@@ -36,6 +36,7 @@ class CustomerOrderDelivery < ActiveRecord::Base
             in_future: true,
             if: "deliver_at_changed?"
 
+  has_one :shipping_request, as: :resource
   belongs_to :customer_order
   belongs_to :customer_address
   belongs_to :provider_profile

@@ -21,10 +21,11 @@
 
 FactoryGirl.define do
   factory :customer_order_delivery do
-    provider_profile
     customer_order
 
     delivery_method "pickup"
+    
+    provider_profile { create :provider_profile, :with_office }
 
     trait :shipping do
       delivery_method "shipping"
