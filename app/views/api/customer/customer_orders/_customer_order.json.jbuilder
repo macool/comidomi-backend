@@ -12,10 +12,3 @@ json.provider_profiles do
     )
   end
 end
-
-if customer_order.status.submitted?
-  json.partial!(
-    "api/customer/customer_orders/shipping_requests_summary",
-    customer_order: customer_order
-  )
-end

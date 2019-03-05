@@ -25,15 +25,11 @@ RSpec.describe Api::Customer::OrdersController,
     let(:previous_order) {
       create :customer_order,
              :submitted,
+             :with_order_item,
              customer_profile: user.customer_profile
     }
 
-    let(:previous_delivery) {
-      create :customer_order_delivery,
-             :shipping,
-             customer_order: previous_order,
-             customer_address: create(:customer_address, customer_profile: user.customer_profile)
-    }
+    let(:previous_delivery) { previous_order.deliveries.first }
 
     let(:previous_shipping) {
       create :shipping_request,
@@ -77,9 +73,9 @@ RSpec.describe Api::Customer::OrdersController,
 
     it "includes shipping requests summary" do
       resp_order = response_orders.first
-      resp_shipping_request = resp_order["shipping_requests"].first
+      resp_provider_profile = resp_order["provider_profiles"].first
+      resp_shipping_request = resp_provider_profile["customer_order_delivery"]["shipping_request"]
       expect(resp_shipping_request["status"]).to eq("assigned")
-      expect(resp_shipping_request["provider_name"]).to be_present
       expect(resp_shipping_request["courier_profile"]["nombres"]).to be_present
     end
   end

@@ -18,5 +18,13 @@ if order_delivery.present?
       "api/customer/customer_order_deliveries/customer_order_delivery",
       order_delivery: order_delivery
     )
+
+    if customer_order.status.submitted?
+      json.partial!(
+        "api/customer/customer_orders/shipping_requests_summary",
+        customer_order: customer_order,
+        customer_order_delivery: order_delivery
+      )
+    end
   end
 end
