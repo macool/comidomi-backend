@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190226063115) do
+ActiveRecord::Schema.define(version: 20190305224242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,15 @@ ActiveRecord::Schema.define(version: 20190226063115) do
     t.string   "tipo_medio_movilizacion"
     t.date     "fecha_nacimiento"
     t.string   "tipo_licencia"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "place_id",                null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "place_id",                                null: false
+    t.boolean  "receive_calls",           default: false
+    t.integer  "call_priority",           default: 0
   end
 
   add_index "courier_profiles", ["place_id"], name: "index_courier_profiles_on_place_id", using: :btree
+  add_index "courier_profiles", ["receive_calls"], name: "index_courier_profiles_on_receive_calls", using: :btree
   add_index "courier_profiles", ["user_id"], name: "index_courier_profiles_on_user_id", using: :btree
 
   create_table "customer_addresses", force: :cascade do |t|
@@ -321,6 +324,16 @@ ActiveRecord::Schema.define(version: 20190226063115) do
   add_index "provider_profiles", ["status"], name: "index_provider_profiles_on_status", using: :btree
   add_index "provider_profiles", ["user_id"], name: "index_provider_profiles_on_user_id", using: :btree
 
+  create_table "scheduled_courier_calls", force: :cascade do |t|
+    t.integer  "customer_order_id",                   null: false
+    t.text     "couriers_called_ids", default: [],                 array: true
+    t.boolean  "done",                default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "scheduled_courier_calls", ["customer_order_id"], name: "index_scheduled_courier_calls_on_customer_order_id", using: :btree
+
   create_table "shipping_fares", force: :cascade do |t|
     t.integer  "place_id",                       null: false
     t.integer  "price_cents",    default: 0,     null: false
@@ -468,6 +481,7 @@ ActiveRecord::Schema.define(version: 20190226063115) do
   add_foreign_key "provider_offices", "provider_profiles"
   add_foreign_key "provider_profiles", "provider_categories"
   add_foreign_key "provider_profiles", "users"
+  add_foreign_key "scheduled_courier_calls", "customer_orders"
   add_foreign_key "shipping_fares", "places"
   add_foreign_key "shipping_requests", "courier_profiles"
   add_foreign_key "shipping_requests", "places"

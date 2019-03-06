@@ -381,6 +381,10 @@ GEM
     tilt (2.0.4)
     turbolinks (2.5.3)
       coffee-rails
+    twilio-ruby (5.21.0)
+      faraday (~> 0.9)
+      jwt (>= 1.5, <= 2.5)
+      nokogiri (>= 1.6, < 2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (3.0.0)
@@ -466,6 +470,7 @@ DEPENDENCIES
   spring
   svg-flags-rails (= 1.0.0.pre.beta2)
   turbolinks
+  twilio-ruby (= 5.21.0)
   uglifier (>= 1.3.0)
   web-console
 

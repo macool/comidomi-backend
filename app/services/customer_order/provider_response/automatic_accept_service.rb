@@ -47,6 +47,20 @@ class CustomerOrder < ActiveRecord::Base
       ##
       # @return Boolean
       def perform
+        accept_all_deliveries!
+        call_couriers!
+        true
+      end
+
+      private
+
+      def call_couriers!
+        ::CallService::ScheduleCallingService.create_for_customer_order(
+          @customer_order
+        ).perform!
+      end
+
+      def accept_all_deliveries!
         @customer_order_deliveries.each do |customer_order_delivery|
           in_transaction do
             AutomaticAcceptSpecificDeliveryService.new(
@@ -54,10 +68,7 @@ class CustomerOrder < ActiveRecord::Base
             ).perform!
           end
         end
-        true
       end
-
-      private
 
       def paper_trail_event
         :automatic_accept_delivery
