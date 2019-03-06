@@ -1,0 +1,10 @@
+= render "toolbox"
+
+.resource-collection
+  .resource-wrapper
+    .resource
+      h2 = t("admin.courier_profile.priorities_page.title")
+      ol
+        - @resource_collection.each do |courier_profile|
+          li
+            = courier_profile.forename

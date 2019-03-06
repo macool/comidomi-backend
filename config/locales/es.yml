@@ -33,6 +33,8 @@ es:
       customer_order_delivery: Envío a domicilio
     notifications:
       new_shipping_request: Nuevo pedido
+    courier_profile:
+      new_customer_order: "Hola %{courier_name}. Hay pedidos nuevos para %{provider_profiles_names}"
   customer_order_delivery:
     status:
       draft: Borrador
@@ -152,6 +154,7 @@ es:
       no_schedule_placeholder: "--:--"
     provider_item:
       new: Nuevo producto
+      new_group: Nuevo grupo
       updated: Producto actualizado
       created: Producto creado
       add_image: Agregar imagen
@@ -235,6 +238,9 @@ es:
       new: Nuevo mensajero
       new_from_user: Registrar como mensajero
       user_profile: perfil de mensajero
+      priorities: Prioridades
+      priorities_page:
+        title: "Mensajeros a llamar:"
   pundit:
     not_authorized: No estás autorizado para hacer eso
   activerecord:
@@ -297,6 +303,8 @@ es:
         provider_profile_id: Proveedor
         descripcion: Descripción
         cantidad: Cantidad máxima
+        parent_provider_item_id: Grupo
+        parent_provider_item_str_with_link: Grupo
       provider_profile:
         provider_category_id: Área
         status: Estado

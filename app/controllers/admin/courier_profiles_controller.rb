@@ -13,6 +13,11 @@ module Admin
                       .decorate
     end
 
+    def priorities
+      pundit_authorize
+      @resource_collection = resource_scope.receive_calls.decorate
+    end
+
     def new
       super
       if params[:user_id].present?

@@ -18,11 +18,17 @@ class ProviderProfileDecorator < GenericResourceDecorator
   end
 
   def logotipo_url
-    if object.logotipo?
-      object.logotipo.small.url
-    else
-      h.gravatar_image_url(provider_profile.email)
-    end
+    return gravatar_img_url unless object.logotipo?
+    object.logotipo.small.url
+  end
+
+  def logotipo_thumbnail_url
+    return gravatar_img_url unless object.logotipo?
+    object.logotipo.thumbnail.url
+  end
+
+  def gravatar_img_url
+    h.gravatar_image_url(provider_profile.email)
   end
 
   def formas_de_pago

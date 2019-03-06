@@ -42,5 +42,10 @@ FactoryGirl.define do
         }
       }
     end
+
+    trait :assigned_to_courier do
+      status :assigned
+      courier_profile
+    end
   end
 end

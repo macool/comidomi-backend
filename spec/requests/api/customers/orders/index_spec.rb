@@ -25,9 +25,24 @@ RSpec.describe Api::Customer::OrdersController,
     let(:previous_order) {
       create :customer_order,
              :submitted,
+             :with_order_item,
              customer_profile: user.customer_profile
     }
-    
+
+    let(:previous_delivery) { previous_order.deliveries.first }
+
+    let(:previous_shipping) {
+      create :shipping_request,
+             :for_customer_order_delivery,
+             :assigned_to_courier,
+             :with_address_attributes,
+             resource: previous_delivery
+    }
+
+    let(:default_shipping_fare) {
+      create :shipping_fare, place: previous_order.place
+    }
+
     let(:current_order) {
       create :customer_order,
              status: :in_progress,
@@ -36,6 +51,9 @@ RSpec.describe Api::Customer::OrdersController,
 
     before do
       previous_order
+      default_shipping_fare
+      previous_delivery
+      previous_shipping
       current_order
 
       get_with_headers "/api/customer/orders"
@@ -46,11 +64,19 @@ RSpec.describe Api::Customer::OrdersController,
         response_orders.first["id"]
       ).to eq(previous_order.id)
     end
-    
+
     it "doesn't include current order" do
       expect(
         response_orders.length
       ).to eq(1)
+    end
+
+    it "includes shipping requests summary" do
+      resp_order = response_orders.first
+      resp_provider_profile = resp_order["provider_profiles"].first
+      resp_shipping_request = resp_provider_profile["customer_order_delivery"]["shipping_request"]
+      expect(resp_shipping_request["status"]).to eq("assigned")
+      expect(resp_shipping_request["courier_profile"]["nombres"]).to be_present
     end
   end
 end

@@ -22,6 +22,10 @@ module Admin
       privileges.customer_service? || privileges.admin?
     end
 
+    def new_group?
+      new?
+    end
+
     def create?
       new?
     end
@@ -43,6 +47,8 @@ module Admin
         :en_stock,
         :provider_item_category_id,
         :provider_profile_id,
+        :is_group,
+        :parent_provider_item_id,
         imagenes_attributes: [
           :id,
           :imagen,

@@ -40,6 +40,11 @@
       .resource-value {
         display: inline-block;
       }
+
+      ul.resource-list-values {
+        padding-left: 10px;
+        margin-bottom: 0;
+      }
     }
 
     .resource-body {

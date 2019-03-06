@@ -18,6 +18,8 @@
 #  cantidad                  :integer          default(0)
 #  en_stock                  :boolean
 #  provider_item_category_id :integer
+#  parent_provider_item_id   :integer
+#  is_group                  :boolean          default(FALSE)
 #
 
 FactoryGirl.define do
@@ -50,6 +52,11 @@ FactoryGirl.define do
 
     trait :available do
       cantidad 1
+    end
+
+    trait :group do
+      precio   0
+      is_group true
     end
   end
 end

@@ -106,6 +106,10 @@ Rails.application.routes.draw do
         }
       )
     end
+
+    namespace :thirdparty do
+      resources :calls
+    end
   end
 
   devise_for :admins,
@@ -119,8 +123,16 @@ Rails.application.routes.draw do
     resources :resource_version, only: :show
     resources :shipping_requests
     resources :provider_item_categories
-    resources :provider_items
-    resources :courier_profiles
+    resources :courier_profiles do
+      collection do
+        get :priorities
+      end
+    end
+    resources :provider_items do
+      collection do
+        get :new_group
+      end
+    end
     resources :customer_orders do
       resources :customer_order_deliveries, only: [] do
         member do

@@ -24,6 +24,10 @@ module Admin
       index?
     end
 
+    def priorities?
+      index?
+    end
+
     def permitted_attributes
       [
         :ruc,
