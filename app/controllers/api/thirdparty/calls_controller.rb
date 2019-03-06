@@ -6,7 +6,7 @@ module Api
       def create
         message = I18n.t(
           "shipping_request.courier_profile.new_customer_order",
-          courier_name: courier_profile.nombres,
+          courier_name: courier_profile.forename,
           provider_profiles_names: provider_profiles_names
         )
         twiml = Twilio::TwiML::VoiceResponse.new do |r|

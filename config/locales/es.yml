@@ -238,6 +238,9 @@ es:
       new: Nuevo mensajero
       new_from_user: Registrar como mensajero
       user_profile: perfil de mensajero
+      priorities: Prioridades
+      priorities_page:
+        title: "Mensajeros a llamar:"
   pundit:
     not_authorized: No estás autorizado para hacer eso
   activerecord:
