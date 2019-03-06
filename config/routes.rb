@@ -106,6 +106,10 @@ Rails.application.routes.draw do
         }
       )
     end
+
+    namespace :thirdparty do
+      resources :calls
+    end
   end
 
   devise_for :admins,

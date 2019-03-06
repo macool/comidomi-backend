@@ -14,6 +14,8 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  place_id                :integer          not null
+#  receive_calls           :boolean          default(FALSE)
+#  call_priority           :integer          default(0)
 #
 
 class CourierProfile < ActiveRecord::Base
@@ -44,6 +46,12 @@ class CourierProfile < ActiveRecord::Base
     "pesado", # "Pesado",                                 # (E)
     "especiales", # "Especiales"                          # (E1)
   ].freeze
+
+  begin :scopes
+    scope :for_place, ->(place) { where(place: place) }
+    scope :by_priority, -> { order(call_priority: :asc) }
+    scope :receive_calls, ->{ where(receive_calls: true) }
+  end
 
   begin :relationships
     belongs_to :user

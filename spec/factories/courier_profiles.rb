@@ -14,6 +14,8 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  place_id                :integer          not null
+#  receive_calls           :boolean          default(FALSE)
+#  call_priority           :integer          default(0)
 #
 
 FactoryGirl.define do

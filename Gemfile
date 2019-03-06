@@ -30,6 +30,7 @@ gem 'geokit', '~> 1.10'
 gem 'geokit-rails', '~> 2.2'
 gem 'fcm', '~> 0.0.6'
 gem 'searchlight', '~> 4.1'
+gem 'twilio-ruby', '5.21.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
