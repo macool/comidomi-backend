@@ -4,12 +4,27 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def create
+        twiml = if new_shipping_requests.count > 0
+          respond_with_message
+        else
+          hangup
+        end
+        render text: twiml.to_s
+      end
+
+      private
+
+      def hangup
+        Twilio::TwiML::VoiceResponse.new.hangup
+      end
+
+      def respond_with_message
         message = I18n.t(
           "shipping_request.courier_profile.new_customer_order",
           courier_name: courier_profile.forename,
           provider_profiles_names: provider_profiles_names
         )
-        twiml = Twilio::TwiML::VoiceResponse.new do |r|
+        Twilio::TwiML::VoiceResponse.new do |r|
           r.say(
             voice: "alice",
             loop: 2,
@@ -17,10 +32,7 @@ module Api
             message: message
           )
         end
-        render text: twiml.to_s
       end
-
-      private
 
       def provider_profiles_names
         new_shipping_requests.map do |shipping_request|
