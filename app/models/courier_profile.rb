@@ -80,6 +80,10 @@ class CourierProfile < ActiveRecord::Base
     before_validation :set_email_from_user!, on: :create
   end
 
+  def forename
+    nombres.split(" ")[0,2].join(" ")
+  end
+
   private
 
   def set_email_from_user!

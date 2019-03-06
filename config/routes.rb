@@ -123,7 +123,11 @@ Rails.application.routes.draw do
     resources :resource_version, only: :show
     resources :shipping_requests
     resources :provider_item_categories
-    resources :courier_profiles
+    resources :courier_profiles do
+      collection do
+        get :priorities
+      end
+    end
     resources :provider_items do
       collection do
         get :new_group
