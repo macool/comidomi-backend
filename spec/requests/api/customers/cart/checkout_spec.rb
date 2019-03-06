@@ -50,8 +50,12 @@ RSpec.describe Api::Customer::Cart::CheckoutsController,
         } ]
       }
     }
+    let(:courier_profile) {
+      create :courier_profile, receive_calls: true
+    }
 
     before do
+      courier_profile
       current_order
       provider_office
       shipping_fare

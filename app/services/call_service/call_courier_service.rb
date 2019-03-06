@@ -12,7 +12,7 @@ module CallService
     end
 
     def call!
-      if @scheduled_call.done? || no_new_shipping_requests? || next_courier.blank?
+      if @scheduled_call.done? || next_courier.blank? || !any_new_shipping_requests?
         return
       end
       call_via_twilio!
@@ -40,11 +40,9 @@ module CallService
       ).update_all(done: true)
     end
 
-    def no_new_shipping_requests?
+    def any_new_shipping_requests?
       customer_order = @scheduled_call.customer_order
-      customer_order.deliveries.none? do |delivery|
-        delivery.shipping_request.status.new?
-      end
+      ShippingRequest.where(status: :new, resource: customer_order.deliveries).count > 0
     end
 
     def call_via_twilio!
