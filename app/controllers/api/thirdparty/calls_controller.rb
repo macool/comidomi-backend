@@ -32,6 +32,7 @@ module Api
         ShippingRequest.where(status: :new)
                        .where(kind: :customer_order_delivery)
                        .for_place(courier_profile.place)
+                       .includes(resource: :provider_profile)
       end
 
       def courier_profile

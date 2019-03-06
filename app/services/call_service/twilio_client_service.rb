@@ -6,9 +6,9 @@ module CallService
     end
 
     def initialize
-      account_sid = Rails.application.secrets.twilio_account_sid
-      auth_token = Rails.application.secrets.twilio_auth_token
-      twilio_from = Rails.application.secrets.twilio_phone_number
+      @account_sid = Rails.application.secrets.twilio_account_sid
+      @auth_token = Rails.application.secrets.twilio_auth_token
+      @twilio_from = Rails.application.secrets.twilio_phone_number
     end
 
     def call(opts)
