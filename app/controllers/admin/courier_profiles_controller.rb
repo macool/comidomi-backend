@@ -15,7 +15,7 @@ module Admin
 
     def priorities
       pundit_authorize
-      @resource_collection = resource_scope.receive_calls.decorate
+      @resource_collection = resource_scope.by_priority.receive_calls.decorate
     end
 
     def new
