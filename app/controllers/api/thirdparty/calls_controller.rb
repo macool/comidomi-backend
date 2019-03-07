@@ -4,7 +4,7 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def create
-        twiml = if new_shipping_requests.count > 0
+        twiml = if human_answered? && new_shipping_requests.count > 0
           respond_with_message
         else
           hangup
@@ -13,6 +13,10 @@ module Api
       end
 
       private
+
+      def human_answered?
+        params["AnsweredBy"] == "human"
+      end
 
       def hangup
         Twilio::TwiML::VoiceResponse.new.hangup

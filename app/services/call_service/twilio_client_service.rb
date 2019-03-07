@@ -12,8 +12,12 @@ module CallService
     end
 
     def call(opts)
+      default_opts = {
+        from: @twilio_from,
+        machine_detection: "Enable"
+      }
       client.calls.create(
-        opts.merge(from: @twilio_from)
+        opts.merge(default_opts)
       )
     end
 
