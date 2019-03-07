@@ -21,7 +21,8 @@ class CourierProfileDecorator < GenericResourceDecorator
       :tipo_medio_movilizacion,
       :fecha_nacimiento,
       :tipo_licencia,
-      :place
+      :place,
+      :receive_calls
     ]
   end
 

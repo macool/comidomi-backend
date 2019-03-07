@@ -347,6 +347,7 @@ es:
         price_currency: Moneda
       courier_profile:
         tipo_medio_movilizacion: Tipo de medio de movilización
+        receive_calls: Recibir llamadas
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"
