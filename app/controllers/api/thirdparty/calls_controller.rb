@@ -31,10 +31,10 @@ module Api
         Twilio::TwiML::VoiceResponse.new do |r|
           r.say(
             voice: "alice",
-            loop: 2,
             language: "es-MX",
             message: message
           )
+          r.hangup
         end
       end
 
