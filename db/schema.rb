@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190305224242) do
+ActiveRecord::Schema.define(version: 20190323062607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,17 @@ ActiveRecord::Schema.define(version: 20190305224242) do
   end
 
   add_index "customer_billing_addresses", ["customer_profile_id"], name: "index_customer_billing_addresses_on_customer_profile_id", using: :btree
+
+  create_table "customer_errands", force: :cascade do |t|
+    t.integer  "customer_profile_id", null: false
+    t.integer  "place_id",            null: false
+    t.text     "description",         null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "customer_errands", ["customer_profile_id"], name: "index_customer_errands_on_customer_profile_id", using: :btree
+  add_index "customer_errands", ["place_id"], name: "index_customer_errands_on_place_id", using: :btree
 
   create_table "customer_order_deliveries", force: :cascade do |t|
     t.datetime "deliver_at"
@@ -459,6 +470,8 @@ ActiveRecord::Schema.define(version: 20190305224242) do
   add_foreign_key "courier_profiles", "users"
   add_foreign_key "customer_addresses", "customer_profiles"
   add_foreign_key "customer_billing_addresses", "customer_profiles"
+  add_foreign_key "customer_errands", "customer_profiles"
+  add_foreign_key "customer_errands", "places"
   add_foreign_key "customer_order_deliveries", "customer_addresses"
   add_foreign_key "customer_order_deliveries", "customer_orders"
   add_foreign_key "customer_order_deliveries", "provider_profiles"
