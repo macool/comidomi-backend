@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190305224242) do
+ActiveRecord::Schema.define(version: 20190324172724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -318,6 +318,7 @@ ActiveRecord::Schema.define(version: 20190305224242) do
     t.string   "logotipo"
     t.integer  "banco_tipo_cuenta"
     t.integer  "status",                 default: 0
+    t.string   "cover"
   end
 
   add_index "provider_profiles", ["provider_category_id"], name: "index_provider_profiles_on_provider_category_id", using: :btree

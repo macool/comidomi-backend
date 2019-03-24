@@ -6,6 +6,11 @@ module PorttareBackend
           provider_profile.logotipo.recreate_versions!
         end
       end
+      ProviderProfile.find_each do |provider_profile|
+        if provider_profile.cover?
+          provider_profile.cover.recreate_versions!
+        end
+      end
       ProviderItem.find_each do |provider_item|
         provider_item.imagenes.each do |imagen|
           imagen.imagen.recreate_versions!
