@@ -2,20 +2,25 @@
 #
 # Table name: customer_errands
 #
-#  id                  :integer          not null, primary key
-#  customer_profile_id :integer          not null
-#  place_id            :integer          not null
-#  description         :text             not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
+#  id                           :integer          not null, primary key
+#  customer_profile_id          :integer          not null
+#  place_id                     :integer          not null
+#  description                  :text             not null
+#  customer_address_id          :integer          not null
+#  shipping_fare_price_cents    :integer          default(0), not null
+#  shipping_fare_price_currency :string           default("USD"), not null
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
 #
 
 class CustomerErrand < ActiveRecord::Base
-  belongs_to :customer_profile
   belongs_to :place
+  belongs_to :customer_profile
+  belongs_to :customer_address
 
   validates :customer_profile,
             :place,
             :description,
+            :customer_address,
             presence: true
 end

@@ -70,13 +70,17 @@ ActiveRecord::Schema.define(version: 20190323062607) do
   add_index "customer_billing_addresses", ["customer_profile_id"], name: "index_customer_billing_addresses_on_customer_profile_id", using: :btree
 
   create_table "customer_errands", force: :cascade do |t|
-    t.integer  "customer_profile_id", null: false
-    t.integer  "place_id",            null: false
-    t.text     "description",         null: false
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.integer  "customer_profile_id",                          null: false
+    t.integer  "place_id",                                     null: false
+    t.text     "description",                                  null: false
+    t.integer  "customer_address_id",                          null: false
+    t.integer  "shipping_fare_price_cents",    default: 0,     null: false
+    t.string   "shipping_fare_price_currency", default: "USD", null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
+  add_index "customer_errands", ["customer_address_id"], name: "index_customer_errands_on_customer_address_id", using: :btree
   add_index "customer_errands", ["customer_profile_id"], name: "index_customer_errands_on_customer_profile_id", using: :btree
   add_index "customer_errands", ["place_id"], name: "index_customer_errands_on_place_id", using: :btree
 
@@ -470,6 +474,7 @@ ActiveRecord::Schema.define(version: 20190323062607) do
   add_foreign_key "courier_profiles", "users"
   add_foreign_key "customer_addresses", "customer_profiles"
   add_foreign_key "customer_billing_addresses", "customer_profiles"
+  add_foreign_key "customer_errands", "customer_addresses"
   add_foreign_key "customer_errands", "customer_profiles"
   add_foreign_key "customer_errands", "places"
   add_foreign_key "customer_order_deliveries", "customer_addresses"
