@@ -27,6 +27,7 @@
 #  logotipo               :string
 #  banco_tipo_cuenta      :integer
 #  status                 :integer          default(0)
+#  cover                  :string
 #
 
 require 'rails_helper'

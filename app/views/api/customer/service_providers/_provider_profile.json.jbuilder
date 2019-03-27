@@ -9,6 +9,6 @@ json.extract!(
   :actividad_economica,
   :logotipo_url,
   :logotipo_thumbnail_url,
-  :cover_url,
+  :cover_provider_url,
   :test_provider
 )
