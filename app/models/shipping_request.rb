@@ -32,6 +32,7 @@ class ShippingRequest < ActiveRecord::Base
   ].freeze
   KINDS = [
     :ask_to_validate,
+    :customer_errand,
     :customer_order_delivery
   ].freeze
 

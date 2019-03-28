@@ -23,4 +23,9 @@ class CustomerErrand < ActiveRecord::Base
             :description,
             :customer_address,
             presence: true
+
+  def shipping_fare=(new_shipping_fare)
+    self.shipping_fare_price_cents = new_shipping_fare.price_cents
+    self.shipping_fare_price_currency = new_shipping_fare.price_currency
+  end
 end

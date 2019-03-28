@@ -13,6 +13,6 @@
 FactoryGirl.define do
   factory :shipping_fare do
     place
-    price_cents 150
+    price_cents { [150, 200, 300].sample }
   end
 end

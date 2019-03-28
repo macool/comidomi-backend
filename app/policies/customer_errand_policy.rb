@@ -12,6 +12,6 @@ class CustomerErrandPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    [ :description ]
+    [ :description, :customer_address_id ]
   end
 end

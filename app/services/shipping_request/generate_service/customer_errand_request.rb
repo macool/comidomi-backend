@@ -4,7 +4,7 @@ class ShippingRequest < ActiveRecord::Base
       DELIVERY_KIND = :customer_errand
 
       def initialize(resource:)
-        @customer_errand = resource
+        @resource = resource
       end
 
       def perform!
@@ -19,8 +19,8 @@ class ShippingRequest < ActiveRecord::Base
       def create_shipping_request!
         ShippingRequest.create!(
           kind: DELIVERY_KIND,
-          place: @customer_errand.place,
-          resource: @customer_errand,
+          place: @resource.place,
+          resource: @resource,
           address_attributes: customer_address_attributes
         )
       end
