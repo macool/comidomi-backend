@@ -33,6 +33,7 @@ es:
       customer_order_delivery: Envío a domicilio
     notifications:
       new_shipping_request: Nuevo pedido
+      new_errand_request: Solicitud de encomienda pendiente
     courier_profile:
       # new_customer_order: "Hola %{courier_name}. Hay pedidos nuevos para %{provider_profiles_names}"
       new_customer_order: "Pedidos nuevos para %{provider_profiles_names}"

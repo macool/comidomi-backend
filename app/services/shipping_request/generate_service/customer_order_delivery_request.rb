@@ -15,7 +15,8 @@ class ShippingRequest < ActiveRecord::Base
       private
 
       def notify_couriers!
-        NotifyCouriersService.delay.run(@resource.id)
+        nombre_establecimiento = @customer_order_delivery.provider_profile.nombre_establecimiento
+        NotifyCouriersService.delay.run(nombre_establecimiento)
       end
 
       def create_shipping_request!
@@ -38,8 +39,6 @@ class ShippingRequest < ActiveRecord::Base
           .attributes
           .slice("lat", "lon")
       end
-
-
     end
   end
 end
