@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190323062607) do
+ActiveRecord::Schema.define(version: 20190329060047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -340,14 +340,15 @@ ActiveRecord::Schema.define(version: 20190323062607) do
   add_index "provider_profiles", ["user_id"], name: "index_provider_profiles_on_user_id", using: :btree
 
   create_table "scheduled_courier_calls", force: :cascade do |t|
-    t.integer  "customer_order_id",                   null: false
+    t.integer  "resource_id",                         null: false
     t.text     "couriers_called_ids", default: [],                 array: true
     t.boolean  "done",                default: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "resource_type",                       null: false
   end
 
-  add_index "scheduled_courier_calls", ["customer_order_id"], name: "index_scheduled_courier_calls_on_customer_order_id", using: :btree
+  add_index "scheduled_courier_calls", ["resource_id"], name: "index_scheduled_courier_calls_on_resource_id", using: :btree
 
   create_table "shipping_fares", force: :cascade do |t|
     t.integer  "place_id",                       null: false
@@ -499,7 +500,6 @@ ActiveRecord::Schema.define(version: 20190323062607) do
   add_foreign_key "provider_offices", "provider_profiles"
   add_foreign_key "provider_profiles", "provider_categories"
   add_foreign_key "provider_profiles", "users"
-  add_foreign_key "scheduled_courier_calls", "customer_orders"
   add_foreign_key "shipping_fares", "places"
   add_foreign_key "shipping_requests", "courier_profiles"
   add_foreign_key "shipping_requests", "places"

@@ -10,8 +10,7 @@ class ShippingRequest < ActiveRecord::Base
       def perform!
         create_shipping_request!
         notify_couriers!
-        # TODO
-        # call_couriers! at controller?
+        call_couriers!
       end
 
       private
@@ -19,6 +18,12 @@ class ShippingRequest < ActiveRecord::Base
       def notify_couriers!
         errand_text = I18n.t("shipping_request.notifications.new_errand_request")
         NotifyCouriersService.delay.run(errand_text)
+      end
+
+      def call_couriers!
+        ::CallService::ScheduleCallingService.create_for_resource(
+          @resource
+        ).perform!
       end
 
       def create_shipping_request!

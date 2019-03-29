@@ -41,8 +41,10 @@ module CallService
     end
 
     def any_new_shipping_requests?
-      customer_order = @scheduled_call.customer_order
-      ShippingRequest.where(status: :new, resource: customer_order.deliveries).count > 0
+      ShippingRequest.where(
+        status: :new,
+        resource: @scheduled_call.shipping_request_resources
+      ).count > 0
     end
 
     def call_via_twilio!

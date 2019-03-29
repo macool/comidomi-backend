@@ -37,6 +37,8 @@ es:
     courier_profile:
       # new_customer_order: "Hola %{courier_name}. Hay pedidos nuevos para %{provider_profiles_names}"
       new_customer_order: "Pedidos nuevos para %{provider_profiles_names}"
+      join_with: "y"
+      new_errands: "%{count} encomiendas nuevas"
   customer_order_delivery:
     status:
       draft: Borrador
