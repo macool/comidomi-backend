@@ -25,9 +25,10 @@ class ShippingRequest < ActiveRecord::Base
 
   STATUSES = [
     :new,
-    :assigned,
-    :in_progress, # or phase1 & phase2
-    :delivered,
+    :assigned, # courier is set
+    :confirmed, # preparation time is provided
+    :in_progress, # on the way to customer's address
+    :delivered, # delivered to customer
     :canceled
   ].freeze
   KINDS = [

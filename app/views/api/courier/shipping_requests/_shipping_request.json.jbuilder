@@ -55,3 +55,32 @@ if shipping_request.kind.customer_order_delivery?
     end
   end
 end
+
+if shipping_request.kind.customer_errand?
+  json.customer_errand do
+    json.partial!(
+      "api/customer/errands/customer_errand",
+      customer_errand: shipping_request.resource
+    )
+  end
+
+  json.customer_order do
+    json.customer_profile do
+      json.partial!(
+        "api/customer/customer_orders/customer_profile",
+        customer_profile: shipping_request.resource.customer_profile
+      )
+    end
+
+    # TODO: billing for errands
+    # if shipping_request.resource.customer_billing_address.present?
+    if false
+      json.customer_billing_address do
+        json.partial!(
+          "api/customer/billing_addresses/billing_address",
+          billing_address: shipping_request.resource.customer_billing_address
+        )
+      end
+    end
+  end
+end
