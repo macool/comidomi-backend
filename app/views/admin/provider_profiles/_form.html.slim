@@ -87,6 +87,21 @@
 
             = f.hidden_field :logotipo_cache
 
+          .form-group
+            = f.label :cover
+            = f.file_field :cover
+            - if f.object.cover?
+              .provider-profile-form-image
+                = image_tag f.object.cover_url,
+                            class: "img-responsive"
+
+              .checkbox
+                = f.label :remove_cover do
+                  = f.check_box :remove_cover
+                  = t("activerecord.attributes.provider_profile.remove_cover")
+
+            = f.hidden_field :cover_cache
+
           = f.fields_for :offices do |office_form|
             = render "office_form", f: office_form
 
