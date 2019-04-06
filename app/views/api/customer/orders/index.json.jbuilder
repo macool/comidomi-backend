@@ -1,7 +1,12 @@
-json.customer_orders do
-  json.array!(
-    @api_collection,
-    partial: "api/customer/customer_orders/customer_order",
-    as: :customer_order
-  )
+json.customer_resources do
+  json.array! @api_collection do |resource|
+    case resource
+    when CustomerOrder
+      json.partial! "api/customer/customer_orders/customer_order",
+                    customer_order: resource
+    when CustomerErrand
+      json.partial! "api/customer/customer_errands/customer_errand",
+                    customer_errand: resource
+    end
+  end
 end

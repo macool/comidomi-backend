@@ -33,7 +33,11 @@ module Api
       private
 
       def collection_scope
-        resource_scope.with_status(:submitted).latest
+        # ATM we don't support scoping more than
+        # one resource class
+        customer_orders = resource_scope.with_status(:submitted).latest
+        customer_errands = policy_scope(CustomerErrand).latest
+        customer_orders.to_a + customer_errands.to_a
       end
     end
   end
