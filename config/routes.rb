@@ -69,6 +69,7 @@ Rails.application.routes.draw do
                 only: [:index, :show] do
         member do
           post :take
+          post :confirm
           post :in_store
           post :delivered
         end

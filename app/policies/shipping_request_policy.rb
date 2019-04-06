@@ -17,8 +17,12 @@ class ShippingRequestPolicy < ApplicationPolicy
     is_courier? && record.status.new?
   end
 
-  def in_store?
+  def confirm?
     is_courier? && record.status.assigned? && belongs_to_courier?
+  end
+
+  def in_store?
+    is_courier? && record.status.confirmed? && belongs_to_courier?
   end
 
   def delivered?
