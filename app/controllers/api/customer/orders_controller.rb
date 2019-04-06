@@ -37,7 +37,8 @@ module Api
         # one resource class
         customer_orders = resource_scope.with_status(:submitted).latest
         customer_errands = policy_scope(CustomerErrand).latest
-        customer_orders.to_a + customer_errands.to_a
+        collection = customer_orders.to_a + customer_errands.to_a
+        collection.sort_by(&:created_at).reverse
       end
     end
   end
