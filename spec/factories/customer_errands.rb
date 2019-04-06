@@ -11,6 +11,7 @@
 #  shipping_fare_price_currency :string           default("USD"), not null
 #  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
+#  status                       :string           default("in_progress"), not null
 #
 
 FactoryGirl.define do

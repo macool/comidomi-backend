@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190406174713) do
+ActiveRecord::Schema.define(version: 20190406233132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,14 +70,15 @@ ActiveRecord::Schema.define(version: 20190406174713) do
   add_index "customer_billing_addresses", ["customer_profile_id"], name: "index_customer_billing_addresses_on_customer_profile_id", using: :btree
 
   create_table "customer_errands", force: :cascade do |t|
-    t.integer  "customer_profile_id",                          null: false
-    t.integer  "place_id",                                     null: false
-    t.text     "description",                                  null: false
-    t.integer  "customer_address_id",                          null: false
-    t.integer  "shipping_fare_price_cents",    default: 0,     null: false
-    t.string   "shipping_fare_price_currency", default: "USD", null: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.integer  "customer_profile_id",                                  null: false
+    t.integer  "place_id",                                             null: false
+    t.text     "description",                                          null: false
+    t.integer  "customer_address_id",                                  null: false
+    t.integer  "shipping_fare_price_cents",    default: 0,             null: false
+    t.string   "shipping_fare_price_currency", default: "USD",         null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.string   "status",                       default: "in_progress", null: false
   end
 
   add_index "customer_errands", ["customer_address_id"], name: "index_customer_errands_on_customer_address_id", using: :btree

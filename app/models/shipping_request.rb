@@ -46,6 +46,7 @@ class ShippingRequest < ActiveRecord::Base
   )
 
   begin :callbacks
+    before_save :update_customer_errand_if_available!
     before_validation :set_ref_coordinates
   end
 
@@ -114,5 +115,13 @@ class ShippingRequest < ActiveRecord::Base
     return if address_attributes.blank?
     self.ref_lat = address_attributes["lat"] if ref_lat.blank?
     self.ref_lon = address_attributes["lon"] if ref_lon.blank?
+  end
+
+  def update_customer_errand_if_available!
+    return if !kind.customer_errand?
+    mirrored_statuses = [ :delivered, :canceled ]
+    if status_changed? && mirrored_statuses.include?(status.to_sym)
+      resource.update!(status: status)
+    end
   end
 end

@@ -11,9 +11,24 @@
 #  shipping_fare_price_currency :string           default("USD"), not null
 #  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
+#  status                       :string           default("in_progress"), not null
 #
 
 class CustomerErrand < ActiveRecord::Base
+  extend Enumerize
+
+  STATUSES = [
+    :in_progress,
+    :delivered,
+    :canceled
+  ].freeze
+
+  enumerize :status,
+            in: STATUSES,
+            default: :in_progress,
+            scope: true,
+            i18n_scope: "customer_errand.status"
+
   belongs_to :place
   belongs_to :customer_profile
   belongs_to :customer_address

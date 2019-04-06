@@ -7,6 +7,11 @@ es:
     notification:
       provider_new_order:
         title: "Tienes un pedido nuevo"
+  customer_errand:
+    status:
+      in_progress: En progreso
+      delivered: Entregada
+      canceled: Cancelada
   provider_profile:
     statuses:
       applied: Aplicado

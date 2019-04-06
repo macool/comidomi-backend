@@ -15,7 +15,7 @@ RSpec.describe Api::Courier::ShippingRequestsController,
       login_as user
       # assign to courier
       shipping_request.update!(
-        status: :assigned,
+        status: :confirmed,
         courier_profile: user.courier_profile
       )
       post_with_headers "/api/courier/shipping_requests/#{shipping_request.id}/in_store"
