@@ -1,7 +1,8 @@
 class ShippingRequest < ActiveRecord::Base
-  class TakeService < TransitionService
+  class ConfirmService < TransitionService
     def initialize(options)
       super
+      @estimated_time_mins = options.fetch(:estimated_time_mins)
       @custom_paper_trail_event = options[:event_name]
     end
 
@@ -19,22 +20,22 @@ class ShippingRequest < ActiveRecord::Base
         customer_order = @shipping_request.resource.customer_order
         ::CustomerOrder::PusherNotifierService.delay.notify!(customer_order)
       end
-      # TODO notify for errands!
+      # TODO notify errands!
     end
 
     def assign_attributes
       @shipping_request.assign_attributes(
-        assigned_at: Time.now,
-        courier_profile: @courier_profile
+        confirmed_at: Time.now,
+        estimated_time_mins: @estimated_time_mins
       )
     end
 
     def paper_trail_event
-      @custom_paper_trail_event.presence || :take_by_courier
+      @custom_paper_trail_event.presence || :confirm_by_courier
     end
 
     def resource_status
-      :assigned
+      :confirmed
     end
   end
 end
