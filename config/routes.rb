@@ -24,7 +24,7 @@ Rails.application.routes.draw do
                   only: [:update]
       end
       resource :service_providers, only: [:show]
-      resources :errands, only: [:create]
+      resources :errands, only: [:create, :show]
       resources :wishlists,
                 only: [:index, :create, :update, :destroy]
       resources :addresses,

@@ -13,6 +13,10 @@ module Api
         super
       end
 
+      def show
+        super
+      end
+
       private
 
       def new_api_resource
@@ -25,6 +29,10 @@ module Api
 
       def pundit_authorize_resource
         authorize CustomerErrand
+      end
+
+      def resource_template
+        action_name
       end
     end
   end

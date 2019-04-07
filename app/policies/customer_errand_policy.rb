@@ -11,6 +11,10 @@ class CustomerErrandPolicy < ApplicationPolicy
     user.customer_profile.present?
   end
 
+  def show?
+    user.customer_profile.present?
+  end
+
   def permitted_attributes
     [ :description, :customer_address_id ]
   end
