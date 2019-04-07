@@ -5,7 +5,8 @@ json.extract!(
   :customer_address_id,
   :shipping_fare_price_cents,
   :shipping_fare_price_currency,
-  :created_at
+  :created_at,
+  :status
 )
 
 json.kind customer_errand.class.to_s.underscore
