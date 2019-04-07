@@ -55,7 +55,7 @@ class CustomerOrder < ActiveRecord::Base
       private
 
       def call_couriers!
-        ::CallService::ScheduleCallingService.create_for_customer_order(
+        ::CallService::ScheduleCallingService.create_for_resource(
           @customer_order
         ).perform!
       end

@@ -1,10 +1,8 @@
 module CallService
   class ScheduleCallingService
     class << self
-      def create_for_customer_order(customer_order)
-        scheduled = ScheduledCourierCall.create!(
-          customer_order: customer_order
-        )
+      def create_for_resource(resource)
+        scheduled = ScheduledCourierCall.create!(resource: resource)
         new(scheduled)
       end
     end

@@ -27,6 +27,7 @@
 #  logotipo               :string
 #  banco_tipo_cuenta      :integer
 #  status                 :integer          default(0)
+#  cover                  :string
 #
 
 class ProviderProfile < ActiveRecord::Base
@@ -62,6 +63,7 @@ class ProviderProfile < ActiveRecord::Base
             i18n_scope: "provider_profile.statuses"
 
   mount_uploader :logotipo, ProviderProfileLogotipoUploader
+  mount_uploader :cover, ProviderProfileCoverUploader
 
   begin :relationships
     belongs_to :user
@@ -131,8 +133,12 @@ class ProviderProfile < ActiveRecord::Base
       end
   end
 
-  def cover_url
-    provider_category.imagen_url if provider_category.present?
+  def cover_provider_url
+    if self.cover_url.present?
+      self.cover_url
+    else
+      provider_category.imagen_url if provider_category.present?
+    end
   end
 
   def allowed_currency_iso_codes

@@ -10,6 +10,8 @@ json.extract!(
   :customer_billing_address_id
 )
 
+json.kind customer_order.class.to_s.underscore
+
 json.submitted_at(
   l(customer_order.submitted_at, format: :api)
 ) if customer_order.submitted_at.present?

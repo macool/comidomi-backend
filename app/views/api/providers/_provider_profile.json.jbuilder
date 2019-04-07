@@ -19,5 +19,5 @@ json.extract!(
   :twitter_handle,
   :instagram_handle,
   :youtube_handle,
-  :cover_url
+  :cover_provider_url
 )

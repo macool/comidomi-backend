@@ -11,6 +11,7 @@
 class CustomerProfile < ActiveRecord::Base
   belongs_to :user
   has_many :customer_orders
+  has_many :customer_errands
   has_many :customer_wishlists
   has_many :customer_addresses
 

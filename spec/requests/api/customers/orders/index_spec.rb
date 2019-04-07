@@ -5,7 +5,7 @@ RSpec.describe Api::Customer::OrdersController,
   before { login_as user }
 
   let(:response_orders) {
-    JSON.parse(response.body).fetch("customer_orders")
+    JSON.parse(response.body).fetch("customer_resources")
   }
 
   describe "non-customer" do

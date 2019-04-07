@@ -1,0 +1,2 @@
+class CustomerErrandDecorator < GenericResourceDecorator
+end

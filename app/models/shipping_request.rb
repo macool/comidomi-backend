@@ -18,6 +18,7 @@
 #  assigned_at         :datetime
 #  ref_lat             :float            not null
 #  ref_lon             :float            not null
+#  confirmed_at        :datetime
 #
 
 class ShippingRequest < ActiveRecord::Base
@@ -25,13 +26,15 @@ class ShippingRequest < ActiveRecord::Base
 
   STATUSES = [
     :new,
-    :assigned,
-    :in_progress, # or phase1 & phase2
-    :delivered,
+    :assigned, # courier is set
+    :confirmed, # preparation time is provided
+    :in_progress, # on the way to customer's address
+    :delivered, # delivered to customer
     :canceled
   ].freeze
   KINDS = [
     :ask_to_validate,
+    :customer_errand,
     :customer_order_delivery
   ].freeze
 
@@ -43,6 +46,7 @@ class ShippingRequest < ActiveRecord::Base
   )
 
   begin :callbacks
+    before_save :update_customer_errand_if_available!
     before_validation :set_ref_coordinates
   end
 
@@ -111,5 +115,13 @@ class ShippingRequest < ActiveRecord::Base
     return if address_attributes.blank?
     self.ref_lat = address_attributes["lat"] if ref_lat.blank?
     self.ref_lon = address_attributes["lon"] if ref_lon.blank?
+  end
+
+  def update_customer_errand_if_available!
+    return if !kind.customer_errand?
+    mirrored_statuses = [ :delivered, :canceled ]
+    if status_changed? && mirrored_statuses.include?(status.to_sym)
+      resource.update!(status: status)
+    end
   end
 end
