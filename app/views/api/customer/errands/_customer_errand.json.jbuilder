@@ -9,3 +9,4 @@ json.extract!(
 )
 
 json.kind customer_errand.class.to_s.underscore
+json.customer_address_attributes customer_errand.customer_address
