@@ -1,14 +1,13 @@
 class ShippingRequest < ActiveRecord::Base
   class NotifyCouriersService
     class << self
-      def run(customer_order_delivery_id)
-        customer_order_delivery = CustomerOrderDelivery.find(customer_order_delivery_id)
-        new(customer_order_delivery).notify!
+      def run(notification_body)
+        new(notification_body).notify!
       end
     end
 
-    def initialize(customer_order_delivery)
-      @customer_order_delivery = customer_order_delivery
+    def initialize(notification_body)
+      @notification_body = notification_body
     end
 
     def notify!
@@ -24,14 +23,10 @@ class ShippingRequest < ActiveRecord::Base
         data: { notification_handler: :new_shipping_request },
         notification: {
           title: I18n.t("shipping_request.notifications.new_shipping_request"),
-          body: nombre_establecimiento
+          body: @notification_body
         }
       )
       fail if resp[:status_code] != 200
-    end
-
-    def nombre_establecimiento
-      @customer_order_delivery.provider_profile.nombre_establecimiento
     end
   end
 end

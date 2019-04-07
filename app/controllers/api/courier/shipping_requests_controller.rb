@@ -86,14 +86,28 @@ module Api
           "Take a shipping request"
       see "courier-shipping_requests#index", "Courier::ShippingRequests#index for response serialization"
       param :id, Integer, required: true
-      param :estimated_time_mins,
-            Integer,
-            required: true,
-            desc: "Estimated time in minutes"
       def take
         @api_resource = resource_scope.find params[:id]
         authorize @api_resource
         ShippingRequest::TakeService.new(
+          shipping_request: @api_resource,
+          courier_profile: pundit_user.courier_profile
+        ).perform!
+        render :show
+      end
+
+      api :POST,
+          "/courier/shipping_requests/:id/confirm",
+          "Confirm a shipping request"
+      param :id, Integer, required: true
+      param :estimated_time_mins,
+            Integer,
+            required: true,
+            desc: "Estimated time in minutes"
+      def confirm
+        @api_resource = resource_scope.find params[:id]
+        authorize @api_resource
+        ShippingRequest::ConfirmService.new(
           shipping_request: @api_resource,
           courier_profile: pundit_user.courier_profile,
           estimated_time_mins: params[:estimated_time_mins]

@@ -18,6 +18,7 @@
 #  assigned_at         :datetime
 #  ref_lat             :float            not null
 #  ref_lon             :float            not null
+#  confirmed_at        :datetime
 #
 
 FactoryGirl.define do

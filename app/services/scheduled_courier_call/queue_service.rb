@@ -2,7 +2,7 @@ class ScheduledCourierCall < ActiveRecord::Base
   class QueueService
     def initialize(scheduled_call)
       @scheduled_call = scheduled_call
-      @customer_order = @scheduled_call.customer_order
+      @scheduled_call_resource = @scheduled_call.resource
     end
 
     def next_courier
@@ -17,7 +17,7 @@ class ScheduledCourierCall < ActiveRecord::Base
 
     def sorted_couriers
       CourierProfile.receive_calls
-                    .for_place(@customer_order.place)
+                    .for_place(@scheduled_call_resource.place)
                     .by_priority
     end
   end
