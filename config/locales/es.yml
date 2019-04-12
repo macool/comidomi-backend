@@ -509,7 +509,7 @@ es:
       not_an_integer: debe ser un entero
       odd: debe ser impar
       required: debe existir
-      taken: ya está en uso
+      taken: Ya está en uso
       too_long:
         one: "es demasiado largo (1 carácter máximo)"
         other: "es demasiado largo (%{count} caracteres máximo)"
