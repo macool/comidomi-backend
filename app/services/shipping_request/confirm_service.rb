@@ -11,6 +11,7 @@ class ShippingRequest < ActiveRecord::Base
         assign_attributes
       end
       notify_via_pusher!
+      notify_android!
     end
 
     private
@@ -34,7 +35,7 @@ class ShippingRequest < ActiveRecord::Base
       @custom_paper_trail_event.presence || :confirm_by_courier
     end
 
-    def resource_status
+    def resource_transitions_to_status
       :confirmed
     end
   end

@@ -39,6 +39,19 @@ es:
     notifications:
       new_shipping_request: Nuevo pedido
       new_errand_request: Solicitud de encomienda pendiente
+    customer_notifications:
+      to_status:
+        assigned: Pedido fue asignado
+        confirmed: Tiempo de entrega
+        canceled: Tu pedido fue cancelado
+        in_progress: Recogiendo tu pedido
+        delivered: Pedido completo
+      to_status_body:
+        canceled: Lo sentimos, tu pedido fue cancelado
+        assigned: Tu pedido fue asignado a un mensajero
+        confirmed: "Te entregamos tu pedido en unos %{eta} minutos"
+        in_progress: El mensajero está recogiendo tu pedido
+        delivered: El mensajero llegó al lugar de entrega con tu pedido
     courier_profile:
       # new_customer_order: "Hola %{courier_name}. Hay pedidos nuevos para %{provider_profiles_names}"
       new_customer_order: "Pedidos nuevos para %{provider_profiles_names}"

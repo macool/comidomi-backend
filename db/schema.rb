@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190406233132) do
+ActiveRecord::Schema.define(version: 20190414033609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -404,6 +404,7 @@ ActiveRecord::Schema.define(version: 20190406233132) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "user_devices", ["platform", "user_id"], name: "index_user_devices_on_platform_and_user_id", using: :btree
   add_index "user_devices", ["platform", "uuid"], name: "index_user_devices_on_platform_and_uuid", using: :btree
   add_index "user_devices", ["user_id"], name: "index_user_devices_on_user_id", using: :btree
 

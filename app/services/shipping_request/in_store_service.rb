@@ -4,6 +4,7 @@ class ShippingRequest < ActiveRecord::Base
       in_transaction do
         # TODO notify or something
       end
+      notify_android!
     end
 
     private
@@ -12,7 +13,7 @@ class ShippingRequest < ActiveRecord::Base
       :courier_in_store
     end
 
-    def resource_status
+    def resource_transitions_to_status
       :in_progress
     end
   end
