@@ -7,6 +7,8 @@ json.customer_resources do
     when CustomerErrand
       json.partial! "api/customer/customer_errands/customer_errand",
                     customer_errand: resource
+      json.partial! "api/customer/customer_errands/shipping_request",
+                    customer_errand: resource
     end
   end
 end

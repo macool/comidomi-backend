@@ -29,6 +29,7 @@ class CustomerErrand < ActiveRecord::Base
             scope: true,
             i18n_scope: "customer_errand.status"
 
+  has_one :shipping_request, as: :resource
   belongs_to :place
   belongs_to :customer_profile
   belongs_to :customer_address
