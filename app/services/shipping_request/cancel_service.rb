@@ -9,6 +9,7 @@ class ShippingRequest < ActiveRecord::Base
       in_transaction do
         assign_attributes
       end
+      notify_android!
     end
 
     private
@@ -23,7 +24,7 @@ class ShippingRequest < ActiveRecord::Base
       :canceled
     end
 
-    def resource_status
+    def resource_transitions_to_status
       :canceled
     end
   end

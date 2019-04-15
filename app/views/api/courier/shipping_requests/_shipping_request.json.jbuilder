@@ -1,17 +1,6 @@
-json.extract!(
-  shipping_request,
-  :id,
-  :kind,
-  :kind_text,
-  :status,
-  :address_attributes,
-  :waypoints,
-  :estimated_time_mins,
-  :assigned_at,
-  :estimated_delivery_at,
-  :estimated_dispatch_at,
-  :ref_lat,
-  :ref_lon
+json.partial!(
+  "api/courier/shipping_requests/shipping_request_details",
+  shipping_request: shipping_request
 )
 
 if shipping_request.kind.ask_to_validate?

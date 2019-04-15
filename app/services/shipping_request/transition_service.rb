@@ -11,9 +11,17 @@ class ShippingRequest < ActiveRecord::Base
       @shipping_request.transaction do
         @shipping_request.paper_trail_event = paper_trail_event
         yield if block_given?
-        @shipping_request.status = resource_status
+        @shipping_request.status = resource_transitions_to_status
         @shipping_request.save!
       end
+    end
+
+    def notify_android!
+      return if @shipping_request.kind.ask_to_validate?
+      ::ShippingRequest::NotifyCustomersService.delay.run(
+        @shipping_request.id,
+        resource_transitions_to_status
+      )
     end
 
     private
@@ -22,7 +30,7 @@ class ShippingRequest < ActiveRecord::Base
       raise NotImplementedError
     end
 
-    def resource_status
+    def resource_transitions_to_status
       raise NotImplementedError
     end
   end

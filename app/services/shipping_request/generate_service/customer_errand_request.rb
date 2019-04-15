@@ -17,7 +17,7 @@ class ShippingRequest < ActiveRecord::Base
 
       def notify_couriers!
         errand_text = I18n.t("shipping_request.notifications.new_errand_request")
-        NotifyCouriersService.delay.run(errand_text)
+        NotifyCouriersService.delay.run(errand_text, @shipping_request.id)
       end
 
       def call_couriers!
@@ -27,7 +27,7 @@ class ShippingRequest < ActiveRecord::Base
       end
 
       def create_shipping_request!
-        ShippingRequest.create!(
+        @shipping_request = ShippingRequest.create!(
           kind: DELIVERY_KIND,
           place: @resource.place,
           resource: @resource,

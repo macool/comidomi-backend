@@ -16,11 +16,11 @@ class ShippingRequest < ActiveRecord::Base
 
       def notify_couriers!
         nombre_establecimiento = @resource.provider_profile.nombre_establecimiento
-        NotifyCouriersService.delay.run(nombre_establecimiento)
+        NotifyCouriersService.delay.run(nombre_establecimiento, @shipping_request.id)
       end
 
       def create_shipping_request!
-        ShippingRequest.create!(
+        @shipping_request = ShippingRequest.create!(
           kind: DELIVERY_KIND,
           place: customer_order.place,
           resource: @resource,
