@@ -1,7 +1,10 @@
 module PushService
   class AndroidNotifier
     class FakeFCMClient
-      def send(*args); end
+      def send(*args)
+        return { status_code: 200 }
+      end
+
       def send_to_topic(*args)
         return { status_code: 200 }
       end
@@ -12,6 +15,15 @@ module PushService
     # def notify!(recipients, notification)
     #   fcm_client.send(recipients, notification)
     # end
+
+    def notify_ids!(registration_ids:, notification:, data: {})
+      fcm_client.send(
+        registration_ids,
+        data: data,
+        priority: "high",
+        notification: notification.merge(default_notification_params)
+      )
+    end
 
     ##
     # @return FCM server response

@@ -19,6 +19,16 @@ module Api
         param :password, String, required: true
         param :password_confirmation, String, required: true
       end
+
+      private
+
+      def resource_errors
+        errs = @resource.errors.to_hash.inject({}) do |memo, (k, v)|
+          memo[k] = v.uniq
+          memo
+        end
+        return errs.merge(full_messages: @resource.errors.full_messages)
+      end
     end
   end
 end
