@@ -37,6 +37,7 @@ module Admin
         :telefono,
         :place_id,
         :receive_calls,
+        :call_priority,
         :tipo_licencia,
         :fecha_nacimiento,
         :tipo_medio_movilizacion
