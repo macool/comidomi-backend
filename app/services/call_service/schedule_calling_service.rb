@@ -13,7 +13,7 @@ module CallService
 
     def perform!
       CallCourierService.delay(
-        run_at: 5.seconds.from_now
+        run_at: 30.seconds.from_now
       ).run(
         @scheduled_call.id
       )
