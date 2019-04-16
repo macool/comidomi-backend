@@ -49,7 +49,7 @@ es:
       to_status_body:
         canceled: Lo sentimos, tu pedido fue cancelado
         assigned: Tu pedido fue asignado a un mensajero
-        confirmed: "Te entregamos tu pedido en unos %{eta} minutos"
+        confirmed: "Te entregamos tu pedido dentro de %{eta} minutos"
         in_progress: El mensajero está recogiendo tu pedido
         delivered: El mensajero llegó al lugar de entrega con tu pedido
     courier_profile:
