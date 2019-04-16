@@ -31,8 +31,8 @@ class ShippingRequest < ActiveRecord::Base
         registration_ids: recipient_ids,
         notification: notification_description,
         data: {
-          notification_handler: :shipping_request_updated,
-          shipping_request: serialized_shipping_request,
+          notification_handler: :customer_request_updated,
+          customer_resource: serialized_customer_resource,
           notification_description: notification_description
         }
       )
@@ -64,14 +64,14 @@ class ShippingRequest < ActiveRecord::Base
       )
     end
 
-    def serialized_shipping_request
+    def serialized_customer_resource
       view = ApplicationController.view_context_class.new(
         "#{Rails.root}/app/views/"
       )
       JbuilderTemplate.new(view).encode do |json|
         json.partial!(
-          'api/courier/shipping_requests/shipping_request',
-          shipping_request: @shipping_request
+          'api/customer/orders/customer_resource',
+          customer_resource: @shipping_request.resource
         )
       end
     end
