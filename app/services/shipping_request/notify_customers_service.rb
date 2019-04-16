@@ -29,16 +29,21 @@ class ShippingRequest < ActiveRecord::Base
       notifier = ::PushService::AndroidNotifier.new
       resp = notifier.notify_ids!(
         registration_ids: recipient_ids,
+        notification: notification_description,
         data: {
           notification_handler: :shipping_request_updated,
-          shipping_request: serialized_shipping_request
-        },
-        notification: {
-          title: notification_title,
-          body: notification_body
+          shipping_request: serialized_shipping_request,
+          notification_description: notification_description
         }
       )
       fail if resp[:status_code] != 200
+    end
+
+    def notification_description
+      {
+        title: notification_title,
+        body: notification_body
+      }
     end
 
     def notification_title
