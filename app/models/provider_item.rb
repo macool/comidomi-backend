@@ -60,7 +60,8 @@ class ProviderItem < ActiveRecord::Base
     scope :in_stock, ->{ where(en_stock: true) }
     scope :available, ->{ where("cantidad > 0") }
     scope :by_titulo, ->{ order(:titulo) }
-    scope :groups, -> { where(is_group: true) }
+    scope :groups, ->{ where(is_group: true) }
+    scope :by_price, ->{ order(:precio_cents) }
     scope :with_parent_id,
           ->(parent_id) { where(parent_provider_item_id: parent_id) }
     scope :in_stock_and_available_or_group,
@@ -80,6 +81,7 @@ class ProviderItem < ActiveRecord::Base
              class_name: 'ProviderItemImage',
              dependent: :destroy
     has_many :children_provider_items,
+             -> { by_price },
              class_name: "ProviderItem",
              foreign_key: :parent_provider_item_id
 
