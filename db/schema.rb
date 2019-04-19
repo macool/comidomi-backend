@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190414033609) do
+ActiveRecord::Schema.define(version: 20190417223600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -277,6 +277,7 @@ ActiveRecord::Schema.define(version: 20190414033609) do
   add_index "provider_items", ["en_stock"], name: "index_provider_items_on_en_stock", using: :btree
   add_index "provider_items", ["is_group"], name: "index_provider_items_on_is_group", using: :btree
   add_index "provider_items", ["parent_provider_item_id"], name: "index_provider_items_on_parent_provider_item_id", using: :btree
+  add_index "provider_items", ["precio_cents"], name: "index_provider_items_on_precio_cents", using: :btree
   add_index "provider_items", ["provider_item_category_id"], name: "index_provider_items_on_provider_item_category_id", using: :btree
   add_index "provider_items", ["provider_profile_id"], name: "index_provider_items_on_provider_profile_id", using: :btree
 

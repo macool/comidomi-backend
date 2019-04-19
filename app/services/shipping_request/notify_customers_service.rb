@@ -71,8 +71,17 @@ class ShippingRequest < ActiveRecord::Base
       JbuilderTemplate.new(view).encode do |json|
         json.partial!(
           'api/customer/orders/customer_resource',
-          customer_resource: @shipping_request.resource
+          customer_resource: customer_resource
         )
+      end
+    end
+
+    def customer_resource
+      case @shipping_request.resource
+      when CustomerOrderDelivery
+        @shipping_request.resource.customer_order
+      else
+        @shipping_request.resource
       end
     end
   end
