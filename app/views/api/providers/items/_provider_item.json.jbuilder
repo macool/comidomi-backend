@@ -21,6 +21,7 @@ else
 end
 
 json.set! :precio_cents, precio_cents
+json.set! :category_name, provider_item.provider_item_category.nombre
 
 json.imagenes do
   json.array!(
