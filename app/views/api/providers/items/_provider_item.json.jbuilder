@@ -20,10 +20,12 @@ else
   provider_item.precio_cents
 end
 
-category_name = provider_item.provider_item_category ? provider_item.provider_item_category.name : nil
+nombre_de_categoria = if provider_item.provider_item_category
+  provider_item.provider_item_category.nombre
+end
 
 json.set! :precio_cents, precio_cents
-json.set! :category_name, category_name
+json.set! :nombre_de_categoria, nombre_de_categoria
 
 json.imagenes do
   json.array!(
