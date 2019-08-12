@@ -100,12 +100,18 @@ class ProviderItem < ActiveRecord::Base
     )
   end
 
-  def is_group
-    is_group?
-  end
+  begin :sti_attrs
+    def is_group
+      is_group?
+    end
 
-  def is_group?
-    type == "ProviderItemGroup"
+    def is_group?
+      type == "ProviderItemGroup"
+    end
+
+    def is_promo?
+      type == "ProviderItemPromo"
+    end
   end
 
   private

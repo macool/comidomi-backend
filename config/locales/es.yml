@@ -183,6 +183,7 @@ es:
       add_image: Agregar imagen
       provider_item_category: Categoría
       is_group: Grupo de ítems
+      is_promo: Promo
       history:
         create: creó este producto
         update: actualizó este producto

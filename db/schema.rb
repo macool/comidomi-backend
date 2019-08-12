@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190811213000) do
+ActiveRecord::Schema.define(version: 20190811213003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -270,7 +270,6 @@ ActiveRecord::Schema.define(version: 20190811213000) do
     t.integer  "provider_item_category_id"
     t.integer  "parent_provider_item_id"
     t.string   "type",                      default: "ProviderItemSingle", null: false
-    t.boolean  "is_group",                  default: false
   end
 
   add_index "provider_items", ["cantidad"], name: "index_provider_items_on_cantidad", using: :btree
