@@ -19,7 +19,6 @@
 #  en_stock                  :boolean
 #  provider_item_category_id :integer
 #  parent_provider_item_id   :integer
-#  is_group                  :boolean          default(FALSE)
 #  type                      :string           default("ProviderItemSingle"), not null
 #
 
@@ -65,8 +64,8 @@ class ProviderItem < ActiveRecord::Base
     scope :by_price, ->{ order(:precio_cents) }
     scope :with_parent_id,
           ->(parent_id) { where(parent_provider_item_id: parent_id) }
-    scope :in_stock_and_available_or_group,
-          ->{ where("(en_stock = 't' AND cantidad > 0 AND parent_provider_item_id IS NULL) OR (type = 'ProviderItemGroup')") }
+    scope :in_stock_and_available_or_publicly_available,
+          ->{ where("(en_stock = 't' AND cantidad > 0 AND parent_provider_item_id IS NULL) OR (type = 'ProviderItemGroup') OR (type = 'ProviderItemPromo')") }
   end
 
   begin :callbacks
@@ -85,6 +84,17 @@ class ProviderItem < ActiveRecord::Base
              -> { by_price },
              class_name: "ProviderItem",
              foreign_key: :parent_provider_item_id
+    has_many :weekdays,
+             class_name: 'ProviderItemPromoWeekday',
+             foreign_key: :provider_item_promo_id,
+             dependent: :destroy
+
+    accepts_nested_attributes_for(
+      :weekdays,
+      reject_if: proc { |attrs|
+        attrs['wkday'].blank?
+      }
+    )
 
     accepts_nested_attributes_for(
       :imagenes,
@@ -109,8 +119,20 @@ class ProviderItem < ActiveRecord::Base
       type == "ProviderItemGroup"
     end
 
+    def is_promo
+      is_promo?
+    end
+
     def is_promo?
       type == "ProviderItemPromo"
+    end
+  end
+
+  def build_promo_weekdays
+    Date::ABBR_DAYNAMES.each do |dayname|
+      weekdays.detect do |weekday|
+        weekday.wkday == dayname.downcase
+      end || weekdays.build(wkday: dayname.downcase)
     end
   end
 

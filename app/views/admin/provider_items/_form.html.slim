@@ -1,9 +1,20 @@
 = simple_nested_form_for [:admin,
                           provider_item.object.becomes(provider_item.object.class.base_class)] do |f|
+
+  - if f.object.is_promo?
+    - f.object.build_promo_weekdays
+
   .row
     .col-xs-12.col-xs-offset-0.col-sm-8.col-sm-offset-2
       .resource-detail.panel.panel-default
         .resource.panel-body
+          legend
+            - if f.object.new_record?
+              = t("admin.provider_item.actions.new")
+            - else
+              = t("admin.provider_item.actions.edit")
+            =< t("admin.provider_item.kind.#{provider_item.type}")
+
           = render "admin/shared/form_errors",
                    resource: f.object
 
@@ -48,6 +59,11 @@
           /
             = f.input :volumen
             = f.input :peso
+
+          - if f.object.is_promo?
+            legend = t("admin.provider_item.promo_available")
+            = f.simple_fields_for :weekdays do |weekdays_form|
+              = render "weekdays_form", f: weekdays_form
 
           .attached-images-in-form
             = f.simple_fields_for :imagenes, "imagenes[]" do |imagenes_form|

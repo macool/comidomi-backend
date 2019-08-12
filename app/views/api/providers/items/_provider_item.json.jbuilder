@@ -11,7 +11,8 @@ json.extract!(
   :cantidad,
   :provider_item_category_id,
   :provider_profile_id,
-  :is_group
+  :is_group,
+  :is_promo
 )
 
 precio_cents = if provider_item.is_group?
@@ -41,6 +42,16 @@ if provider_item.is_group?
       provider_item.children_provider_items,
       partial: "/api/providers/items/provider_item",
       as: :provider_item
+    )
+  end
+end
+
+if provider_item.is_promo?
+  json.weekdays do
+    json.array!(
+      provider_item.weekdays,
+      partial: "/api/providers/items/weekday",
+      as: :weekday
     )
   end
 end

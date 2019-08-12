@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190811213003) do
+ActiveRecord::Schema.define(version: 20190812024147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -251,6 +251,14 @@ ActiveRecord::Schema.define(version: 20190811213003) do
   end
 
   add_index "provider_item_images", ["provider_item_id"], name: "index_provider_item_images_on_provider_item_id", using: :btree
+
+  create_table "provider_item_promo_weekdays", force: :cascade do |t|
+    t.integer "provider_item_promo_id",                 null: false
+    t.string  "wkday",                                  null: false
+    t.boolean "available",              default: false
+  end
+
+  add_index "provider_item_promo_weekdays", ["provider_item_promo_id"], name: "index_provider_item_promo_weekdays_on_provider_item_promo_id", using: :btree
 
   create_table "provider_items", force: :cascade do |t|
     t.integer  "provider_profile_id"
@@ -497,6 +505,7 @@ ActiveRecord::Schema.define(version: 20190811213003) do
   add_foreign_key "provider_dispatchers", "provider_offices"
   add_foreign_key "provider_item_categories", "provider_profiles"
   add_foreign_key "provider_item_images", "provider_items"
+  add_foreign_key "provider_item_promo_weekdays", "provider_items", column: "provider_item_promo_id"
   add_foreign_key "provider_items", "provider_item_categories"
   add_foreign_key "provider_items", "provider_items", column: "parent_provider_item_id"
   add_foreign_key "provider_items", "provider_profiles"

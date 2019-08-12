@@ -175,7 +175,7 @@ es:
       collection_title: Días laborables
       no_schedule_placeholder: "--:--"
     provider_item:
-      new: Nuevo producto
+      new_single: Nuevo producto
       new_group: Nuevo grupo
       new_promo_item: Nueva promo
       updated: Producto actualizado
@@ -184,6 +184,14 @@ es:
       provider_item_category: Categoría
       is_group: Grupo de ítems
       is_promo: Promo
+      promo_available: Promo disponible
+      actions:
+        new: Nuevo
+        edit: Editar
+      kind:
+        ProviderItemSingle: Producto
+        ProviderItemGroup: Grupo de productos
+        ProviderItemPromo: Promoción
       history:
         create: creó este producto
         update: actualizó este producto
@@ -330,6 +338,7 @@ es:
         cantidad: Cantidad máxima
         parent_provider_item_id: Grupo
         parent_provider_item_str_with_link: Grupo
+        promo_weekdays: Días promo
       provider_profile:
         provider_category_id: Área
         status: Estado

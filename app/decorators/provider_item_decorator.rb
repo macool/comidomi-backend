@@ -29,6 +29,9 @@ class ProviderItemDecorator < GenericResourceDecorator
     if object.parent_provider_item.present?
       attrs.unshift(:parent_provider_item_str_with_link)
     end
+    if object.is_promo?
+      attrs.push(:promo_weekdays)
+    end
     attrs
   end
 
@@ -73,5 +76,11 @@ class ProviderItemDecorator < GenericResourceDecorator
       parent_provider_item.titulo,
       h.admin_provider_item_path(object.parent_provider_item)
     )
+  end
+
+  def promo_weekdays
+    weekdays.available.map do |wday|
+      h.t("enumerize.defaults.daynames.#{wday.wkday}")
+    end.join(", ")
   end
 end
