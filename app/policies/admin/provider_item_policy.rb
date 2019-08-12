@@ -26,6 +26,10 @@ module Admin
       new?
     end
 
+    def new_promo_item?
+      new?
+    end
+
     def create?
       new?
     end
@@ -36,6 +40,7 @@ module Admin
 
     def permitted_attributes
       [
+        :type,
         :titulo,
         :descripcion,
         :observaciones,

@@ -133,6 +133,7 @@ Rails.application.routes.draw do
     resources :provider_items do
       collection do
         get :new_group
+        get :new_promo_item
       end
     end
     resources :customer_orders do

@@ -1,0 +1,2 @@
+class ProviderItemGroupPolicy < ProviderItemPolicy
+end

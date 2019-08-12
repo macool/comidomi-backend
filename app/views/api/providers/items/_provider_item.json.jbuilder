@@ -20,7 +20,12 @@ else
   provider_item.precio_cents
 end
 
+nombre_de_categoria = if provider_item.provider_item_category
+  provider_item.provider_item_category.nombre
+end
+
 json.set! :precio_cents, precio_cents
+json.set! :nombre_de_categoria, nombre_de_categoria
 
 json.imagenes do
   json.array!(

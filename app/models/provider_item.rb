@@ -20,6 +20,7 @@
 #  provider_item_category_id :integer
 #  parent_provider_item_id   :integer
 #  is_group                  :boolean          default(FALSE)
+#  type                      :string           default("ProviderItemSingle"), not null
 #
 
 class ProviderItem < ActiveRecord::Base
@@ -60,12 +61,12 @@ class ProviderItem < ActiveRecord::Base
     scope :in_stock, ->{ where(en_stock: true) }
     scope :available, ->{ where("cantidad > 0") }
     scope :by_titulo, ->{ order(:titulo) }
-    scope :groups, ->{ where(is_group: true) }
+    scope :groups, ->{ where(type: 'ProviderItemGroup') }
     scope :by_price, ->{ order(:precio_cents) }
     scope :with_parent_id,
           ->(parent_id) { where(parent_provider_item_id: parent_id) }
     scope :in_stock_and_available_or_group,
-          ->{ where("(en_stock = 't' AND cantidad > 0 AND parent_provider_item_id IS NULL) OR (is_group = 't')") }
+          ->{ where("(en_stock = 't' AND cantidad > 0 AND parent_provider_item_id IS NULL) OR (type = 'ProviderItemGroup')") }
   end
 
   begin :callbacks
@@ -97,6 +98,14 @@ class ProviderItem < ActiveRecord::Base
       :provider_item_category,
       reject_if: proc { |attrs| attrs['nombre'].blank? }
     )
+  end
+
+  def is_group
+    is_group?
+  end
+
+  def is_group?
+    type == "ProviderItemGroup"
   end
 
   private

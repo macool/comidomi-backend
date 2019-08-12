@@ -177,10 +177,12 @@ es:
     provider_item:
       new: Nuevo producto
       new_group: Nuevo grupo
+      new_promo_item: Nueva promo
       updated: Producto actualizado
       created: Producto creado
       add_image: Agregar imagen
       provider_item_category: Categoría
+      is_group: Grupo de ítems
       history:
         create: creó este producto
         update: actualizó este producto

@@ -13,6 +13,11 @@
         = link_to provider_item.provider_profile,
                   admin_provider_profile_path(provider_item.provider_profile),
                   class: "resource-subtitle"
+        - if provider_item.is_group?
+          div
+            span.label.label-primary
+              span.glyphicon.glyphicon-th-large
+              =< t("admin.provider_item.is_group")
 
     .resource-body
       = render "admin/shared/common_resource_collection_body",

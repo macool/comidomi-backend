@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190417223600) do
+ActiveRecord::Schema.define(version: 20190811213000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -254,32 +254,33 @@ ActiveRecord::Schema.define(version: 20190417223600) do
 
   create_table "provider_items", force: :cascade do |t|
     t.integer  "provider_profile_id"
-    t.string   "titulo",                                    null: false
+    t.string   "titulo",                                                   null: false
     t.text     "descripcion"
     t.integer  "unidad_medida"
-    t.integer  "precio_cents",              default: 0,     null: false
-    t.string   "precio_currency",           default: "USD", null: false
+    t.integer  "precio_cents",              default: 0,                    null: false
+    t.string   "precio_currency",           default: "USD",                null: false
     t.string   "volumen"
     t.string   "peso"
     t.text     "observaciones"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
     t.datetime "deleted_at"
     t.integer  "cantidad",                  default: 0
     t.boolean  "en_stock"
     t.integer  "provider_item_category_id"
     t.integer  "parent_provider_item_id"
+    t.string   "type",                      default: "ProviderItemSingle", null: false
     t.boolean  "is_group",                  default: false
   end
 
   add_index "provider_items", ["cantidad"], name: "index_provider_items_on_cantidad", using: :btree
   add_index "provider_items", ["deleted_at"], name: "index_provider_items_on_deleted_at", using: :btree
   add_index "provider_items", ["en_stock"], name: "index_provider_items_on_en_stock", using: :btree
-  add_index "provider_items", ["is_group"], name: "index_provider_items_on_is_group", using: :btree
   add_index "provider_items", ["parent_provider_item_id"], name: "index_provider_items_on_parent_provider_item_id", using: :btree
   add_index "provider_items", ["precio_cents"], name: "index_provider_items_on_precio_cents", using: :btree
   add_index "provider_items", ["provider_item_category_id"], name: "index_provider_items_on_provider_item_category_id", using: :btree
   add_index "provider_items", ["provider_profile_id"], name: "index_provider_items_on_provider_profile_id", using: :btree
+  add_index "provider_items", ["type"], name: "index_provider_items_on_type", using: :btree
 
   create_table "provider_office_weekdays", force: :cascade do |t|
     t.integer  "provider_office_id", null: false

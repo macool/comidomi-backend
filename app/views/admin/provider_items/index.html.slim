@@ -9,6 +9,11 @@
         span.glyphicon.glyphicon-search
         = t("admin.filter")
 
+    = link_to new_promo_item_admin_provider_items_path,
+              class: "btn btn-link" do
+      span.glyphicon.glyphicon-tags
+      = t("admin.provider_item.new_promo_item")
+
     = link_to new_group_admin_provider_items_path,
               class: "btn btn-link" do
       span.glyphicon.glyphicon-th-large
@@ -23,7 +28,7 @@
 
 .resource-collection.auto-masonry
   - @resource_collection.each do |provider_item|
-    = render provider_item
+    = render "provider_item", provider_item: provider_item
 
 .text-center
   = paginate @resource_collection
