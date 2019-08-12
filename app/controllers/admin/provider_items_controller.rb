@@ -17,7 +17,13 @@ module Admin
     def new_group
       new_current_resource
       pundit_authorize
-      @current_resource.is_group = true
+      @current_resource.type = "ProviderItemGroup"
+    end
+
+    def new_promo_item
+      new_current_resource
+      pundit_authorize
+      @current_resource.type = "ProviderItemPromo"
     end
 
     private

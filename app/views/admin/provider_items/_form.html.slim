@@ -1,4 +1,5 @@
-= simple_nested_form_for [:admin, provider_item.object] do |f|
+= simple_nested_form_for [:admin,
+                          provider_item.object.becomes(provider_item.object.class.base_class)] do |f|
   .row
     .col-xs-12.col-xs-offset-0.col-sm-8.col-sm-offset-2
       .resource-detail.panel.panel-default
@@ -6,7 +7,7 @@
           = render "admin/shared/form_errors",
                    resource: f.object
 
-          = f.hidden_field :is_group
+          = f.hidden_field :type
 
           .form-group
             = f.label :provider_profile_id
@@ -22,6 +23,8 @@
                        { include_blank: true },
                        class: "js-selectize"
 
+          - # TODO maybe we can fetch these via ajax when
+          - # provider_profile is not persisted yet
           - if !f.object.is_group? && f.object.provider_profile.present?
             .form-group
               = f.label :parent_provider_item_id

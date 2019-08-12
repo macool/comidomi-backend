@@ -1,0 +1,2 @@
+class ProviderItemPromoPolicy < ProviderItemPolicy
+end

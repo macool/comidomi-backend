@@ -71,7 +71,7 @@ class ProviderItemDecorator < GenericResourceDecorator
   def parent_provider_item_str_with_link
     h.link_to(
       parent_provider_item.titulo,
-      h.admin_provider_item_path(object)
+      h.admin_provider_item_path(object.parent_provider_item)
     )
   end
 end

@@ -23,9 +23,8 @@ class GenericResourceDecorator < Draper::Decorator
   end
 
   def label_for(attribute)
-    klass_name = object.class.to_s.underscore
     h.t(
-      "activerecord.attributes.#{klass_name}.#{attribute}"
+      "activerecord.attributes.#{object_class_name}.#{attribute}"
     ) + ":"
   end
 
@@ -43,5 +42,15 @@ class GenericResourceDecorator < Draper::Decorator
 
   def str_with_link
     admin_link_to_resource { to_s }
+  end
+
+  private
+
+  def object_class_name
+    if object.attributes.has_key?("type")
+      object.class.base_class.to_s.underscore
+    else
+      object.class.to_s.underscore
+    end
   end
 end

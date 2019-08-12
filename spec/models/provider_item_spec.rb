@@ -20,6 +20,7 @@
 #  provider_item_category_id :integer
 #  parent_provider_item_id   :integer
 #  is_group                  :boolean          default(FALSE)
+#  type                      :string           default("ProviderItemSingle"), not null
 #
 
 require 'rails_helper'
