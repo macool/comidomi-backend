@@ -102,7 +102,6 @@ RSpec.describe Api::ItemsController,
       expect(resp_provider_item["titulo"]).to eq(provider_item_promo.titulo)
       expect(resp_provider_item["is_promo"]).to be_truthy
       resp_weekday = resp_provider_item["weekdays"].first
-      binding.pry
       expect(resp_weekday["available"]).to be_truthy
       expect(resp_weekday["wkday"]).to eq("sun")
     end
