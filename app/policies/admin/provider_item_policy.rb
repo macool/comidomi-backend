@@ -60,6 +60,11 @@ module Admin
           :imagen_cache,
           :remove_imagen,
           :_destroy
+        ],
+        weekdays_attributes: [
+          :id,
+          :wkday,
+          :available
         ]
       ]
     end

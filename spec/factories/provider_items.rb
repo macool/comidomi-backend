@@ -19,7 +19,6 @@
 #  en_stock                  :boolean
 #  provider_item_category_id :integer
 #  parent_provider_item_id   :integer
-#  is_group                  :boolean          default(FALSE)
 #  type                      :string           default("ProviderItemSingle"), not null
 #
 
@@ -58,6 +57,10 @@ FactoryGirl.define do
     trait :group do
       precio 0
       type "ProviderItemGroup"
+    end
+
+    trait :promo do
+      type "ProviderItemPromo"
     end
   end
 end

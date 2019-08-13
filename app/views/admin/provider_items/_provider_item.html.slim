@@ -13,6 +13,11 @@
         = link_to provider_item.provider_profile,
                   admin_provider_profile_path(provider_item.provider_profile),
                   class: "resource-subtitle"
+        - if provider_item.is_promo?
+          div
+            span.label.label-primary
+              span.glyphicon.glyphicon-tags
+              =< t("admin.provider_item.is_promo")
         - if provider_item.is_group?
           div
             span.label.label-primary
