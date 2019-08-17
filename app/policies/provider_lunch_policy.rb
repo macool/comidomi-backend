@@ -13,7 +13,11 @@ class ProviderLunchPolicy < ApplicationPolicy
 
   def permitted_attributes
     [
-      :precio
+      :precio,
+      lunch_items_attributes: [
+        :kind,
+        :name
+      ]
     ]
   end
 

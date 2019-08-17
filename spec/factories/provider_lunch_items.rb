@@ -10,21 +10,10 @@
 #  updated_at        :datetime         not null
 #
 
-class ProviderLunchItem < ActiveRecord::Base
-  extend Enumerize
-
-  KINDS = [
-    :mainplate,
-    :soup,
-    :drink,
-    :dessert,
-  ].freeze
-
-  belongs_to :provider_lunch
-
-  validates :kind,
-            :name,
-            presence: true
-
-  enumerize :kind, in: KINDS
+FactoryGirl.define do
+  factory :provider_lunch_item do
+    provider_lunch
+    kind ProviderLunchItem::KINDS.sample
+    name { Faker::Commerce.product_name }
+  end
 end

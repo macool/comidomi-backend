@@ -10,21 +10,10 @@
 #  updated_at        :datetime         not null
 #
 
-class ProviderLunchItem < ActiveRecord::Base
-  extend Enumerize
+require 'rails_helper'
 
-  KINDS = [
-    :mainplate,
-    :soup,
-    :drink,
-    :dessert,
-  ].freeze
-
-  belongs_to :provider_lunch
-
-  validates :kind,
-            :name,
-            presence: true
-
-  enumerize :kind, in: KINDS
+RSpec.describe ProviderLunchItem, type: :model do
+  describe "factory" do
+    it { expect(build(:provider_lunch_item)).to be_valid }
+  end
 end
