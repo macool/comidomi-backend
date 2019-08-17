@@ -1,0 +1,13 @@
+.main-content-toolbox
+  .text-right
+    = link_to new_admin_provider_lunch_path,
+              class: "btn btn-link" do
+      span.glyphicon.glyphicon-plus-sign
+      = t("admin.provider_lunch.new")
+
+.resource-collection.auto-masonry
+  - @resource_collection.each do |provider_lunch|
+    = render "provider_lunch", provider_lunch: provider_lunch
+
+.text-center
+  = paginate @resource_collection

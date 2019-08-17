@@ -127,6 +127,7 @@ Rails.application.routes.draw do
     resources :resource_version, only: :show
     resources :shipping_requests
     resources :provider_item_categories
+    resources :provider_lunches, only: [:index, :new, :create]
     resources :courier_profiles do
       collection do
         get :priorities

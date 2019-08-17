@@ -117,6 +117,7 @@ es:
       provider_categories: Áreas
       provider_item_categories: Categorías
       provider_items: Productos
+      provider_lunches: Almuerzos
       customer_orders: Órdenes
       places: Lugares
       courier_profiles: Mensajeros
@@ -174,6 +175,9 @@ es:
     provider_office_weekday:
       collection_title: Días laborables
       no_schedule_placeholder: "--:--"
+    provider_lunch:
+      new: Nuevo almuerzo
+      add_item: Agregar variedad
     provider_item:
       new_single: Nuevo producto
       new_group: Nuevo grupo
@@ -329,6 +333,12 @@ es:
         hora_de_cierre: Hora de cierre
       provider_item_categories:
         nombre: Nombre
+      provider_lunch:
+        provider_profile_id: Proveedor
+        remove_item: Quitar variedad
+      provider_lunch_item:
+        name: Nombre
+        kind: Tipo
       provider_item:
         titulo: Título
         provider_item_category: Categoría
@@ -643,3 +653,9 @@ es:
         thu: Jueves
         fri: Viernes
         sat: Sábado
+    lunch_items:
+      kinds:
+        mainplate: Plato fuerte
+        soup: Sopa
+        drink: Bebida
+        dessert: Postre
