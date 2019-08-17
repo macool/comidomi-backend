@@ -54,6 +54,8 @@ Rails.application.routes.draw do
                 only: [:index, :show, :create, :update, :destroy]
       resources :item_categories,
                 only: [:index]
+      resources :lunches,
+                only: [:create]
       resources :customer_orders,
                 only: [:index, :show] do
         member do
