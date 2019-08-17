@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190812024147) do
+ActiveRecord::Schema.define(version: 20190816052309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -289,6 +289,26 @@ ActiveRecord::Schema.define(version: 20190812024147) do
   add_index "provider_items", ["provider_profile_id"], name: "index_provider_items_on_provider_profile_id", using: :btree
   add_index "provider_items", ["type"], name: "index_provider_items_on_type", using: :btree
 
+  create_table "provider_lunch_items", force: :cascade do |t|
+    t.integer  "provider_lunch_id", null: false
+    t.string   "kind",              null: false
+    t.string   "name",              null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "provider_lunch_items", ["provider_lunch_id"], name: "index_provider_lunch_items_on_provider_lunch_id", using: :btree
+
+  create_table "provider_lunches", force: :cascade do |t|
+    t.integer  "provider_profile_id",                 null: false
+    t.integer  "precio_cents",        default: 0,     null: false
+    t.string   "precio_currency",     default: "USD", null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "provider_lunches", ["provider_profile_id"], name: "index_provider_lunches_on_provider_profile_id", using: :btree
+
   create_table "provider_office_weekdays", force: :cascade do |t|
     t.integer  "provider_office_id", null: false
     t.string   "day",                null: false
@@ -509,6 +529,8 @@ ActiveRecord::Schema.define(version: 20190812024147) do
   add_foreign_key "provider_items", "provider_item_categories"
   add_foreign_key "provider_items", "provider_items", column: "parent_provider_item_id"
   add_foreign_key "provider_items", "provider_profiles"
+  add_foreign_key "provider_lunch_items", "provider_lunches"
+  add_foreign_key "provider_lunches", "provider_profiles"
   add_foreign_key "provider_office_weekdays", "provider_offices"
   add_foreign_key "provider_offices", "places"
   add_foreign_key "provider_offices", "provider_profiles"
