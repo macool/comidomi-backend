@@ -6,6 +6,10 @@ module Api
 
       self.resource_klass = ProviderLunch
 
+      resource_description do
+        name "Provider::Lunches"
+      end
+
       def_param_group :provider_lunch do
         param :precio, Float, required: true
         param :lunch_items_attributes, Hash do
