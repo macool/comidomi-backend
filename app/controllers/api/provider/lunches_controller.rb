@@ -10,7 +10,7 @@ module Api
         param :precio, Float, required: true
         param :lunch_items_attributes, Hash do
           param :name, String, required: true
-          param :kind, ProviderLunch::KINDS, required: true
+          param :kind, ProviderLunchItem::KINDS, required: true
         end
       end
 
