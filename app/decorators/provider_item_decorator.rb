@@ -23,7 +23,7 @@ class ProviderItemDecorator < GenericResourceDecorator
       :provider_item_category
     ]
     attrs.unshift(
-      :precio,
+      :precio_str,
       :en_stock
     ) unless object.is_group?
     if object.parent_provider_item.present?
@@ -55,7 +55,7 @@ class ProviderItemDecorator < GenericResourceDecorator
     )
   end
 
-  def precio
+  def precio_str
     h.humanized_money_with_symbol object.precio
   end
 

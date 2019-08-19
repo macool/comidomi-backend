@@ -26,5 +26,5 @@ class ProviderLunchItem < ActiveRecord::Base
             :name,
             presence: true
 
-  enumerize :kind, in: KINDS
+  enumerize :kind, in: KINDS, i18n_scope: "enumerize.lunch_items.kinds"
 end

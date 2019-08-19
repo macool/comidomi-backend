@@ -1,0 +1,32 @@
+.resource-wrapper.col-xs-6.col-sm-4.col-lg-4
+  .resource
+    .resource-head.row
+      .col-xs-5.col-lg-4.resource-image-wrapper
+        span.glyphicon.glyphicon-picture.placeholder-thumbnail
+
+      .col-xs-7.col-lg-8.resource-title-wrapper
+        .resource-title = provider_lunch.titulo
+        = link_to provider_lunch.provider_profile,
+                  admin_provider_profile_path(provider_lunch.provider_profile),
+                  class: "resource-subtitle"
+
+    .resource-body
+      = render "admin/shared/common_resource_collection_body",
+               resource: provider_lunch,
+               display: :card_attributes
+
+      .resource-row
+        - provider_lunch.lunch_items_by_kind.each do |kind, lunch_items|
+          span.resource-label
+            = t("enumerize.lunch_items.kinds.#{kind}")
+            ' :
+          ul.resource-list-values
+            - lunch_items.each do |lunch_item|
+              li
+                = lunch_item.name
+
+    /-
+      .resource-footer
+        = link_to t("ui.view_details"),
+                  admin_provider_lunch_path(provider_lunch),
+                  class: "btn btn-default"
