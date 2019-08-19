@@ -3,8 +3,12 @@ class ProviderLunchDecorator < GenericResourceDecorator
 
   def card_attributes
     [
-      :precio
+      :precio_str
     ]
+  end
+
+  def precio_str
+    h.humanized_money_with_symbol precio
   end
 
   def admin_link_to_resource(options=nil, &block)

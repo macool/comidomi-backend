@@ -336,6 +336,7 @@ es:
       provider_lunch:
         provider_profile_id: Proveedor
         remove_item: Quitar variedad
+        precio_str: Precio
       provider_lunch_item:
         name: Nombre
         kind: Tipo
@@ -349,6 +350,7 @@ es:
         parent_provider_item_id: Grupo
         parent_provider_item_str_with_link: Grupo
         promo_weekdays: Días promo
+        precio_str: Precio
       provider_profile:
         provider_category_id: Área
         status: Estado
